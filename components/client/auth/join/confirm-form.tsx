@@ -9,7 +9,7 @@ import { Button } from '@ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@ui/form';
 import { Input } from '@ui/input';
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@ui/input-otp';
-import { LogInIcon } from 'lucide-react';
+import { UserPlusIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -75,7 +75,7 @@ export default function JoinConfirmForm({ defaultValues }: Readonly<JoinConfirmS
           )}
         />
         <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-          <LogInIcon /> 인증번호 확인
+          <UserPlusIcon /> 인증번호 확인
         </Button>
       </form>
     </Form>

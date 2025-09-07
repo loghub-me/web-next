@@ -31,7 +31,7 @@ export default function ThemedImage(
         data-slot="themed-image-skeleton"
         aria-hidden="true"
         aria-label={props.alt}
-        style={{ width: props.width, height: props.width }}
+        style={{ width: props.width, height: props.height }}
       />
     );
   }
