@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@ui/form';
 import { Input } from '@ui/input';
-import { LogInIcon } from 'lucide-react';
+import { UserPlusIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -61,7 +61,7 @@ export default function JoinRequestForm() {
           )}
         />
         <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-          <LogInIcon /> 로그인
+          <UserPlusIcon /> 회원가입
         </Button>
       </form>
     </Form>

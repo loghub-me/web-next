@@ -14,7 +14,7 @@ export default function LoginSocialLinks() {
         <TopicIcon slug="google" name="Google" />
         구글로 로그인
       </ButtonLink>
-      <ButtonLink variant={'outline'} href={buildAPIUrl('/oauth2/authorize/github')} type="submit" className="w-full">
+      <ButtonLink variant={'outline'} href={buildAPIUrl('/oauth2/authorize/google')} type="submit" className="w-full">
         <TopicIcon slug="github" name="GitHub" />
         깃허브로 로그인
       </ButtonLink>
