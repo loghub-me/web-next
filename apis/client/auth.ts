@@ -57,7 +57,9 @@ function extractSessionFromToken(token: string) {
   return {
     id: decodedToken.sub,
     email: decodedToken.email,
+    username: decodedToken.username,
     nickname: decodedToken.nickname,
+    joinedAt: decodedToken.joinedAt,
     role: decodedToken.role,
   } as Session;
 }

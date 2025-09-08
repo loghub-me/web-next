@@ -1,0 +1,31 @@
+import { LayersIcon, MessagesSquareIcon, ScrollIcon, TagIcon } from 'lucide-react';
+
+const SEARCH_LINKS = [
+  { label: '아티클', href: '/search/articles', icon: ScrollIcon },
+  { label: '시리즈', href: '/search/series', icon: LayersIcon },
+  { label: '질문', href: '/search/questions', icon: MessagesSquareIcon },
+  { label: '토픽', href: '/topics', icon: TagIcon },
+];
+
+const MANUAL_LINKS = [
+  { label: '아티클', href: '/manual#article' },
+  { label: '시리즈', href: '/manual#series' },
+  { label: '질문', href: '/manual#question' },
+];
+
+const LEGAL_LINKS = [
+  { label: '이용약관', href: '/legal#terms' },
+  { label: '개인정보처리방침', href: '/legal#privacy' },
+];
+
+const CONTACT_LINKS = [{ label: 'GitHub', href: 'https://github.com/loghub-me' }];
+
+const HEADER_LINKS = SEARCH_LINKS;
+const FOOTER_LINKS = [
+  { label: 'Manual', links: MANUAL_LINKS },
+  { label: 'Search', links: SEARCH_LINKS },
+  { label: 'Legal', links: LEGAL_LINKS },
+  { label: 'Contact', links: CONTACT_LINKS },
+];
+
+export { HEADER_LINKS, FOOTER_LINKS };

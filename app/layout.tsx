@@ -1,4 +1,6 @@
 import '@/app/globals.css';
+import GlobalFooter from '@/components/global/footer';
+import GlobalHeader from '@/components/global/header';
 import { Toaster } from '@/components/ui/sonner';
 import AuthProvider from '@/providers/auth';
 import { ThemeProvider } from '@/providers/theme';
@@ -23,7 +25,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <AuthProvider>
+            <GlobalHeader />
             {children}
+            <GlobalFooter />
             <Toaster position={'top-center'} richColors={true} />
           </AuthProvider>
         </ThemeProvider>
