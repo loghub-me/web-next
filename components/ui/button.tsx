@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import Link from 'next/link';
+import Link, { LinkProps } from 'next/link';
 import * as React from 'react';
 
 const buttonVariants = cva(
@@ -54,7 +54,9 @@ function ButtonLink({
   href,
   disabled = false,
   ...props
-}: React.ComponentProps<'a'> & VariantProps<typeof buttonVariants> & { href: string; disabled?: boolean }) {
+}: LinkProps &
+  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps> &
+  VariantProps<typeof buttonVariants> & { className?: string; disabled?: boolean }) {
   if (disabled) {
     return (
       <Button variant={variant} disabled={true}>

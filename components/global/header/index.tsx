@@ -1,0 +1,31 @@
+import AuthMenu from '@/components/global/auth-menu';
+import HeaderNavLink from '@/components/global/header/nav-link';
+import GlobalSheet from '@/components/global/sheet';
+import Symbol from '@/components/global/symbol';
+import { HEADER_LINKS } from '@/constants/links';
+import Link from 'next/link';
+
+export default function GlobalHeader() {
+  return (
+    <header className="absolute top-0 left-0 w-full h-16 bg-background border-b">
+      <div className="container mx-auto flex items-center gap-4 h-full px-4">
+        <Link href={'/'} className="transition-opacity hover:opacity-70">
+          <Symbol size={36} />
+        </Link>
+        <nav className="invisible md:visible flex items-center gap-1 w-full h-full">
+          {HEADER_LINKS.map((link) => (
+            <HeaderNavLink key={link.href} href={link.href}>
+              {link.label}
+            </HeaderNavLink>
+          ))}
+        </nav>
+        <div className="hidden md:flex items-center gap-1 ml-0 h-full">
+          <AuthMenu type={'header'} />
+        </div>
+        <div className="flex md:hidden items-center gap-1 ml-0 h-full">
+          <GlobalSheet />
+        </div>
+      </div>
+    </header>
+  );
+}
