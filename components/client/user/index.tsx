@@ -1,3 +1,4 @@
 'use client';
 
 export { default as UserAvatar } from '@/components/client/user/avatar';
+export { default as UserInline } from '@/components/client/user/inline';

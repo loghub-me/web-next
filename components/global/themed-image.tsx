@@ -17,7 +17,7 @@ export default function ThemedImage(
 ) {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { src, ...rest } = props;
+  const { src, alt, ...rest } = props;
 
   let resolvedSrc;
 
@@ -30,7 +30,7 @@ export default function ThemedImage(
       <Skeleton
         data-slot="themed-image-skeleton"
         aria-hidden="true"
-        aria-label={props.alt}
+        aria-label={props.alt || 'image skeleton'}
         style={{ width: props.width, height: props.height }}
       />
     );
@@ -48,5 +48,5 @@ export default function ThemedImage(
       break;
   }
 
-  return <Image src={resolvedSrc} {...rest} />;
+  return <Image src={resolvedSrc} alt={alt || 'themed image'} {...rest} />;
 }
