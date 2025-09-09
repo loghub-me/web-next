@@ -1,11 +1,7 @@
 import GuestGuard from '@/guard/guest';
 import { Card } from '@ui/card';
 
-interface AuthLayoutProps {
-  children?: React.ReactNode;
-}
-
-export default function AuthLayout({ children }: Readonly<AuthLayoutProps>) {
+export default function AuthLayout({ children }: LayoutProps<'/'>) {
   return (
     <GuestGuard>
       <main className="flex w-full min-h-screen">

@@ -3,11 +3,7 @@ import Symbol from '@/components/global/symbol';
 import { parseObject } from '@/lib/parse';
 import { loginConfirmSearchParamsSchema } from '@/schemas/auth';
 
-interface LoginConfirmPageProps {
-  searchParams: Promise<SearchParams>;
-}
-
-export default async function LoginConfirmPage({ searchParams }: Readonly<LoginConfirmPageProps>) {
+export default async function LoginConfirmPage({ searchParams }: PageProps<'/login/confirm'>) {
   const parsedSearchParams = parseObject(await searchParams, loginConfirmSearchParamsSchema);
 
   return (
