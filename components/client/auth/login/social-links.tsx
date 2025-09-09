@@ -1,4 +1,4 @@
-import { TopicIcon } from '@/components/client/topics';
+import { TopicIcon } from '@/components/client/topic';
 import { buildAPIUrl } from '@/lib/utils';
 import { ButtonLink } from '@ui/button';
 

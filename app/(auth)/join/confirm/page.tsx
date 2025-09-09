@@ -3,11 +3,7 @@ import Symbol from '@/components/global/symbol';
 import { parseObject } from '@/lib/parse';
 import { joinConfirmSearchParamsSchema } from '@/schemas/auth';
 
-interface LoginConfirmPageProps {
-  searchParams: Promise<SearchParams>;
-}
-
-export default async function JoinConfirmPage({ searchParams }: Readonly<LoginConfirmPageProps>) {
+export default async function JoinConfirmPage({ searchParams }: PageProps<'/join/confirm'>) {
   const parsedSearchParams = parseObject(await searchParams, joinConfirmSearchParamsSchema);
 
   return (

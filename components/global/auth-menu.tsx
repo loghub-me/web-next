@@ -75,7 +75,7 @@ function MemberMenu({ type, session }: Readonly<AuthMenuProps & { session: Sessi
     <DropdownMenu modal={false} open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button variant={open ? 'secondary' : 'outline'} className={cn('border', type === 'sheet' && 'flex-1')}>
-          <UserAvatar {...session} /> {session.nickname}
+          <UserAvatar {...session} /> {session.username}
           <ChevronUpIcon
             className={cn(
               'ml-auto transition-transform',
