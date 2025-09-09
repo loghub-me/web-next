@@ -11,5 +11,5 @@ interface Timestamps {
 }
 
 interface SkeletonProps {
-  count?: number;
+  size?: number;
 }
