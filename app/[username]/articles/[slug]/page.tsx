@@ -1,5 +1,6 @@
 import { getArticleDetail } from '@/apis/server/article';
 import { ArticleTOCCard } from '@/components/client/article';
+import ArticleComments from '@/components/client/article/comment';
 import {
   ArticleDetailAside,
   ArticleDetailContent,
@@ -23,6 +24,7 @@ export default async function ArticleDetailPage({ params }: PageProps<'/[usernam
             <ArticleDetailHeader {...article} />
             <ArticleDetailContent {...article} />
           </Card>
+          <ArticleComments id={article.id} />
         </div>
         <ArticleDetailAside>
           <ArticleTOCCard {...article} />

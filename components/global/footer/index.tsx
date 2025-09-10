@@ -1,8 +1,8 @@
 'use client';
 
 import Logo from '@/components/global/logo';
-import { Separator } from '@/components/ui/separator';
 import { FOOTER_LINKS } from '@/constants/links';
+import { Separator } from '@ui/separator';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 

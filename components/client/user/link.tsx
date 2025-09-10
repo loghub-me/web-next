@@ -12,7 +12,12 @@ interface UserLinkProps extends VariantProps<typeof buttonVariants> {
 
 export default function UserLink({ id, username, message, className, variant }: Readonly<UserLinkProps>) {
   return (
-    <ButtonLink href={`/@${username}`} variant={variant} size={'sm'} className={cn('px-1.5', className)}>
+    <ButtonLink
+      href={`/${username}`}
+      variant={variant}
+      size={'sm'}
+      className={cn('px-1.5', variant === 'link' && 'px-0', className)}
+    >
       <UserAvatar id={id} username={username} className="mt-0.5" />
       <span className="text-sm group-hover:text-accent-foreground">
         @{username} {message}

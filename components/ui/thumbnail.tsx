@@ -18,7 +18,7 @@ interface ThumbnailProps {
 
 export default function Thumbnail({ aspect, src, alt, width, height }: Readonly<ThumbnailProps>) {
   return (
-    <div className={cn('relative bg-muted border rounded-lg group', ASPECT_OPTIONS[aspect])}>
+    <div className={cn('relative bg-muted border rounded-lg overflow-hidden group', ASPECT_OPTIONS[aspect])}>
       <Image
         src={buildAssetsUrl(`/${src}`)}
         alt={alt}
