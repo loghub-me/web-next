@@ -9,6 +9,9 @@ export { default as ArticleActionMenu } from '@/components/client/article/action
 export { default as ArticleStarToggle } from '@/components/client/article/star/toggle';
 export { default as ArticleTOCCard } from '@/components/client/article/toc/card';
 
+export { default as ArticlePostDialog } from '@/components/client/article/post/dialog';
+export { default as ArticlePostForm } from '@/components/client/article/post/form';
+
 export { default as ArticleCommentList } from '@/components/client/article/comment/list';
 export { default as ArticleCommentListItem } from '@/components/client/article/comment/list-item';
 export { default as ArticleCommentListSkeleton } from '@/components/client/article/comment/list-skeleton';

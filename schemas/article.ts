@@ -1,12 +1,21 @@
 import zodFields from '@/schemas/fields';
 import { z } from 'zod';
 
-const { id, page, query, sort } = zodFields;
+const { page, query, sort } = zodFields;
+const { title, content, thumbnail, topicSlugs } = zodFields;
+const { id } = zodFields;
 
 const articleSearchSchema = z.object({
   query,
   sort,
   page,
+});
+
+const articlePostSchema = z.object({
+  title,
+  content,
+  thumbnail,
+  topicSlugs,
 });
 
 const articleCommentPostSchema = z.object({
@@ -19,4 +28,4 @@ const articleCommentPostSchema = z.object({
   parentId: id.optional(),
 });
 
-export { articleSearchSchema, articleCommentPostSchema };
+export { articleSearchSchema, articlePostSchema, articleCommentPostSchema };
