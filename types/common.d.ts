@@ -13,3 +13,9 @@ interface Timestamps {
 interface SkeletonProps {
   size?: number;
 }
+
+interface Anchor {
+  level: number;
+  slug: string;
+  text: string;
+}

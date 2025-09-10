@@ -1,9 +1,10 @@
 import '@/app/globals.css';
 import GlobalFooter from '@/components/global/footer';
 import GlobalHeader from '@/components/global/header';
-import { Toaster } from '@/components/ui/sonner';
 import AuthProvider from '@/providers/auth';
 import { ThemeProvider } from '@/providers/theme';
+import '@/styles/markdown-it.css';
+import { Toaster } from '@ui/sonner';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 

@@ -1,4 +1,4 @@
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from '@ui/skeleton';
 
 export default function ArticleListSkeleton({ size = 4 }: Readonly<SkeletonProps>) {
   return Array.from({ length: size }, (_, index) => (
