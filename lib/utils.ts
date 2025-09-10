@@ -1,4 +1,4 @@
-import { clsx, type ClassValue } from 'clsx';
+import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -6,9 +6,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function buildAPIUrl(path: string) {
-  return `${process.env.NEXT_PUBLIC_API_HOST}${path}`;
+  return `${process.env.NEXT_PUBLIC_API_HOST}/${path}`;
 }
 
 export function buildAssetsUrl(path: string) {
-  return `${process.env.NEXT_PUBLIC_ASSETS_HOST}${path}`;
+  return `${process.env.NEXT_PUBLIC_ASSETS_HOST}/${path}`;
 }

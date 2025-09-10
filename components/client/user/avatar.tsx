@@ -22,7 +22,7 @@ interface UserAvatarProps extends VariantProps<typeof avatarVariants> {
 export default function UserAvatar({ id, username, size, className }: Readonly<UserAvatarProps>) {
   return (
     <Avatar className={cn(avatarVariants({ size, className }))}>
-      <AvatarImage src={buildAssetsUrl(`/${id}/avatar.webp`)} />
+      <AvatarImage src={buildAssetsUrl(`${id}/avatar.webp`)} />
       <AvatarFallback className="text-xs">{username[0]}</AvatarFallback>
     </Avatar>
   );
