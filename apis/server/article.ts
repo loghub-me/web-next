@@ -5,4 +5,7 @@ import { z } from 'zod';
 const getArticles = async (searchParams: z.infer<typeof articleSearchSchema>) =>
   serverAPI.get('articles', { searchParams }).json<Page<Article>>();
 
-export { getArticles };
+const getArticleDetail = async (username: string, slug: string) =>
+  serverAPI.get(`articles/@${username}/${slug}`).json<ArticleDetail>();
+
+export { getArticles, getArticleDetail };

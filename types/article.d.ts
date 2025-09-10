@@ -8,6 +8,18 @@ interface Article extends Timestamps {
   topics: Topic[];
 }
 
+interface ArticleDetail extends Timestamps {
+  id: number;
+  slug: string;
+  title: string;
+  content: Content;
+  anchors: Anchor[];
+  thumbnail: string;
+  stats: ArticleStats;
+  writer: User;
+  topics: Topic[];
+}
+
 interface ArticleStats {
   starCount: number;
   commentCount: number;

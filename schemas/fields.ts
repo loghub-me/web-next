@@ -9,11 +9,13 @@ const page = z.coerce
   .int({ message: '페이지 번호는 정수여야 합니다.' })
   .positive({ message: '페이지 번호는 양수여야 합니다.' })
   .default(1);
+const slug = z.string({ message: '슬러그는 문자열이어야 합니다.' }).trim();
 
 const zodFields = {
   query,
   sort,
   page,
+  slug,
 };
 
 export default zodFields;

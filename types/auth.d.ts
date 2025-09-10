@@ -18,5 +18,3 @@ interface CustomJwtPayload {
   joinedAt: string;
   role: UserRole;
 }
-
-type UserRole = 'MEMBER' | 'ADMIN' | 'BOT';
