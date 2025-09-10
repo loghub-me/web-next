@@ -1,8 +1,11 @@
 'use client';
 
 import { clientAPI } from '@/apis/client/instance';
-import { articleCommentPostSchema } from '@/schemas/article';
+import { articleCommentPostSchema, articlePostSchema } from '@/schemas/article';
 import { z } from 'zod';
+
+const postArticle = (json: z.infer<typeof articlePostSchema>) =>
+  clientAPI.post(`articles`, { json }).json<RedirectResponseBody>();
 
 const deleteArticle = (articleId: number) => clientAPI.delete(`articles/${articleId}`).json<MessageResponseBody>();
 
@@ -24,6 +27,7 @@ const removeArticleStar = (articleId: number) =>
   clientAPI.delete(`articles/star/${articleId}`).json<MessageResponseBody>();
 
 export {
+  postArticle,
   deleteArticle,
   getArticleComments,
   getArticleCommentReplies,

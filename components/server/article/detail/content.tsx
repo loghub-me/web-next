@@ -1,4 +1,4 @@
-import { TopicBadge } from '@/components/client/topic';
+import { TopicLink } from '@/components/client/topic';
 import { CardContent } from '@ui/card';
 import Thumbnail from '@ui/thumbnail';
 
@@ -20,7 +20,7 @@ export default function ArticleDetailContent({
       {topics.length > 0 && (
         <div className="flex flex-wrap gap-1">
           {topics.map((topic) => (
-            <TopicBadge key={topic.slug} topic={topic} linkify={true} />
+            <TopicLink key={topic.slug} topic={topic} />
           ))}
         </div>
       )}

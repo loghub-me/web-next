@@ -19,3 +19,5 @@ interface Anchor {
   slug: string;
   text: string;
 }
+
+type ThumbnailAspectRatio = '16:9' | '3:4';
