@@ -34,7 +34,7 @@ const logout = () =>
     return body;
   });
 const refreshToken = () =>
-  ky.post(buildAPIUrl('/auth/refresh'), { credentials: 'include', keepalive: true }).then(async (res) => {
+  ky.post(buildAPIUrl('auth/refresh'), { credentials: 'include', keepalive: true }).then(async (res) => {
     const body = await res.json<MessageResponseBody>();
     const token = extractTokenFromResponse(res);
     const session = extractSessionFromToken(token);
