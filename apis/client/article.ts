@@ -15,4 +15,20 @@ const getArticleCommentReplies = (articleId: number, commentId: number) =>
 const postArticleComment = (articleId: number, json: z.infer<typeof articleCommentPostSchema>, parentId?: number) =>
   clientAPI.post(`articles/${articleId}/comments`, { json: { ...json, parentId } }).json<MethodResponseBody>();
 
-export { deleteArticle, getArticleComments, getArticleCommentReplies, postArticleComment };
+const existsArticleStar = (articleId: number) =>
+  clientAPI.get(`articles/star/${articleId}`).json<DataResponseBody<boolean>>();
+
+const addArticleStar = (articleId: number) => clientAPI.post(`articles/star/${articleId}`).json<MethodResponseBody>();
+
+const removeArticleStar = (articleId: number) =>
+  clientAPI.delete(`articles/star/${articleId}`).json<MessageResponseBody>();
+
+export {
+  deleteArticle,
+  getArticleComments,
+  getArticleCommentReplies,
+  postArticleComment,
+  existsArticleStar,
+  addArticleStar,
+  removeArticleStar,
+};

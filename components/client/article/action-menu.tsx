@@ -23,10 +23,9 @@ interface ArticleActionMenuProps {
   id: number;
   slug: string;
   writer: User;
-  stats: { starCount: number };
 }
 
-export default function ArticleActionMenu({ id, slug, writer, stats }: Readonly<ArticleActionMenuProps>) {
+export default function ArticleActionMenu({ id, slug, writer }: Readonly<ArticleActionMenuProps>) {
   const { session } = useAuth();
 
   return (

@@ -6,6 +6,7 @@ export { default as ArticleSearchQuery } from '@/components/client/article/searc
 export { default as ArticleSearchSubmit } from '@/components/client/article/search/submit';
 
 export { default as ArticleActionMenu } from '@/components/client/article/action-menu';
+export { default as ArticleStarToggle } from '@/components/client/article/star/toggle';
 export { default as ArticleTOCCard } from '@/components/client/article/toc/card';
 
 export { default as ArticleCommentList } from '@/components/client/article/comment/list';
