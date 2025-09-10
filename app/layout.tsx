@@ -2,6 +2,7 @@ import '@/app/globals.css';
 import GlobalFooter from '@/components/global/footer';
 import GlobalHeader from '@/components/global/header';
 import AuthProvider from '@/providers/auth';
+import ReactQueryProvider from '@/providers/react-query';
 import { ThemeProvider } from '@/providers/theme';
 import '@/styles/markdown-it.css';
 import { Toaster } from '@ui/sonner';
@@ -25,12 +26,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="ko" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <AuthProvider>
-            <GlobalHeader />
-            {children}
-            <GlobalFooter />
-            <Toaster position={'top-center'} richColors={true} />
-          </AuthProvider>
+          <ReactQueryProvider>
+            <AuthProvider>
+              <GlobalHeader />
+              {children}
+              <GlobalFooter />
+              <Toaster position={'top-center'} richColors={true} />
+            </AuthProvider>
+          </ReactQueryProvider>
         </ThemeProvider>
       </body>
     </html>

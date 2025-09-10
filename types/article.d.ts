@@ -25,4 +25,13 @@ interface ArticleStats {
   commentCount: number;
 }
 
+interface ArticleComment extends Timestamps {
+  id: number;
+  content: string;
+  deleted: boolean;
+  replyCount: number;
+  mention: UserSimple | null;
+  writer: UserSimple;
+}
+
 type ArticleSort = 'latest' | 'oldest' | 'relevant' | 'trending';
