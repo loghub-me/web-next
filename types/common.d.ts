@@ -14,6 +14,11 @@ interface SkeletonProps {
   size?: number;
 }
 
+interface Content {
+  markdown: string;
+  html: string;
+}
+
 interface Anchor {
   level: number;
   slug: string;

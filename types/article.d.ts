@@ -20,6 +20,14 @@ interface ArticleDetail extends Timestamps {
   topics: Topic[];
 }
 
+interface ArticleForEdit {
+  id: number;
+  title: string;
+  content: string;
+  thumbnail: string;
+  topicSlugs: string[];
+}
+
 interface ArticleStats {
   starCount: number;
   commentCount: number;

@@ -5,11 +5,6 @@ import { HTTPError } from 'ky';
 import { FieldPath, FieldValues, UseFormSetError } from 'react-hook-form';
 import { toast } from 'sonner';
 
-type ErrorResponseBody<K extends string = string> = {
-  message?: string;
-  fieldErrors?: Partial<Record<K, string>>;
-};
-
 export async function handleFormError<TFieldValues extends FieldValues>(
   error: Error,
   setError: UseFormSetError<TFieldValues>

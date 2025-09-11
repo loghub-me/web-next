@@ -20,3 +20,8 @@ interface RedirectResponseBody extends ResponseBody {
 interface DataResponseBody<T> extends ResponseBody {
   data: T;
 }
+
+type ErrorResponseBody<K extends string = string> = {
+  message?: string;
+  fieldErrors?: Partial<Record<K, string>>;
+};

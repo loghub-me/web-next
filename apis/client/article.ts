@@ -1,11 +1,17 @@
 'use client';
 
 import { clientAPI } from '@/apis/client/instance';
-import { articleCommentPostSchema, articlePostSchema } from '@/schemas/article';
+import { articleCommentPostSchema, articleEditSchema, articlePostSchema } from '@/schemas/article';
 import { z } from 'zod';
+
+const getArticleForEdit = async (username: string, slug: string) =>
+  clientAPI.get(`articles/@${username}/${slug}/edit`).json<ArticleForEdit>();
 
 const postArticle = (json: z.infer<typeof articlePostSchema>) =>
   clientAPI.post(`articles`, { json }).json<RedirectResponseBody>();
+
+const editArticle = (articleId: number, json: z.infer<typeof articleEditSchema>) =>
+  clientAPI.put(`articles/${articleId}`, { json }).json<RedirectResponseBody>();
 
 const deleteArticle = (articleId: number) => clientAPI.delete(`articles/${articleId}`).json<MessageResponseBody>();
 
@@ -27,7 +33,9 @@ const removeArticleStar = (articleId: number) =>
   clientAPI.delete(`articles/star/${articleId}`).json<MessageResponseBody>();
 
 export {
+  getArticleForEdit,
   postArticle,
+  editArticle,
   deleteArticle,
   getArticleComments,
   getArticleCommentReplies,

@@ -47,7 +47,7 @@ export default function ArticleActionMenu({ id, slug, writer }: Readonly<Article
 
 function ArticleEditLink({ slug, writer }: Readonly<Pick<ArticleActionMenuProps, 'slug' | 'writer'>>) {
   return (
-    <ButtonLink href={`/@${writer.username}/articles/${slug}/edit`} variant={'ghost'} size={'sm'}>
+    <ButtonLink href={`/${writer.username}/articles/${slug}/edit`} variant={'ghost'} size={'sm'}>
       <PencilIcon /> 수정하기
     </ButtonLink>
   );

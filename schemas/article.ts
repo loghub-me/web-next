@@ -17,6 +17,7 @@ const articlePostSchema = z.object({
   thumbnail,
   topicSlugs,
 });
+const articleEditSchema = articlePostSchema;
 
 const articleCommentPostSchema = z.object({
   content: z
@@ -28,4 +29,4 @@ const articleCommentPostSchema = z.object({
   parentId: id.optional(),
 });
 
-export { articleSearchSchema, articlePostSchema, articleCommentPostSchema };
+export { articleSearchSchema, articlePostSchema, articleEditSchema, articleCommentPostSchema };

@@ -1,8 +1,10 @@
 'use client';
 
+import { ErrorMessage } from '@/constants/messages';
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 interface MemberGuardProps {
   children?: React.ReactNode;
@@ -14,7 +16,8 @@ export default function MemberGuard({ children }: Readonly<MemberGuardProps>) {
 
   useEffect(() => {
     if (status === 'unauthenticated') {
-      router.replace('/');
+      toast.error(ErrorMessage.LOGIN_REQUIRED);
+      router.replace('/login');
     }
   }, [status]);
 

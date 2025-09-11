@@ -16,7 +16,7 @@ export default async function ArticleDetailPage({ params }: PageProps<'/[usernam
   const article = await getArticleDetail(username, slug);
 
   return (
-    <main className="container mx-auto px-2 pt-16 pb-4 min-h-screen space-y-4">
+    <main className="container mx-auto pt-20 pb-4 min-h-screen space-y-4">
       <ArticleDetailHero {...article} />
       <div className="flex gap-4">
         <div className="w-full min-w-0 space-y-4">
