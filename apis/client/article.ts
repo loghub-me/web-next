@@ -4,8 +4,8 @@ import { clientAPI } from '@/apis/client/instance';
 import { articleCommentPostSchema, articleEditSchema, articlePostSchema } from '@/schemas/article';
 import { z } from 'zod';
 
-const getArticleForEdit = async (username: string, slug: string) =>
-  clientAPI.get(`articles/@${username}/${slug}/edit`).json<ArticleForEdit>();
+const getArticleForEdit = async (articleId: number) =>
+  clientAPI.get(`articles/${articleId}/edit`).json<ArticleForEdit>();
 
 const postArticle = (json: z.infer<typeof articlePostSchema>) =>
   clientAPI.post(`articles`, { json }).json<RedirectResponseBody>();

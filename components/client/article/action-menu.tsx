@@ -37,7 +37,7 @@ export default function ArticleActionMenu({ id, slug, writer }: Readonly<Article
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="flex flex-col gap-1">
-          <ArticleEditLink slug={slug} writer={writer} />
+          <ArticleEditLink id={id} />
           <ArticleDeleteButton id={id} />
         </DropdownMenuContent>
       </DropdownMenu>
@@ -45,9 +45,9 @@ export default function ArticleActionMenu({ id, slug, writer }: Readonly<Article
   );
 }
 
-function ArticleEditLink({ slug, writer }: Readonly<Pick<ArticleActionMenuProps, 'slug' | 'writer'>>) {
+function ArticleEditLink({ id }: Readonly<Pick<ArticleActionMenuProps, 'id'>>) {
   return (
-    <ButtonLink href={`/${writer.username}/articles/${slug}/edit`} variant={'ghost'} size={'sm'}>
+    <ButtonLink href={`/edit/articles/${id}`} variant={'ghost'} size={'sm'}>
       <PencilIcon /> 수정하기
     </ButtonLink>
   );
