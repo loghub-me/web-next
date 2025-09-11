@@ -1,6 +1,21 @@
-import ky from 'ky';
+import ky, { KyRequest, KyResponse, NormalizedOptions } from 'ky';
+import { notFound } from 'next/navigation';
 import 'server-only';
 
-const serverAPI = ky.create({ prefixUrl: process.env.NEXT_PUBLIC_API_HOST });
+function afterResponseHook(
+  req: KyRequest,
+  opts: NormalizedOptions,
+  res: KyResponse
+): Response | void | Promise<Response | void> {
+  if (res.status === 404) {
+    notFound();
+  }
+  return res;
+}
+
+const serverAPI = ky.create({
+  prefixUrl: process.env.NEXT_PUBLIC_API_HOST,
+  hooks: { afterResponse: [afterResponseHook] },
+});
 
 export { serverAPI };
