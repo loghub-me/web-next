@@ -155,18 +155,6 @@
         .hljs-strong {
           font-weight: 700;
         }
-        table {
-          @apply border-collapse border;
-
-          th,
-          td {
-            @apply border px-2 py-1;
-          }
-
-          th {
-            @apply font-bold;
-          }
-        }
 
         .hljs-emphasis {
           font-style: italic;

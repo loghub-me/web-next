@@ -30,7 +30,7 @@ export default function ThemedImage(
       <Skeleton
         data-slot="themed-image-skeleton"
         aria-hidden="true"
-        aria-label={props.alt || 'image skeleton'}
+        aria-label={props.alt || `Loading ${props.alt}`}
         style={{ width: props.width, height: props.height }}
       />
     );
