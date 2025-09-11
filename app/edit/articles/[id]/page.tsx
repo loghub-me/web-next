@@ -7,7 +7,7 @@ import { ErrorMessage } from '@/constants/messages';
 import { useAuth } from '@/hooks/use-auth';
 import { parseObject } from '@/lib/parse';
 import { articleEditSchema } from '@/schemas/article';
-import { compositeKeySchema } from '@/schemas/common';
+import { idSchema } from '@/schemas/common';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import type EasyMDE from 'easymde';
@@ -20,12 +20,12 @@ import { z } from 'zod';
 
 export default function ArticleEditPage() {
   const router = useRouter();
-  const params = useParams<{ username: string; slug: string }>();
-  const { username, slug } = parseObject(params, compositeKeySchema);
+  const params = useParams<{ id: string }>();
+  const { id } = parseObject(params, idSchema);
   const { status } = useAuth();
   const { data: article, error } = useQuery({
-    queryKey: ['getArticleForEdit', username, slug],
-    queryFn: () => getArticleForEdit(username, slug),
+    queryKey: ['getArticleForEdit', id],
+    queryFn: () => getArticleForEdit(id),
     enabled: status === 'authenticated',
     retry: false,
     refetchOnMount: false,
@@ -50,7 +50,7 @@ export default function ArticleEditPage() {
         break;
       case 404:
         toast.error(body.message);
-        router.replace(`/${username}/articles`);
+        router.replace('/search/articles');
         break;
     }
   }
