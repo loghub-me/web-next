@@ -11,6 +11,8 @@ export { default as ArticleTOCCard } from '@/components/client/article/toc/card'
 
 export { default as ArticlePostDialog } from '@/components/client/article/post/dialog';
 export { default as ArticlePostForm } from '@/components/client/article/post/form';
+export { default as ArticleEditDialog } from '@/components/client/article/edit/dialog';
+export { default as ArticleEditForm } from '@/components/client/article/edit/form';
 
 export { default as ArticleCommentList } from '@/components/client/article/comment/list';
 export { default as ArticleCommentListItem } from '@/components/client/article/comment/list-item';
