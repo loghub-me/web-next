@@ -1,0 +1,42 @@
+import { TopicLink } from '@/components/client/topic';
+import { CardContent } from '@ui/card';
+import { Thumbnail } from '@ui/thumbnail';
+import Timestamp from '@ui/timestamp';
+
+interface SeriesDetailContentProps {
+  title: string;
+  content: string;
+  thumbnail: string;
+  topics: Topic[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export default function SeriesDetailContent({
+  title,
+  content,
+  thumbnail,
+  topics,
+  createdAt,
+  updatedAt,
+}: Readonly<SeriesDetailContentProps>) {
+  return (
+    <CardContent className="flex flex-row md:flex-col gap-4">
+      <Thumbnail aspect={'3:4'} src={thumbnail} alt={`${title}-thumbnail`} width={320} height={426} />
+      <div className="flex-1 space-y-1.5">
+        <h3 className="font-semibold">{title}</h3>
+        <p className="text-sm text-muted-foreground">{content}</p>
+        {topics.length > 0 && (
+          <div className="flex flex-wrap gap-1">
+            {topics.map((topic) => (
+              <TopicLink key={topic.slug} topic={topic} />
+            ))}
+          </div>
+        )}
+        <p className="text-right">
+          <Timestamp createdAt={createdAt} updatedAt={updatedAt} />
+        </p>
+      </div>
+    </CardContent>
+  );
+}

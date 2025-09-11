@@ -3,7 +3,7 @@ import { Skeleton } from '@ui/skeleton';
 export default function SeriesListSkeleton({ size = 4 }: Readonly<SkeletonProps>) {
   return Array.from({ length: size }, (_, index) => (
     <div key={index} className="space-y-2">
-      <Skeleton className="aspect-video" />
+      <Skeleton className="aspect-[3/4]" />
       <Skeleton className="h-7 w-2/3" />
       <div className="flex flex-wrap gap-1">
         <Skeleton className="w-12 h-7" />
