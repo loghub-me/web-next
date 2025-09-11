@@ -1,5 +1,6 @@
 import { getSeriesDetail } from '@/apis/server/series';
 import { SeriesChapterCard } from '@/components/client/series';
+import SeriesReviews from '@/components/client/series/review';
 import { SeriesDetailAside, SeriesDetailContent, SeriesDetailHeader } from '@/components/server/series';
 import { parseObject } from '@/lib/parse';
 import { compositeKeySchema } from '@/schemas/common';
@@ -19,7 +20,9 @@ export default async function SeriesDetailPage({ params }: PageProps<'/[username
           </Card>
           <SeriesChapterCard chapters={series.chapters} prefixPath={`/${username}/series/${slug}`} />
         </SeriesDetailAside>
-        <div className="w-full min-w-0 space-y-4">{/*TODO*/}</div>
+        <div className="w-full min-w-0 space-y-4">
+          <SeriesReviews id={series.id} />
+        </div>
       </div>
     </main>
   );

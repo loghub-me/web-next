@@ -7,3 +7,8 @@ export { default as SeriesSearchSubmit } from '@/components/client/series/search
 
 export { default as SeriesActionMenu } from '@/components/client/series/action-menu';
 export { default as SeriesChapterCard } from '@/components/client/series/chapter/card';
+
+export { default as SeriesReviewForm } from '@/components/client/series/review/form';
+export { default as SeriesReviewList } from '@/components/client/series/review/list';
+export { default as SeriesReviewListItem } from '@/components/client/series/review/list-item';
+export { default as SeriesReviewListSkeleton } from '@/components/client/series/review/list-skeleton';
