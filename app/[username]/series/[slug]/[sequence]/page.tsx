@@ -33,6 +33,7 @@ export default async function SeriesChapterDetailPage({ params }: PageProps<'/[u
           <Suspense fallback={<SeriesChapterDetailSkeleton />}>
             <SeriesChapterDetail
               chapter={chapter}
+              seriesId={series.id}
               prefixPath={`/${username}/series/${slug}`}
               totalChapters={series.chapters.length}
             />
@@ -45,17 +46,23 @@ export default async function SeriesChapterDetailPage({ params }: PageProps<'/[u
 
 interface SeriesChapterDetailProps {
   chapter: Promise<SeriesChapterDetail>;
+  seriesId: number;
   prefixPath: string;
   totalChapters: number;
 }
 
-async function SeriesChapterDetail({ chapter, prefixPath, totalChapters }: Readonly<SeriesChapterDetailProps>) {
+async function SeriesChapterDetail({
+  chapter,
+  seriesId,
+  prefixPath,
+  totalChapters,
+}: Readonly<SeriesChapterDetailProps>) {
   const resolvedChapter = await chapter;
   const { sequence } = resolvedChapter;
 
   return (
     <Card className="pt-0">
-      <SeriesChapterDetailHeader {...resolvedChapter} />
+      <SeriesChapterDetailHeader seriesId={seriesId} {...resolvedChapter} />
       <SeriesChapterDetailContent {...resolvedChapter} />
       <SeriesChapterDetailFooter
         prefixPath={prefixPath}

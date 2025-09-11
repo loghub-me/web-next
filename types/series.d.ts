@@ -20,6 +20,15 @@ interface SeriesDetail extends Timestamps {
   chapters: SeriesChapter[];
 }
 
+interface SeriesForEdit {
+  id: number;
+  title: string;
+  content: string;
+  thumbnail: string;
+  topicSlugs: string[];
+  chapters: SeriesChapter[];
+}
+
 interface SeriesStats {
   starCount: number;
   reviewCount: number;
@@ -36,6 +45,13 @@ interface SeriesChapterDetail extends Timestamps {
   title: string;
   content: Content;
   anchors: Anchor[];
+  sequence: number;
+}
+
+interface SeriesChapterForEdit {
+  id: number;
+  title: string;
+  content: string;
   sequence: number;
 }
 

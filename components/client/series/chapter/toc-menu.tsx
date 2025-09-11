@@ -1,43 +1,21 @@
 'use client';
 
+import { useTOC } from '@/hooks/use-toc';
 import { Button, ButtonLink } from '@ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@ui/dropdown-menu';
 import { ListOrderedIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 interface SeriesChapterTOCMenuProps {
   anchors: Anchor[];
 }
 
 export default function SeriesChapterTOCMenu({ anchors }: Readonly<SeriesChapterTOCMenuProps>) {
-  const [activeSlug, setActiveSlug] = useState<string>('');
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((entry) => {
-          const slug = entry.target.getAttribute('id');
-          setActiveSlug((prev) => (entry.isIntersecting && slug ? slug : prev));
-        }),
-      { root: null, rootMargin: '0px 0px -92% 0px', threshold: 0 }
-    );
-
-    anchors.forEach((anchor) => {
-      const element = document.getElementById(anchor.slug) as HTMLHeadingElement | null;
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [anchors]);
+  const activeSlug = useTOC(anchors);
 
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <Button variant={'ghost'} size={'icon'} className="ml-auto">
+        <Button variant={'ghost'} size={'icon'}>
           <ListOrderedIcon />
         </Button>
       </DropdownMenuTrigger>
