@@ -1,8 +1,11 @@
 'use client';
 
 import { clientAPI } from '@/apis/client/instance';
-import { seriesReviewPostSchema } from '@/schemas/series';
+import { seriesPostSchema, seriesReviewPostSchema } from '@/schemas/series';
 import { z } from 'zod';
+
+const postSeries = (json: z.infer<typeof seriesPostSchema>) =>
+  clientAPI.post(`series`, { json }).json<RedirectResponseBody>();
 
 const deleteSeries = (seriesId: number) => clientAPI.delete(`series/${seriesId}`).json<MessageResponseBody>();
 
@@ -19,4 +22,12 @@ const addSeriesStar = (seriesId: number) => clientAPI.post(`series/star/${series
 
 const removeSeriesStar = (seriesId: number) => clientAPI.delete(`series/star/${seriesId}`).json<MessageResponseBody>();
 
-export { deleteSeries, getSeriesReviews, postSeriesReview, existsSeriesStar, addSeriesStar, removeSeriesStar };
+export {
+  postSeries,
+  deleteSeries,
+  getSeriesReviews,
+  postSeriesReview,
+  existsSeriesStar,
+  addSeriesStar,
+  removeSeriesStar,
+};

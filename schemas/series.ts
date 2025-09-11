@@ -4,6 +4,7 @@ import { z } from 'zod';
 
 const { page, query, sort } = zodFields;
 const { coercedSequence } = zodFields;
+const { title, thumbnail, topicSlugs } = zodFields;
 
 const seriesSearchSchema = z.object({
   query,
@@ -11,6 +12,16 @@ const seriesSearchSchema = z.object({
   page,
 });
 const seriesChapterDetailSchema = compositeKeySchema.extend({ sequence: coercedSequence });
+
+const seriesPostSchema = z.object({
+  title,
+  description: z
+    .string({ message: '설명은 문자열이어야 합니다.' })
+    .min(10, { message: '설명은 10글자 이상이어야 합니다.' })
+    .max(8192, { message: '설명은 8192글자 이하여야 합니다.' }),
+  thumbnail,
+  topicSlugs,
+});
 
 const seriesReviewPostSchema = z.object({
   content: z
@@ -25,4 +36,4 @@ const seriesReviewPostSchema = z.object({
     .max(5, { message: '평점은 5점 이하이어야 합니다.' }),
 });
 
-export { seriesSearchSchema, seriesChapterDetailSchema, seriesReviewPostSchema };
+export { seriesSearchSchema, seriesChapterDetailSchema, seriesPostSchema, seriesReviewPostSchema };

@@ -10,6 +10,8 @@ export { default as SeriesStarToggle } from '@/components/client/series/star/tog
 export { default as SeriesChapterCard } from '@/components/client/series/chapter/card';
 export { default as SeriesChapterTOCMenu } from '@/components/client/series/chapter/toc-menu';
 
+export { default as SeriesPostForm } from '@/components/client/series/post/form';
+
 export { default as SeriesReviewForm } from '@/components/client/series/review/form';
 export { default as SeriesReviewList } from '@/components/client/series/review/list';
 export { default as SeriesReviewListItem } from '@/components/client/series/review/list-item';
