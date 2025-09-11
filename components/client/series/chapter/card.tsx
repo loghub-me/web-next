@@ -18,15 +18,21 @@ export default function SeriesChapterCard({ chapters, prefixPath }: Readonly<Ser
       <CardHeader>
         <CardTitle className="pl-2 text-sm text-muted-foreground">챕터</CardTitle>
       </CardHeader>
-      <CardContent className="px-4 flex flex-col">
+      <CardContent className="px-4 flex flex-col gap-0.5">
         {chapters.length === 0 && <ListEmpty message={'아직 작성된 챕터가 없습니다.'} />}
         {chapters.map(({ id, title, sequence }) => {
           const href = `${prefixPath}/${sequence}`;
           const isActive = pathname === href;
 
           return (
-            <ButtonLink key={id} href={href} variant={isActive ? 'secondary' : 'ghost'} className="px-2 justify-start">
-              {title}
+            <ButtonLink
+              key={id}
+              href={href}
+              variant={isActive ? 'secondary' : 'ghost'}
+              className="px-2 items-start justify-start gap-1.5 h-auto"
+            >
+              <span className="font-bold text-primary">{sequence}.</span>
+              <span className="whitespace-normal">{title}</span>
             </ButtonLink>
           );
         })}

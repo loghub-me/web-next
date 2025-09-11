@@ -10,4 +10,5 @@ export { default as SeriesDetailAside } from '@/components/server/series/detail/
 
 export { default as SeriesChapterDetailHeader } from '@/components/server/series/chapter/detail/header';
 export { default as SeriesChapterDetailContent } from '@/components/server/series/chapter/detail/content';
+export { default as SeriesChapterDetailFooter } from '@/components/server/series/chapter/detail/footer';
 export { default as SeriesChapterDetailSkeleton } from '@/components/server/series/chapter/detail/skeleton';

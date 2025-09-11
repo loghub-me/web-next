@@ -35,6 +35,7 @@ interface SeriesChapterDetail extends Timestamps {
   id: number;
   title: string;
   content: Content;
+  anchors: Anchor[];
   sequence: number;
 }
 

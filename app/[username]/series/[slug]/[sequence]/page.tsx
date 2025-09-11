@@ -2,6 +2,7 @@ import { getSeriesChapterDetail, getSeriesDetail } from '@/apis/server/series';
 import { SeriesChapterCard } from '@/components/client/series';
 import {
   SeriesChapterDetailContent,
+  SeriesChapterDetailFooter,
   SeriesChapterDetailHeader,
   SeriesChapterDetailSkeleton,
   SeriesDetailAside,
@@ -14,9 +15,9 @@ import { Card } from '@ui/card';
 import { Suspense } from 'react';
 
 export default async function SeriesChapterDetailPage({ params }: PageProps<'/[username]/series/[slug]/[sequence]'>) {
-  const { username, slug } = parseObject(await params, seriesChapterDetailSchema);
+  const { username, slug, sequence } = parseObject(await params, seriesChapterDetailSchema);
   const series = await getSeriesDetail(username, slug);
-  const chapter = getSeriesChapterDetail(series.id, 1);
+  const chapter = getSeriesChapterDetail(series.id, sequence);
 
   return (
     <main className="container mx-auto pt-20 pb-4 min-h-screen space-y-4">
@@ -30,7 +31,11 @@ export default async function SeriesChapterDetailPage({ params }: PageProps<'/[u
         </SeriesDetailAside>
         <div className="w-full min-w-0 space-y-4">
           <Suspense fallback={<SeriesChapterDetailSkeleton />}>
-            <SeriesChapterDetail chapter={chapter} />
+            <SeriesChapterDetail
+              chapter={chapter}
+              prefixPath={`/${username}/series/${slug}`}
+              totalChapters={series.chapters.length}
+            />
           </Suspense>
         </div>
       </div>
@@ -40,16 +45,24 @@ export default async function SeriesChapterDetailPage({ params }: PageProps<'/[u
 
 interface SeriesChapterDetailProps {
   chapter: Promise<SeriesChapterDetail>;
+  prefixPath: string;
+  totalChapters: number;
 }
 
-async function SeriesChapterDetail({ chapter }: Readonly<SeriesChapterDetailProps>) {
+async function SeriesChapterDetail({ chapter, prefixPath, totalChapters }: Readonly<SeriesChapterDetailProps>) {
   const resolvedChapter = await chapter;
+  const { sequence } = resolvedChapter;
 
   return (
     <Card className="pt-0">
       <SeriesChapterDetailHeader {...resolvedChapter} />
       <SeriesChapterDetailContent {...resolvedChapter} />
+      <SeriesChapterDetailFooter
+        prefixPath={prefixPath}
+        sequence={sequence}
+        hasPrev={sequence > 1}
+        hasNext={sequence < totalChapters}
+      />
     </Card>
   );
-  // return <Card>{resolvedChapter.content.markdown}</Card>;
 }
