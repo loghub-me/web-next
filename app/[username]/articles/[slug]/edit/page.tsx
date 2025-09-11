@@ -24,7 +24,7 @@ export default function ArticleEditPage() {
   const { username, slug } = parseObject(params, compositeKeySchema);
   const { status } = useAuth();
   const { data: article, error } = useQuery({
-    queryKey: [' getArticleForEdit', username, slug],
+    queryKey: ['getArticleForEdit', username, slug],
     queryFn: () => getArticleForEdit(username, slug),
     enabled: status === 'authenticated',
     retry: false,
@@ -51,6 +51,7 @@ export default function ArticleEditPage() {
       case 404:
         toast.error(body.message);
         router.replace(`/${username}/articles`);
+        break;
     }
   }
 
