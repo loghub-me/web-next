@@ -1,6 +1,6 @@
 import { Button } from '@ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@ui/dialog';
-import { UploadIcon } from 'lucide-react';
+import { PencilIcon } from 'lucide-react';
 
 interface ArticleEditDialogProps {
   onOpenChange: (open: boolean) => void;
@@ -12,7 +12,7 @@ export default function ArticleEditDialog({ onOpenChange, children }: Readonly<A
     <Dialog onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
         <Button variant={'default'}>
-          <UploadIcon /> 수정하기
+          <PencilIcon /> 수정하기
         </Button>
       </DialogTrigger>
       <DialogContent>

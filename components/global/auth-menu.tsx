@@ -16,7 +16,7 @@ import {
 import { Skeleton } from '@ui/skeleton';
 import {
   ChevronUpIcon,
-  KeyIcon,
+  LogInIcon,
   LogOutIcon,
   NotepadTextIcon,
   PencilIcon,
@@ -46,7 +46,7 @@ export default function AuthMenu({ type }: Readonly<AuthMenuProps>) {
 function GuestMenu({ type }: Readonly<AuthMenuProps>) {
   return (
     <ButtonLink href={'/login'} variant={'default'} className={cn(type === 'sheet' && 'flex-1')}>
-      <KeyIcon /> 로그인
+      <LogInIcon /> 로그인
     </ButtonLink>
   );
 }

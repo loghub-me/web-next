@@ -31,35 +31,35 @@ export default function ArticleEditPage() {
     refetchOnMount: false,
   });
 
-  async function onError(error: Error) {
-    if (!(error instanceof HTTPError)) {
-      toast.error(ErrorMessage.UNKNOWN);
-      router.push('/');
-      return;
-    }
-
-    const body = await error.response.json<ErrorResponseBody>();
-    switch (error.response.status) {
-      case 401:
-        toast.error(body.message);
-        router.replace('/login');
-        break;
-      case 403:
-        toast.error(body.message);
-        router.replace('/');
-        break;
-      case 404:
-        toast.error(body.message);
-        router.replace('/search/articles');
-        break;
-    }
-  }
-
   useEffect(() => {
+    async function onError(error: Error) {
+      if (!(error instanceof HTTPError)) {
+        toast.error(ErrorMessage.UNKNOWN);
+        router.push('/');
+        return;
+      }
+
+      const body = await error.response.json<ErrorResponseBody>();
+      switch (error.response.status) {
+        case 401:
+          toast.error(body.message);
+          router.replace('/login');
+          break;
+        case 403:
+          toast.error(body.message);
+          router.replace('/');
+          break;
+        case 404:
+          toast.error(body.message);
+          router.replace('/search/articles');
+          break;
+      }
+    }
+
     if (error) {
       onError(error).catch(console.error);
     }
-  }, [error]);
+  }, [router, error]);
 
   return <main className="max-h-screen h-screen pt-16">{article && <ArticleEditor defaultValues={article} />}</main>;
 }

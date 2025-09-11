@@ -29,8 +29,13 @@ function Thumbnail(props: ThumbnailProps) {
   };
 
   return (
-    <div className={cn('relative bg-muted border rounded-lg overflow-hidden', ASPECT_OPTIONS[props.aspect])}>
-      <Image {...props} className="object-contain" />
+    <div
+      className={cn(
+        'relative flex items-center justify-center bg-muted border rounded-lg overflow-hidden',
+        ASPECT_OPTIONS[props.aspect]
+      )}
+    >
+      <Image {...props} alt={props.alt} />
     </div>
   );
 }
@@ -43,15 +48,14 @@ function InteractiveThumbnail(props: ThumbnailProps) {
   };
 
   return (
-    <div className={cn('relative bg-muted border rounded-lg overflow-hidden group', ASPECT_OPTIONS[props.aspect])}>
+    <div
+      className={cn(
+        'relative flex items-center justify-center bg-muted border rounded-lg overflow-hidden group',
+        ASPECT_OPTIONS[props.aspect]
+      )}
+    >
       <div className="absolute inset-0 transition-colors group-hover:bg-black/10" />
-      <Image
-        {...props}
-        className={cn(
-          'transition-[scale] group-hover:scale-105',
-          'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
-        )}
-      />
+      <Image {...props} className="transition-[scale] group-hover:scale-105" alt={props.alt} />
     </div>
   );
 }

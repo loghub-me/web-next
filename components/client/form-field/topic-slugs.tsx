@@ -2,7 +2,7 @@
 
 import { TopicBadge, TopicIcon } from '@/components/client/topic';
 import { ErrorMessage } from '@/constants/messages';
-import { searchTopics } from '@/constants/topics';
+import { getTopicSetBySlugs, searchTopics } from '@/constants/topics';
 import { cn } from '@/lib/utils';
 import { Command, CommandEmpty, CommandInput, CommandItem, CommandList } from '@ui/command';
 import { FormField, FormItem, FormLabel, FormMessage } from '@ui/form';
@@ -13,36 +13,41 @@ import { toast } from 'sonner';
 
 interface TopicSlugsFormFieldProps<T extends FieldValues> {
   control: Control<T>;
-  topics: Set<Topic>;
-  setTopics: React.Dispatch<React.SetStateAction<Set<Topic>>>;
+  topicSlugs: Set<string>;
+  setTopicSlugs: React.Dispatch<React.SetStateAction<Set<string>>>;
 }
 
 export default function TopicSlugsFormField<T extends FieldValues>({
   control,
-  topics,
-  setTopics,
+  topicSlugs,
+  setTopicSlugs,
 }: Readonly<TopicSlugsFormFieldProps<T>>) {
   const [query, setQuery] = useState('');
   const [showList, setShowList] = useState(false);
 
   function onSelect(value: string) {
-    const [slug, name] = value.split(':');
-    if (topics.has({ slug, name })) {
+    const [slug] = value.split(':');
+    if (topicSlugs.has(slug)) {
       toast.error(ErrorMessage.TOPIC_ALREADY_EXISTS);
       return;
     }
-    if (topics.size >= 10) {
+    if (topicSlugs.size >= 10) {
       toast.error(ErrorMessage.TOPIC_SELECTION_LIMIT);
       return;
     }
-    setTopics((prev) => new Set(prev).add({ slug, name }));
+
+    setTopicSlugs((prev) => {
+      const newSet = new Set(prev);
+      newSet.add(slug);
+      return newSet;
+    });
     setQuery('');
   }
 
-  function onRemove(topic: Topic) {
-    setTopics((prev) => {
+  function onRemove(topicSlug: string) {
+    setTopicSlugs((prev) => {
       const newSet = new Set(prev);
-      newSet.delete(topic);
+      newSet.delete(topicSlug);
       return newSet;
     });
   }
@@ -70,10 +75,10 @@ export default function TopicSlugsFormField<T extends FieldValues>({
               ))}
             </CommandList>
           </Command>
-          {topics.size > 0 && (
+          {topicSlugs.size > 0 && (
             <div className="flex gap-1 flex-wrap">
-              {[...topics.values()].map((topic) => (
-                <TopicBadge key={topic.slug} topic={topic} onClick={() => onRemove(topic)} />
+              {getTopicSetBySlugs(topicSlugs).map((topic) => (
+                <TopicBadge key={topic.slug} topic={topic} onClick={() => onRemove(topic.slug)} />
               ))}
             </div>
           )}
