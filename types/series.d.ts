@@ -20,6 +20,11 @@ interface SeriesDetail extends Timestamps {
   chapters: SeriesChapter[];
 }
 
+interface SeriesStats {
+  starCount: number;
+  reviewCount: number;
+}
+
 interface SeriesChapter extends Timestamps {
   id: number;
   title: string;
@@ -33,9 +38,11 @@ interface SeriesChapterDetail extends Timestamps {
   sequence: number;
 }
 
-interface SeriesStats {
-  starCount: number;
-  reviewCount: number;
+interface SeriesReview extends Timestamps {
+  id: number;
+  content: string;
+  rating: number;
+  writer: UserSimple;
 }
 
 type SeriesSort = 'latest' | 'oldest' | 'relevant' | 'trending';
