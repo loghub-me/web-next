@@ -6,6 +6,7 @@ export { default as SeriesSearchQuery } from '@/components/client/series/search/
 export { default as SeriesSearchSubmit } from '@/components/client/series/search/submit';
 
 export { default as SeriesActionMenu } from '@/components/client/series/action-menu';
+export { default as SeriesStarToggle } from '@/components/client/series/star/toggle';
 export { default as SeriesChapterCard } from '@/components/client/series/chapter/card';
 
 export { default as SeriesReviewForm } from '@/components/client/series/review/form';
