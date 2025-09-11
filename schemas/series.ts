@@ -4,7 +4,7 @@ import { z } from 'zod';
 
 const { page, query, sort } = zodFields;
 const { coercedSequence } = zodFields;
-const { title, thumbnail, topicSlugs } = zodFields;
+const { title, content, thumbnail, topicSlugs } = zodFields;
 
 const seriesSearchSchema = z.object({
   query,
@@ -22,6 +22,9 @@ const seriesPostSchema = z.object({
   thumbnail,
   topicSlugs,
 });
+const seriesEditSchema = seriesPostSchema;
+
+const seriesChapterEditSchema = z.object({ title, content });
 
 const seriesReviewPostSchema = z.object({
   content: z
@@ -36,4 +39,11 @@ const seriesReviewPostSchema = z.object({
     .max(5, { message: '평점은 5점 이하이어야 합니다.' }),
 });
 
-export { seriesSearchSchema, seriesChapterDetailSchema, seriesPostSchema, seriesReviewPostSchema };
+export {
+  seriesSearchSchema,
+  seriesChapterDetailSchema,
+  seriesPostSchema,
+  seriesEditSchema,
+  seriesChapterEditSchema,
+  seriesReviewPostSchema,
+};
