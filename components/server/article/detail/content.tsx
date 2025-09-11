@@ -1,6 +1,6 @@
 import { TopicLink } from '@/components/client/topic';
 import { CardContent } from '@ui/card';
-import Thumbnail from '@ui/thumbnail';
+import { Thumbnail } from '@ui/thumbnail';
 
 interface ArticleDetailContentProps {
   topics: Topic[];
@@ -24,7 +24,7 @@ export default function ArticleDetailContent({
           ))}
         </div>
       )}
-      <Thumbnail aspect={'16:9'} src={thumbnail} alt={`${title}-thumbnail`} width={640} height={360} />
+      <Thumbnail aspect={'16:9'} src={thumbnail} alt={`${title}-thumbnail`} fill={true} />
       <div className="markdown-it" dangerouslySetInnerHTML={{ __html: content.html }} />
     </CardContent>
   );

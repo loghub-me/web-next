@@ -1,6 +1,6 @@
 import { TopicBadge } from '@/components/client/topic';
 import { UserInline } from '@/components/client/user';
-import Thumbnail from '@ui/thumbnail';
+import { InteractiveThumbnail } from '@ui/thumbnail';
 import Timestamp from '@ui/timestamp';
 import Link from 'next/link';
 
@@ -14,7 +14,7 @@ export default function ArticleListItem({ article }: Readonly<ArticleListItemPro
 
   return (
     <Link href={href} className="p-1 h-full group flex flex-col gap-2 rounded-xl">
-      <Thumbnail aspect={'16:9'} src={thumbnail} alt={title} width={640} height={360} />
+      <InteractiveThumbnail aspect={'16:9'} src={thumbnail} alt={title} width={640} height={360} />
       <h3 className="font-medium line-clamp-2 transition-colors group-hover:text-primary/80">{title}</h3>
       {topics.length > 0 && (
         <div className="flex gap-1 flex-wrap">

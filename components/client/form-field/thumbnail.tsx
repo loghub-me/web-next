@@ -3,7 +3,7 @@
 import { handleError } from '@/lib/error';
 import { defaultInputFileProps, uploadImageFile } from '@/lib/image/upload';
 import { FormField, FormItem, FormLabel, FormMessage } from '@ui/form';
-import Thumbnail from '@ui/thumbnail';
+import { InteractiveThumbnail } from '@ui/thumbnail';
 import { useRef } from 'react';
 import { Control, FieldValues, Path } from 'react-hook-form';
 
@@ -38,7 +38,7 @@ export default function ThumbnailFormField<T extends FieldValues>({
         <FormItem>
           <FormLabel>썸네일</FormLabel>
           <div className="cursor-pointer" onClick={() => inputFileRef.current?.click()}>
-            <Thumbnail src={field.value} alt={'thumbnail'} {...props} />
+            <InteractiveThumbnail src={field.value} alt={'thumbnail'} {...props} />
           </div>
           <input {...inputFileProps} />
           <FormMessage />
