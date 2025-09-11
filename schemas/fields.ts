@@ -4,6 +4,10 @@ const id = z
   .number({ message: '아이디는 숫자여야 합니다.' })
   .int({ message: '아이디는 정수여야 합니다.' })
   .positive({ message: '아이디는 양수여야 합니다.' });
+const coercedId = z.coerce
+  .number({ message: '아이디는 숫자여야 합니다.' })
+  .int({ message: '아이디는 정수여야 합니다.' })
+  .positive({ message: '아이디는 양수여야 합니다.' });
 
 const query = z.string({ message: '검색어는 문자열이어야 합니다.' }).trim().default('');
 const sort = z
@@ -34,6 +38,7 @@ const topicSlugs = z
 
 const zodFields = {
   id,
+  coercedId,
   query,
   sort,
   page,

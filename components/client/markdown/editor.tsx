@@ -108,7 +108,7 @@ export default function MarkdownEditor({
         easyMDERef.current = null;
       }
     };
-  }, [textareaRef, previewRef, defaultValue]);
+  }, [easyMDERef, textareaRef, previewRef, defaultValue]);
 
   return (
     <div className="w-full h-full max-w-full max-h-full">

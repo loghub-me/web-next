@@ -2,13 +2,12 @@
 
 import { editArticle } from '@/apis/client/article';
 import { ThumbnailFormField, TitleFormField, TopicSlugsFormField } from '@/components/client/form-field';
-import { getTopicSetBySlugs } from '@/constants/topics';
 import { handleFormError } from '@/lib/error';
 import { articleEditSchema } from '@/schemas/article';
 import { Button } from '@ui/button';
 import { DialogClose } from '@ui/dialog';
 import { Form, FormField, FormMessage } from '@ui/form';
-import { UploadIcon, XIcon } from 'lucide-react';
+import { PencilIcon, XIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
@@ -22,7 +21,7 @@ interface ArticleEditFormProps {
 
 export default function ArticleEditForm({ id: articleId, form }: Readonly<ArticleEditFormProps>) {
   const router = useRouter();
-  const [topics, setTopics] = useState<Set<Topic>>(getTopicSetBySlugs(form.getValues('topicSlugs')));
+  const [topicSlugs, setTopicSlugs] = useState(new Set<string>());
 
   function onSubmit(values: z.infer<typeof articleEditSchema>) {
     editArticle(articleId, values)
@@ -34,11 +33,8 @@ export default function ArticleEditForm({ id: articleId, form }: Readonly<Articl
   }
 
   useEffect(() => {
-    form.setValue(
-      'topicSlugs',
-      [...topics.values()].map((topic) => topic.slug)
-    );
-  }, [topics]);
+    form.setValue('topicSlugs', [...topicSlugs]);
+  }, [form, topicSlugs]);
 
   return (
     <Form {...form}>
@@ -51,7 +47,7 @@ export default function ArticleEditForm({ id: articleId, form }: Readonly<Articl
           width={640}
           height={360}
         />
-        <TopicSlugsFormField control={form.control} topics={topics} setTopics={setTopics} />
+        <TopicSlugsFormField control={form.control} topicSlugs={topicSlugs} setTopicSlugs={setTopicSlugs} />
         <FormField control={form.control} name="content" render={() => <FormMessage />} />
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <DialogClose asChild>
@@ -60,7 +56,7 @@ export default function ArticleEditForm({ id: articleId, form }: Readonly<Articl
             </Button>
           </DialogClose>
           <Button type="submit" disabled={form.formState.isSubmitting}>
-            <UploadIcon /> 게시하기
+            <PencilIcon /> 수정하기
           </Button>
         </div>
       </form>

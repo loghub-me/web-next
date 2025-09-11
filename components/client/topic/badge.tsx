@@ -13,7 +13,8 @@ export default function TopicBadge({ topic, onClick }: Readonly<TopicBadgeProps>
       variant={'outline'}
       className={cn(
         'h-7 rounded-sm p-1 bg-card',
-        onClick && 'transition-colors hover:text-accent-foreground hover:bg-accent cursor-pointer'
+        onClick &&
+          'transition-colors text-accent-foreground bg-accent hover:text-muted-foreground hover:bg-muted cursor-pointer'
       )}
       onClick={onClick}
     >

@@ -85,12 +85,12 @@ const TOPICS = [
 
 const TOPIC_MAP = TOPICS.reduce((acc, topic) => acc.set(topic.slug, topic), new Map<string, Topic>());
 
-export function getTopicSetBySlugs(slugs: string[]): Set<Topic> {
-  const topics: Set<Topic> = new Set();
+export function getTopicSetBySlugs(slugs: Set<string>): Topic[] {
+  const topics: Topic[] = [];
   slugs.forEach((slug) => {
     const topic = TOPIC_MAP.get(slug);
     if (topic) {
-      topics.add(topic);
+      topics.push(topic);
     }
   });
   return topics;

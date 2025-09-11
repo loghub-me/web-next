@@ -2,7 +2,6 @@
 
 import { postArticle } from '@/apis/client/article';
 import { ThumbnailFormField, TitleFormField, TopicSlugsFormField } from '@/components/client/form-field';
-import { getTopicSetBySlugs } from '@/constants/topics';
 import { handleFormError } from '@/lib/error';
 import { articlePostSchema } from '@/schemas/article';
 import { Button } from '@ui/button';
@@ -21,7 +20,7 @@ interface ArticlePostFormProps {
 
 export default function ArticlePostForm({ form }: Readonly<ArticlePostFormProps>) {
   const router = useRouter();
-  const [topics, setTopics] = useState<Set<Topic>>(getTopicSetBySlugs(form.getValues('topicSlugs')));
+  const [topicSlugs, setTopicSlugs] = useState(new Set<string>());
 
   function onSubmit(values: z.infer<typeof articlePostSchema>) {
     postArticle(values)
@@ -33,11 +32,8 @@ export default function ArticlePostForm({ form }: Readonly<ArticlePostFormProps>
   }
 
   useEffect(() => {
-    form.setValue(
-      'topicSlugs',
-      [...topics.values()].map((topic) => topic.slug)
-    );
-  }, [topics]);
+    form.setValue('topicSlugs', [...topicSlugs]);
+  }, [form, topicSlugs]);
 
   return (
     <Form {...form}>
@@ -50,7 +46,7 @@ export default function ArticlePostForm({ form }: Readonly<ArticlePostFormProps>
           width={640}
           height={360}
         />
-        <TopicSlugsFormField control={form.control} topics={topics} setTopics={setTopics} />
+        <TopicSlugsFormField control={form.control} topicSlugs={topicSlugs} setTopicSlugs={setTopicSlugs} />
         <FormField control={form.control} name="content" render={() => <FormMessage />} />
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <DialogClose asChild>

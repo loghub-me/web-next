@@ -21,11 +21,10 @@ import { toast } from 'sonner';
 
 interface ArticleActionMenuProps {
   id: number;
-  slug: string;
   writer: User;
 }
 
-export default function ArticleActionMenu({ id, slug, writer }: Readonly<ArticleActionMenuProps>) {
+export default function ArticleActionMenu({ id, writer }: Readonly<ArticleActionMenuProps>) {
   const { session } = useAuth();
 
   return (

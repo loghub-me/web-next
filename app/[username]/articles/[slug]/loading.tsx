@@ -3,7 +3,7 @@ import { Skeleton } from '@ui/skeleton';
 
 export default function ArticleDetailLoading() {
   return (
-    <main className="container mx-auto px-2 pt-16 pb-4 space-y-4">
+    <main className="container mx-auto pt-20 pb-4 space-y-4">
       <div className="p-16 space-y-4">
         <Skeleton className="mx-auto w-2/3 h-8" />
         <div className="mt-auto flex items-center justify-center gap-4">
