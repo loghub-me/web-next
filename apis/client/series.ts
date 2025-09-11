@@ -12,4 +12,11 @@ const getSeriesReviews = (seriesId: number, page = 1) =>
 const postSeriesReview = (seriesId: number, json: z.infer<typeof seriesReviewPostSchema>) =>
   clientAPI.post(`series/${seriesId}/reviews`, { json: { ...json } }).json<MethodResponseBody>();
 
-export { deleteSeries, getSeriesReviews, postSeriesReview };
+const existsSeriesStar = (seriesId: number) =>
+  clientAPI.get(`series/star/${seriesId}`).json<DataResponseBody<boolean>>();
+
+const addSeriesStar = (seriesId: number) => clientAPI.post(`series/star/${seriesId}`).json<MethodResponseBody>();
+
+const removeSeriesStar = (seriesId: number) => clientAPI.delete(`series/star/${seriesId}`).json<MessageResponseBody>();
+
+export { deleteSeries, getSeriesReviews, postSeriesReview, existsSeriesStar, addSeriesStar, removeSeriesStar };
