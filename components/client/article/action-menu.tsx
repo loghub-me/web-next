@@ -15,7 +15,7 @@ import {
   DialogTrigger,
 } from '@ui/dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@ui/dropdown-menu';
-import { MenuIcon, PencilIcon, TrashIcon, XIcon } from 'lucide-react';
+import { EllipsisIcon, PencilIcon, TrashIcon, XIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
@@ -29,10 +29,10 @@ export default function ArticleActionMenu({ id, writer }: Readonly<ArticleAction
 
   return (
     session?.username === writer.username && (
-      <DropdownMenu>
+      <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           <Button variant={'ghost'} size={'icon'} className="rounded-full">
-            <MenuIcon />
+            <EllipsisIcon />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="flex flex-col gap-1">

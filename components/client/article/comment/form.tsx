@@ -33,7 +33,7 @@ export default function ArticleCommentForm({
 }: Readonly<ArticleCommentFormProps>) {
   const form = useForm<z.infer<typeof articleCommentPostSchema>>({
     resolver: zodResolver(articleCommentPostSchema),
-    defaultValues: { content: '', articleId: articleId },
+    defaultValues: { content: '' },
   });
   const { session } = useAuth();
   const queryClient = useQueryClient();
