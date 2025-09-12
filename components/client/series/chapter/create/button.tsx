@@ -14,7 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@ui/dialog';
-import { PlusIcon, TrashIcon, XIcon } from 'lucide-react';
+import { PlusIcon, XIcon } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -29,7 +29,7 @@ export default function SeriesChapterCreateButton({ seriesId }: Readonly<SeriesC
   function onCreateButtonClick() {
     createSeriesChapter(seriesId)
       .then(({ message }) => {
-        toast.success(message, { icon: <TrashIcon className="size-4" /> });
+        toast.success(message, { icon: <PlusIcon className="size-4" /> });
         queryClient.invalidateQueries({ queryKey: ['getSeriesForEdit', seriesId] }).then(() => setOpen(false));
       })
       .catch(handleError);
