@@ -8,9 +8,29 @@ interface Question extends Timestamps {
   topics: Topic[];
 }
 
+interface QuestionDetail extends Timestamps {
+  id: number;
+  slug: string;
+  title: string;
+  content: Content;
+  anchors: Anchor[];
+  status: QuestionStatus;
+  stats: QuestionStats;
+  writer: User;
+  topics: Topic[];
+}
+
 interface QuestionStats {
   starCount: number;
   answerCount: number;
+}
+
+interface QuestionAnswer extends Timestamps {
+  id: number;
+  title: string;
+  content: Content;
+  accepted: boolean;
+  writer: User;
 }
 
 type QuestionStatus = 'OPEN' | 'CLOSED' | 'SOLVED';

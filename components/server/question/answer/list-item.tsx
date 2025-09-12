@@ -1,0 +1,36 @@
+import { QuestionAnswerActionMenu } from '@/components/client/question';
+import { UserLink } from '@/components/client/user';
+import { Badge } from '@ui/badge';
+import { Card, CardContent, CardFooter, CardHeader } from '@ui/card';
+import Timestamp from '@ui/timestamp';
+import { CircleCheckIcon } from 'lucide-react';
+
+interface QuestionAnswerListItemProps {
+  answer: QuestionAnswer;
+  questionId: number;
+}
+
+export default function QuestionAnswerListItem({ answer, questionId }: Readonly<QuestionAnswerListItemProps>) {
+  const { id, title, content, accepted, writer } = answer;
+
+  return (
+    <Card id={`answer-${id}`} className="pt-0">
+      <CardHeader className="w-full h-16 flex items-center justify-end gap-2 border-b">
+        <h4 className="flex-1 text-lg font-semibold">{title}</h4>
+        {accepted && (
+          <Badge variant={'secondary'} className="px-1">
+            <CircleCheckIcon className="text-green-500" /> 채택
+          </Badge>
+        )}
+        <QuestionAnswerActionMenu questionId={questionId} {...answer} />
+      </CardHeader>
+      <CardContent className="pb-4 border-b">
+        <div className="markdown-it" dangerouslySetInnerHTML={{ __html: content.html }} />
+      </CardContent>
+      <CardFooter className="flex items-center justify-between gap-2">
+        <UserLink {...writer} />
+        <Timestamp {...answer} />
+      </CardFooter>
+    </Card>
+  );
+}
