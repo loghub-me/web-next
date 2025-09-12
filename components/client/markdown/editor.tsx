@@ -112,7 +112,7 @@ export default function MarkdownEditor({
 
   return (
     <div className="w-full h-full max-w-full max-h-full">
-      <div className={cn('h-[calc(100%-theme(space.16))] grid', mode === 'preview-edit' && 'grid-cols-2')}>
+      <div className={cn('h-[calc(100%-theme(space.16))] grid min-h-56', mode === 'preview-edit' && 'grid-cols-2')}>
         <div className={cn('h-full max-h-full overflow-hidden', mode === 'preview' && 'hidden')}>
           <textarea className="w-full h-full resize-none bg-card border-r" ref={textareaRef} />
         </div>

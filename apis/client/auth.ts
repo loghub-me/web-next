@@ -55,7 +55,7 @@ function extractTokenFromResponse(res: KyResponse): string {
 function extractSessionFromToken(token: string) {
   const decodedToken = jwtDecode<CustomJwtPayload>(token);
   return {
-    id: decodedToken.sub,
+    id: Number(decodedToken.sub),
     email: decodedToken.email,
     username: decodedToken.username,
     nickname: decodedToken.nickname,

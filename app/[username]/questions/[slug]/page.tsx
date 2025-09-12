@@ -1,5 +1,5 @@
 import { getQuestionAnswers, getQuestionDetail } from '@/apis/server/question';
-import { QuestionAnswerTOCCard, QuestionAnswerTOCSkeleton } from '@/components/client/question';
+import { QuestionAnswerPostCard, QuestionAnswerTOCCard, QuestionAnswerTOCSkeleton } from '@/components/client/question';
 import {
   QuestionAnswerList,
   QuestionAnswerListItem,
@@ -29,9 +29,12 @@ export default async function QuestionDetailPage({ params }: PageProps<'/[userna
             <QuestionDetailHeader {...question} />
             <QuestionDetailContent {...question} />
           </Card>
+          {question.status === 'OPEN' && (
+            <QuestionAnswerPostCard questionId={question.id} questionWriter={question.writer} />
+          )}
           <QuestionAnswerList>
             <Suspense fallback={<QuestionAnswerListSkeleton />}>
-              <QuestionAnswerListContent answers={answers} questionId={question.id} />
+              <QuestionAnswerListContent answers={answers} question={question} />
             </Suspense>
           </QuestionAnswerList>
         </div>
@@ -48,13 +51,13 @@ export default async function QuestionDetailPage({ params }: PageProps<'/[userna
 
 interface QuestionAnswerListContentProps {
   answers: Promise<QuestionAnswer[]>;
-  questionId: number;
+  question: QuestionDetail;
 }
 
-async function QuestionAnswerListContent({ answers, questionId }: Readonly<QuestionAnswerListContentProps>) {
+async function QuestionAnswerListContent({ answers, question }: Readonly<QuestionAnswerListContentProps>) {
   const resolvedAnswers = await answers;
   return resolvedAnswers.map((answer) => (
-    <QuestionAnswerListItem key={answer.id} answer={answer} questionId={questionId} />
+    <QuestionAnswerListItem key={answer.id} answer={answer} question={question} />
   ));
 }
 
