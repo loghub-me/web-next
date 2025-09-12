@@ -14,4 +14,6 @@ const questionSearchSchema = z.object({
 const questionPostSchema = z.object({ title, content, topicSlugs });
 const questionEditSchema = questionPostSchema;
 
-export { questionSearchSchema, questionPostSchema, questionEditSchema };
+const questionAnswerPostSchema = z.object({ title, content });
+
+export { questionSearchSchema, questionPostSchema, questionEditSchema, questionAnswerPostSchema };

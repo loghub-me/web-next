@@ -19,7 +19,7 @@ export default function QuestionSearchForm({ defaultValues }: Readonly<QuestionS
   const formRef = useRef<HTMLFormElement>(null);
 
   return (
-    <Form ref={formRef} action={'/search/questions'} className="space-y-2">
+    <Form ref={formRef} action={'/search/questions'} className="space-y-3">
       <div className="flex gap-2">
         <QuestionSearchSort defaultValue={defaultValues.sort} formRef={formRef} />
         <QuestionSearchQuery defaultValue={defaultValues.query} />

@@ -1,4 +1,4 @@
-import { QuestionAnswerActionMenu } from '@/components/client/question';
+import { QuestionAnswerAcceptButton, QuestionAnswerActionMenu } from '@/components/client/question';
 import { UserLink } from '@/components/client/user';
 import { Badge } from '@ui/badge';
 import { Card, CardContent, CardFooter, CardHeader } from '@ui/card';
@@ -7,10 +7,14 @@ import { CircleCheckIcon } from 'lucide-react';
 
 interface QuestionAnswerListItemProps {
   answer: QuestionAnswer;
-  questionId: number;
+  question: {
+    id: number;
+    status: QuestionStatus;
+    writer: User;
+  };
 }
 
-export default function QuestionAnswerListItem({ answer, questionId }: Readonly<QuestionAnswerListItemProps>) {
+export default function QuestionAnswerListItem({ answer, question }: Readonly<QuestionAnswerListItemProps>) {
   const { id, title, content, accepted, writer } = answer;
 
   return (
@@ -22,7 +26,10 @@ export default function QuestionAnswerListItem({ answer, questionId }: Readonly<
             <CircleCheckIcon className="text-green-500" /> 채택
           </Badge>
         )}
-        <QuestionAnswerActionMenu questionId={questionId} {...answer} />
+        {question.status === 'OPEN' && (
+          <QuestionAnswerAcceptButton questionId={question.id} questionWriter={question.writer} {...answer} />
+        )}
+        <QuestionAnswerActionMenu questionId={question.id} {...answer} />
       </CardHeader>
       <CardContent className="pb-4 border-b">
         <div className="markdown-it" dangerouslySetInnerHTML={{ __html: content.html }} />

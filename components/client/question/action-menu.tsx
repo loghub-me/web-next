@@ -29,7 +29,7 @@ export default function QuestionActionMenu({ id, status, writer }: Readonly<Ques
   const { session } = useAuth();
 
   return (
-    session?.username === writer.username && (
+    session?.id === writer.id && (
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           <Button variant={'ghost'} size={'icon'} className="rounded-full">
