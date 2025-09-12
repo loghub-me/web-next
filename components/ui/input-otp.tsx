@@ -59,7 +59,7 @@ function InputOTPSlot({
 function InputOTPSeparator({ ...props }: React.ComponentProps<'div'>) {
   return (
     <div data-slot="input-otp-separator" role="separator" {...props}>
-      <DotIcon className="text-border" />
+      <DotIcon className="text-muted-foreground" />
     </div>
   );
 }

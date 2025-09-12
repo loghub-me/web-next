@@ -36,6 +36,14 @@ export async function handleError(error: Error) {
     toast.error(body.message);
     return;
   }
+  if (body.fieldErrors) {
+    toast.error(
+      Object.values(body.fieldErrors)
+        .map((msg) => `${msg}`)
+        .join('\n')
+    );
+    return;
+  }
 
   toast.error(ErrorMessage.UNKNOWN);
 }

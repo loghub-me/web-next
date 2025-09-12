@@ -28,24 +28,30 @@ import { toast } from 'sonner';
 
 interface AuthMenuProps {
   type: 'header' | 'sheet';
+  onNavigate?: () => void;
 }
 
-export default function AuthMenu({ type }: Readonly<AuthMenuProps>) {
+export default function AuthMenu({ type, onNavigate }: Readonly<AuthMenuProps>) {
   const { status, session } = useAuth();
 
   switch (status) {
     case 'loading':
       return <Skeleton className={cn('h-9', type === 'header' ? 'w-24' : 'flex-1')} />;
     case 'unauthenticated':
-      return <GuestMenu type={type} />;
+      return <GuestMenu type={type} onNavigate={onNavigate} />;
     case 'authenticated':
       return <MemberMenu type={type} session={session} />;
   }
 }
 
-function GuestMenu({ type }: Readonly<AuthMenuProps>) {
+function GuestMenu({ type, onNavigate }: Readonly<AuthMenuProps>) {
   return (
-    <ButtonLink href={'/login'} variant={'default'} className={cn(type === 'sheet' && 'flex-1')}>
+    <ButtonLink
+      href={'/login'}
+      variant={'default'}
+      className={cn(type === 'sheet' && 'flex-1')}
+      onNavigate={onNavigate}
+    >
       <LogInIcon /> 로그인
     </ButtonLink>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import { requestJoin } from '@/apis/client/auth';
+import { EmailFormField } from '@/components/client/form-field';
 import { handleFormError } from '@/lib/error';
 import { joinRequestSchema } from '@/schemas/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -34,19 +35,7 @@ export default function JoinRequestForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>E-mail</FormLabel>
-              <FormControl>
-                <Input placeholder="user@loghub.me" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <EmailFormField control={form.control} />
         <FormField
           control={form.control}
           name="nickname"
