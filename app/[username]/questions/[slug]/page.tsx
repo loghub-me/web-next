@@ -15,6 +15,8 @@ import { compositeKeySchema } from '@/schemas/common';
 import { Card } from '@ui/card';
 import { Suspense } from 'react';
 
+export const experimental_ppr = true;
+
 export default async function QuestionDetailPage({ params }: PageProps<'/[username]/questions/[slug]'>) {
   const { username, slug } = parseObject(await params, compositeKeySchema);
   const question = await getQuestionDetail(username, slug);

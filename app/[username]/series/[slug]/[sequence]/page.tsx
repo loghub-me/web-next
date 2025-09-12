@@ -14,6 +14,8 @@ import { seriesChapterDetailSchema } from '@/schemas/series';
 import { Card } from '@ui/card';
 import { Suspense } from 'react';
 
+export const experimental_ppr = true;
+
 export default async function SeriesChapterDetailPage({ params }: PageProps<'/[username]/series/[slug]/[sequence]'>) {
   const { username, slug, sequence } = parseObject(await params, seriesChapterDetailSchema);
   const series = await getSeriesDetail(username, slug);
