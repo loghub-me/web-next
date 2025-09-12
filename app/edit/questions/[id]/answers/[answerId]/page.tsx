@@ -8,7 +8,7 @@ import { useQueryErrorHandle } from '@/hooks/use-query-error-handle';
 import { parseObject } from '@/lib/parse';
 import { idSchema } from '@/schemas/common';
 import zodFields from '@/schemas/fields';
-import { questionEditSchema } from '@/schemas/question';
+import { questionAnswerEditSchema } from '@/schemas/question';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import type EasyMDE from 'easymde';
@@ -45,8 +45,8 @@ interface QuestionAnswerEditorProps {
 
 function QuestionAnswerEditor({ questionId, defaultValues }: Readonly<QuestionAnswerEditorProps>) {
   const easyMDERef = useRef<EasyMDE>(null);
-  const form = useForm<z.infer<typeof questionEditSchema>>({
-    resolver: zodResolver(questionEditSchema),
+  const form = useForm<z.infer<typeof questionAnswerEditSchema>>({
+    resolver: zodResolver(questionAnswerEditSchema),
     defaultValues,
   });
 
