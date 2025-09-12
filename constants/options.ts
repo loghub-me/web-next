@@ -1,4 +1,13 @@
-import { CalendarArrowDownIcon, CalendarArrowUpIcon, FlameIcon, LucideIcon, TargetIcon } from 'lucide-react';
+import {
+  CalendarArrowDownIcon,
+  CalendarArrowUpIcon,
+  CircleCheckIcon,
+  CircleDotIcon,
+  CircleXIcon,
+  FlameIcon,
+  LucideIcon,
+  TargetIcon,
+} from 'lucide-react';
 
 const ARTICLE_SORT_OPTIONS: Record<ArticleSort, { label: string; icon: LucideIcon }> = {
   latest: { label: '최신순', icon: CalendarArrowDownIcon },
@@ -14,4 +23,30 @@ const SERIES_SORT_OPTIONS: Record<SeriesSort, { label: string; icon: LucideIcon 
   trending: { label: '인기순', icon: FlameIcon },
 };
 
-export { ARTICLE_SORT_OPTIONS, SERIES_SORT_OPTIONS };
+const QUESTION_SORT_OPTIONS: Record<QuestionSort, { label: string; icon: LucideIcon }> = {
+  latest: { label: '최신순', icon: CalendarArrowDownIcon },
+  oldest: { label: '오래된순', icon: CalendarArrowUpIcon },
+  relevant: { label: '관련도순', icon: TargetIcon },
+  trending: { label: '인기순', icon: FlameIcon },
+};
+
+const QUESTION_STATUS_OPTIONS: Record<QuestionStatus, { label: string; icon: LucideIcon; color: string }> = {
+  OPEN: { label: '답변대기', icon: CircleDotIcon, color: 'text-green-500' },
+  CLOSED: { label: '닫힘', icon: CircleXIcon, color: 'text-red-500' },
+  SOLVED: { label: '해결됨', icon: CircleCheckIcon, color: 'text-purple-500' },
+};
+
+const QUESTION_FILTER_OPTIONS: Record<QuestionFilter, { label: string }> = {
+  all: { label: '전체' },
+  open: { label: '답변대기' },
+  closed: { label: '닫힘' },
+  solved: { label: '해결됨' },
+};
+
+export {
+  ARTICLE_SORT_OPTIONS,
+  SERIES_SORT_OPTIONS,
+  QUESTION_SORT_OPTIONS,
+  QUESTION_STATUS_OPTIONS,
+  QUESTION_FILTER_OPTIONS,
+};
