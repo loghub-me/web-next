@@ -20,6 +20,13 @@ interface QuestionDetail extends Timestamps {
   topics: Topic[];
 }
 
+interface QuestionForEdit {
+  id: number;
+  title: string;
+  content: string;
+  topicSlugs: string[];
+}
+
 interface QuestionStats {
   starCount: number;
   answerCount: number;

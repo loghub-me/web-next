@@ -1,13 +1,22 @@
 'use client';
 
 import { clientAPI } from '@/apis/client/instance';
-import { questionPostSchema } from '@/schemas/question';
+import { questionEditSchema, questionPostSchema } from '@/schemas/question';
 import { z } from 'zod';
+
+const getQuestionForEdit = async (questionId: number) =>
+  clientAPI.get(`questions/${questionId}/edit`).json<QuestionForEdit>();
 
 const postQuestion = (json: z.infer<typeof questionPostSchema>) =>
   clientAPI.post(`questions`, { json }).json<RedirectResponseBody>();
 
+const editQuestion = (questionId: number, json: z.infer<typeof questionEditSchema>) =>
+  clientAPI.put(`questions/${questionId}`, { json }).json<RedirectResponseBody>();
+
 const deleteQuestion = (questionId: number) => clientAPI.delete(`questions/${questionId}`).json<MessageResponseBody>();
+
+const closeQuestion = (questionId: number) =>
+  clientAPI.post(`questions/${questionId}/close`).json<RedirectResponseBody>();
 
 const deleteQuestionAnswer = (questionId: number, answerId: number) =>
   clientAPI.delete(`questions/${questionId}/answers/${answerId}`).json<MessageResponseBody>();
@@ -21,4 +30,14 @@ const addQuestionStar = (questionId: number) =>
 const removeQuestionStar = (questionId: number) =>
   clientAPI.delete(`questions/star/${questionId}`).json<MessageResponseBody>();
 
-export { postQuestion, deleteQuestion, deleteQuestionAnswer, existsQuestionStar, addQuestionStar, removeQuestionStar };
+export {
+  getQuestionForEdit,
+  postQuestion,
+  editQuestion,
+  deleteQuestion,
+  closeQuestion,
+  deleteQuestionAnswer,
+  existsQuestionStar,
+  addQuestionStar,
+  removeQuestionStar,
+};
