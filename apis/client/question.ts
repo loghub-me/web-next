@@ -18,8 +18,14 @@ const deleteQuestion = (questionId: number) => clientAPI.delete(`questions/${que
 const closeQuestion = (questionId: number) =>
   clientAPI.post(`questions/${questionId}/close`).json<RedirectResponseBody>();
 
+const getQuestionAnswerForEdit = async (questionId: number, answerId: number) =>
+  clientAPI.get(`questions/${questionId}/answers/${answerId}/edit`).json<QuestionAnswerForEdit>();
+
 const postQuestionAnswer = (questionId: number, json: z.infer<typeof questionAnswerPostSchema>) =>
   clientAPI.post(`questions/${questionId}/answers`, { json }).json<RedirectResponseBody>();
+
+const editQuestionAnswer = (questionId: number, answerId: number, json: z.infer<typeof questionAnswerPostSchema>) =>
+  clientAPI.put(`questions/${questionId}/answers/${answerId}`, { json }).json<RedirectResponseBody>();
 
 const deleteQuestionAnswer = (questionId: number, answerId: number) =>
   clientAPI.delete(`questions/${questionId}/answers/${answerId}`).json<MessageResponseBody>();
@@ -42,7 +48,9 @@ export {
   editQuestion,
   deleteQuestion,
   closeQuestion,
+  getQuestionAnswerForEdit,
   postQuestionAnswer,
+  editQuestionAnswer,
   deleteQuestionAnswer,
   acceptQuestionAnswer,
   existsQuestionStar,

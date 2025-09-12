@@ -1,5 +1,6 @@
 import { QuestionAnswerAcceptButton, QuestionAnswerActionMenu } from '@/components/client/question';
 import { UserLink } from '@/components/client/user';
+import { QUESTION_STATUS_OPTIONS } from '@/constants/options';
 import { Badge } from '@ui/badge';
 import { Card, CardContent, CardFooter, CardHeader } from '@ui/card';
 import Timestamp from '@ui/timestamp';
@@ -23,7 +24,7 @@ export default function QuestionAnswerListItem({ answer, question }: Readonly<Qu
         <h4 className="flex-1 text-lg font-semibold">{title}</h4>
         {accepted && (
           <Badge variant={'secondary'} className="px-1">
-            <CircleCheckIcon className="text-green-500" /> 채택
+            <CircleCheckIcon className={QUESTION_STATUS_OPTIONS['SOLVED'].color} /> 채택
           </Badge>
         )}
         {question.status === 'OPEN' && (
