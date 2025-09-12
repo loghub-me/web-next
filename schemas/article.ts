@@ -25,7 +25,6 @@ const articleCommentPostSchema = z.object({
     .trim()
     .min(1, { message: '댓글을 입력해주세요.' })
     .max(255, { message: '댓글은 최대 255자까지 입력할 수 있습니다.' }),
-  articleId: id,
   parentId: id.optional(),
 });
 

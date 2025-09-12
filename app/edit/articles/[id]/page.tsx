@@ -3,23 +3,20 @@
 import { getArticleForEdit } from '@/apis/client/article';
 import { ArticleEditDialog, ArticleEditForm } from '@/components/client/article';
 import { MarkdownEditor } from '@/components/client/markdown';
-import { ErrorMessage } from '@/constants/messages';
 import { useAuth } from '@/hooks/use-auth';
+import { useQueryErrorHandle } from '@/hooks/use-query-error-handle';
 import { parseObject } from '@/lib/parse';
 import { articleEditSchema } from '@/schemas/article';
 import { idSchema } from '@/schemas/common';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import type EasyMDE from 'easymde';
-import { HTTPError } from 'ky';
-import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useRef } from 'react';
+import { useParams } from 'next/navigation';
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
 export default function ArticleEditPage() {
-  const router = useRouter();
   const params = useParams<{ id: string }>();
   const { id } = parseObject(params, idSchema);
   const { status } = useAuth();
@@ -31,35 +28,7 @@ export default function ArticleEditPage() {
     refetchOnMount: false,
   });
 
-  useEffect(() => {
-    async function onError(error: Error) {
-      if (!(error instanceof HTTPError)) {
-        toast.error(ErrorMessage.UNKNOWN);
-        router.push('/');
-        return;
-      }
-
-      const body = await error.response.json<ErrorResponseBody>();
-      switch (error.response.status) {
-        case 401:
-          toast.error(body.message);
-          router.replace('/login');
-          break;
-        case 403:
-          toast.error(body.message);
-          router.replace('/');
-          break;
-        case 404:
-          toast.error(body.message);
-          router.replace('/search/articles');
-          break;
-      }
-    }
-
-    if (error) {
-      onError(error).catch(console.error);
-    }
-  }, [router, error]);
+  useQueryErrorHandle(error, '/search/articles');
 
   return <main className="max-h-screen h-screen pt-16">{article && <ArticleEditor defaultValues={article} />}</main>;
 }

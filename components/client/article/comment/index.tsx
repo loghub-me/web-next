@@ -2,12 +2,12 @@
 
 import { getArticleComments } from '@/apis/client/article';
 import {
+  ArticleCommentForm,
   ArticleCommentList,
   ArticleCommentListItem,
   ArticleCommentListSkeleton,
   ArticleCommentReplies,
 } from '@/components/client/article';
-import ArticleCommentForm from '@/components/client/article/comment/form';
 import { PageSkeleton, PageStateNav } from '@/components/client/page';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader } from '@ui/card';

@@ -18,7 +18,7 @@ export default function ArticleEditDialog({ onOpenChange, children }: Readonly<A
       <DialogContent>
         <DialogHeader>
           <DialogTitle>아티클 수정</DialogTitle>
-          <DialogDescription>아티클을 수정하면 다른 사용자들이 아티클을 볼 수 있습니다.</DialogDescription>
+          <DialogDescription>아티클을 수정하면 다른 사용자들이 볼 수 있습니다.</DialogDescription>
         </DialogHeader>
         {children}
       </DialogContent>
