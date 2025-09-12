@@ -1,14 +1,13 @@
 'use client';
 
 import { confirmJoin } from '@/apis/client/auth';
+import { EmailFormField, OTPFormField } from '@/components/client/form-field';
 import { useAuth } from '@/hooks/use-auth';
 import { handleFormError } from '@/lib/error';
 import { joinConfirmSchema, joinConfirmSearchParamsSchema } from '@/schemas/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@ui/form';
-import { Input } from '@ui/input';
-import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@ui/input-otp';
+import { Form } from '@ui/form';
 import { UserPlusIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -36,44 +35,8 @@ export default function JoinConfirmForm({ defaultValues }: Readonly<JoinConfirmS
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>E-mail</FormLabel>
-              <FormControl>
-                <Input placeholder="user@loghub.me" {...field} readOnly={true} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="otp"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>인증번호</FormLabel>
-              <FormControl>
-                <InputOTP maxLength={6} className="justify-between" {...field}>
-                  <InputOTPGroup>
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                  </InputOTPGroup>
-                  <InputOTPSeparator />
-                  <InputOTPGroup>
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
-                  </InputOTPGroup>
-                </InputOTP>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <EmailFormField control={form.control} />
+        <OTPFormField control={form.control} />
         <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
           <UserPlusIcon /> 인증번호 확인
         </Button>

@@ -1,12 +1,12 @@
 'use client';
 
 import { requestLogin } from '@/apis/client/auth';
+import { EmailFormField } from '@/components/client/form-field';
 import { handleFormError } from '@/lib/error';
 import { loginRequestSchema } from '@/schemas/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@ui/form';
-import { Input } from '@ui/input';
+import { Form } from '@ui/form';
 import { LogInIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -31,19 +31,7 @@ export default function LoginRequestForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>E-mail</FormLabel>
-              <FormControl>
-                <Input placeholder="user@loghub.me" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <EmailFormField control={form.control} />
         <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
           <LogInIcon /> 로그인
         </Button>

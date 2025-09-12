@@ -36,7 +36,7 @@ export default function GlobalSheet() {
           ))}
         </nav>
         <SheetFooter className="flex-row">
-          <AuthMenu type={'sheet'} />
+          <AuthMenu type={'sheet'} onNavigate={() => setOpen(false)} />
         </SheetFooter>
       </SheetContent>
     </Sheet>
