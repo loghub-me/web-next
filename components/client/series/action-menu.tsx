@@ -28,7 +28,7 @@ export default function SeriesActionMenu({ id, writer }: Readonly<SeriesActionMe
   const { session } = useAuth();
 
   return (
-    session?.username === writer.username && (
+    session?.id === writer.id && (
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           <Button variant={'ghost'} size={'icon'} className="rounded-full">

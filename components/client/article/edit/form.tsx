@@ -21,7 +21,7 @@ interface ArticleEditFormProps {
 
 export default function ArticleEditForm({ id: articleId, form }: Readonly<ArticleEditFormProps>) {
   const router = useRouter();
-  const [topicSlugs, setTopicSlugs] = useState(new Set<string>());
+  const [topicSlugs, setTopicSlugs] = useState(new Set(form.getValues('topicSlugs')));
 
   function onSubmit(values: z.infer<typeof articleEditSchema>) {
     editArticle(articleId, values)
