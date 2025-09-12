@@ -7,6 +7,7 @@ export { default as QuestionSearchSubmit } from '@/components/client/question/se
 export { default as QuestionSearchFilter } from '@/components/client/question/search/filter';
 
 export { default as QuestionActionMenu } from '@/components/client/question/action-menu';
+export { default as QuestionStarToggle } from '@/components/client/question/star/toggle';
 
 export { default as QuestionAnswerTOCCard } from '@/components/client/question/answer/toc-card';
 export { default as QuestionAnswerTOCSkeleton } from '@/components/client/question/answer/toc-skeleton';

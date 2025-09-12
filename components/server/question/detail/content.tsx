@@ -3,11 +3,10 @@ import { CardContent } from '@ui/card';
 
 interface QuestionDetailContentProps {
   topics: Topic[];
-  title: string;
   content: { html: string };
 }
 
-export default function QuestionDetailContent({ topics, title, content }: Readonly<QuestionDetailContentProps>) {
+export default function QuestionDetailContent({ topics, content }: Readonly<QuestionDetailContentProps>) {
   return (
     <CardContent className="space-y-4">
       {topics.length > 0 && (
