@@ -21,7 +21,7 @@ interface SeriesEditFormProps {
 
 export default function SeriesEditForm({ id: seriesId, form }: Readonly<SeriesEditFormProps>) {
   const router = useRouter();
-  const [topicSlugs, setTopicSlugs] = useState(new Set<string>());
+  const [topicSlugs, setTopicSlugs] = useState(new Set(form.getValues('topicSlugs')));
 
   function onSubmit(values: z.infer<typeof seriesEditSchema>) {
     editSeries(seriesId, values)

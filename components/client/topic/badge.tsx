@@ -1,6 +1,7 @@
 import { TopicIcon } from '@/components/client/topic';
 import { cn } from '@/lib/utils';
 import { Badge } from '@ui/badge';
+import { XIcon } from 'lucide-react';
 
 interface TopicBadgeProps {
   topic: Topic;
@@ -19,6 +20,7 @@ export default function TopicBadge({ topic, onClick }: Readonly<TopicBadgeProps>
       onClick={onClick}
     >
       <TopicIcon {...topic} /> {topic.name}
+      {onClick && <XIcon className="text-muted-foreground" />}
     </Badge>
   );
 }

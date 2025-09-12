@@ -7,6 +7,7 @@ interface QuestionDetailHeaderProps {
   id: number;
   slug: string;
   writer: User;
+  status: QuestionStatus;
   stats: { starCount: number };
 }
 
