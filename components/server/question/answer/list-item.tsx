@@ -27,9 +27,7 @@ export default function QuestionAnswerListItem({ answer, question }: Readonly<Qu
             <CircleCheckIcon className={QUESTION_STATUS_OPTIONS['SOLVED'].color} /> 채택
           </Badge>
         )}
-        {question.status === 'OPEN' && (
-          <QuestionAnswerAcceptButton questionId={question.id} questionWriter={question.writer} {...answer} />
-        )}
+        {question.status === 'OPEN' && <QuestionAnswerAcceptButton question={question} {...answer} />}
         <QuestionAnswerActionMenu questionId={question.id} {...answer} />
       </CardHeader>
       <CardContent className="pb-4 border-b">

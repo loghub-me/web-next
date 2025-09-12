@@ -29,9 +29,7 @@ export default async function QuestionDetailPage({ params }: PageProps<'/[userna
             <QuestionDetailHeader {...question} />
             <QuestionDetailContent {...question} />
           </Card>
-          {question.status === 'OPEN' && (
-            <QuestionAnswerPostCard questionId={question.id} questionWriter={question.writer} />
-          )}
+          {question.status === 'OPEN' && <QuestionAnswerPostCard question={question} />}
           <QuestionAnswerList>
             <Suspense fallback={<QuestionAnswerListSkeleton />}>
               <QuestionAnswerListContent answers={answers} question={question} />
@@ -51,7 +49,11 @@ export default async function QuestionDetailPage({ params }: PageProps<'/[userna
 
 interface QuestionAnswerListContentProps {
   answers: Promise<QuestionAnswer[]>;
-  question: QuestionDetail;
+  question: {
+    id: number;
+    status: QuestionStatus;
+    writer: User;
+  };
 }
 
 async function QuestionAnswerListContent({ answers, question }: Readonly<QuestionAnswerListContentProps>) {
