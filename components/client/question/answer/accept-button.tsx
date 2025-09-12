@@ -21,21 +21,19 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 interface QuestionAnswerAcceptButtonProps {
-  questionId: number;
-  questionWriter: User;
+  question: {
+    id: number;
+    writer: User;
+  };
   id: number;
 }
 
-export default function QuestionAnswerAcceptButton({
-  questionId,
-  questionWriter,
-  id,
-}: Readonly<QuestionAnswerAcceptButtonProps>) {
+export default function QuestionAnswerAcceptButton({ question, id }: Readonly<QuestionAnswerAcceptButtonProps>) {
   const { session } = useAuth();
   const router = useRouter();
 
   function onAcceptButtonClick() {
-    acceptQuestionAnswer(questionId, id)
+    acceptQuestionAnswer(question.id, id)
       .then(({ message }) => {
         toast.success(message, { icon: <TrashIcon className="size-4" /> });
         router.refresh();
@@ -44,7 +42,7 @@ export default function QuestionAnswerAcceptButton({
   }
 
   return (
-    session?.id === questionWriter.id && (
+    session?.id === question.writer.id && (
       <Dialog>
         <DialogTrigger asChild>
           <Button variant={'outline'} size={'sm'}>

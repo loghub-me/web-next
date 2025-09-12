@@ -7,11 +7,13 @@ import { Card } from '@ui/card';
 import { LogInIcon } from 'lucide-react';
 
 interface QuestionAnswerPostCardProps {
-  questionId: number;
-  questionWriter: User;
+  question: {
+    id: number;
+    writer: User;
+  };
 }
 
-export default function QuestionAnswerPostCard({ questionId, questionWriter }: Readonly<QuestionAnswerPostCardProps>) {
+export default function QuestionAnswerPostCard({ question }: Readonly<QuestionAnswerPostCardProps>) {
   const { status: authStatus, session } = useAuth();
 
   switch (authStatus) {
@@ -27,9 +29,9 @@ export default function QuestionAnswerPostCard({ questionId, questionWriter }: R
       );
     case 'authenticated':
       return (
-        session?.id != questionWriter.id && (
+        session?.id != question.writer.id && (
           <Card className="p-0 overflow-hidden">
-            <QuestionAnswerPostForm questionId={questionId} />
+            <QuestionAnswerPostForm questionId={question.id} />
           </Card>
         )
       );
