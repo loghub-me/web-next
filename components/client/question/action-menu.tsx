@@ -1,6 +1,6 @@
 'use client';
 
-import { deleteQuestion } from '@/apis/client/question';
+import { closeQuestion, deleteQuestion } from '@/apis/client/question';
 import { useAuth } from '@/hooks/use-auth';
 import { handleError } from '@/lib/error';
 import { Button, ButtonLink } from '@ui/button';
@@ -15,16 +15,17 @@ import {
   DialogTrigger,
 } from '@ui/dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@ui/dropdown-menu';
-import { EllipsisIcon, PencilIcon, TrashIcon, XIcon } from 'lucide-react';
+import { CircleXIcon, EllipsisIcon, PencilIcon, TrashIcon, XIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 interface QuestionActionMenuProps {
   id: number;
+  status: QuestionStatus;
   writer: User;
 }
 
-export default function QuestionActionMenu({ id, writer }: Readonly<QuestionActionMenuProps>) {
+export default function QuestionActionMenu({ id, status, writer }: Readonly<QuestionActionMenuProps>) {
   const { session } = useAuth();
 
   return (
@@ -38,6 +39,7 @@ export default function QuestionActionMenu({ id, writer }: Readonly<QuestionActi
         <DropdownMenuContent className="flex flex-col gap-1">
           <QuestionEditLink id={id} />
           <QuestionDeleteButton id={id} />
+          {status === 'OPEN' && <QuestionCloseButton id={id} />}
         </DropdownMenuContent>
       </DropdownMenu>
     )
@@ -84,6 +86,45 @@ function QuestionDeleteButton({ id }: Readonly<Pick<QuestionActionMenuProps, 'id
           </DialogClose>
           <Button type="submit" variant="destructive" onClick={onDeleteButtonClick}>
             <TrashIcon /> 삭제하기
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function QuestionCloseButton({ id }: Readonly<Pick<QuestionActionMenuProps, 'id'>>) {
+  const router = useRouter();
+
+  function onCloseButtonClick() {
+    closeQuestion(id)
+      .then(({ message }) => {
+        toast.success(message, { icon: <CircleXIcon className="size-4" /> });
+        router.refresh();
+      })
+      .catch(handleError);
+  }
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant={'ghost'} size={'sm'} className="justify-start">
+          <CircleXIcon className="mr-0.5" /> 닫기
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>정말로 질문을 닫겠습니까?</DialogTitle>
+          <DialogDescription>닫은 질문은 복구할 수 없습니다. 정말로 닫겠습니까?</DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button type="button" variant="ghost">
+              <XIcon /> 취소하기
+            </Button>
+          </DialogClose>
+          <Button type="submit" variant="destructive" onClick={onCloseButtonClick}>
+            <CircleXIcon /> 닫기
           </Button>
         </DialogFooter>
       </DialogContent>
