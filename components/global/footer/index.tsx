@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 
 export default function GlobalFooter() {
   const pathname = usePathname();
-  const isPostEditPage = pathname.startsWith('/post/') || pathname.endsWith('/edit');
+  const isPostEditPage = pathname.startsWith('/post/') || pathname.startsWith('/edit/');
 
   return (
     !isPostEditPage && (

@@ -47,7 +47,7 @@ export default function QuestionAnswerActionMenu({ questionId, id, writer }: Rea
 
 function QuestionEditLink({ questionId, id }: Readonly<Pick<QuestionAnswerActionMenuProps, 'questionId' | 'id'>>) {
   return (
-    <ButtonLink href={`/edit/questions/${questionId}/${id}`} variant={'ghost'} size={'sm'}>
+    <ButtonLink href={`/edit/questions/${questionId}/answers/${id}`} variant={'ghost'} size={'sm'}>
       <PencilIcon /> 수정하기
     </ButtonLink>
   );

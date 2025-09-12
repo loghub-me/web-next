@@ -40,6 +40,12 @@ interface QuestionAnswer extends Timestamps {
   writer: User;
 }
 
+interface QuestionAnswerForEdit {
+  id: number;
+  title: string;
+  content: string;
+}
+
 type QuestionStatus = 'OPEN' | 'CLOSED' | 'SOLVED';
 type QuestionSort = 'latest' | 'oldest' | 'relevant' | 'trending';
 type QuestionFilter = 'all' | 'open' | 'closed' | 'solved';

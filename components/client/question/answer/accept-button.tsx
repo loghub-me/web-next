@@ -1,8 +1,10 @@
 'use client';
 
 import { acceptQuestionAnswer } from '@/apis/client/question';
+import { QUESTION_STATUS_OPTIONS } from '@/constants/options';
 import { useAuth } from '@/hooks/use-auth';
 import { handleError } from '@/lib/error';
+import { cn } from '@/lib/utils';
 import { Button } from '@ui/button';
 import {
   Dialog,
@@ -46,7 +48,7 @@ export default function QuestionAnswerAcceptButton({
       <Dialog>
         <DialogTrigger asChild>
           <Button variant={'outline'} size={'sm'}>
-            <CheckCircleIcon className="mr-0.5" /> 채택하기
+            <CheckCircleIcon className={cn('mr-0.5', QUESTION_STATUS_OPTIONS['SOLVED'].color)} /> 채택하기
           </Button>
         </DialogTrigger>
         <DialogContent>

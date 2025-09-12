@@ -23,3 +23,5 @@ export { default as QuestionAnswerActionMenu } from '@/components/client/questio
 
 export { default as QuestionAnswerPostCard } from '@/components/client/question/answer/post/card';
 export { default as QuestionAnswerPostForm } from '@/components/client/question/answer/post/form';
+export { default as QuestionAnswerEditDialog } from '@/components/client/question/answer/edit/dialog';
+export { default as QuestionAnswerEditForm } from '@/components/client/question/answer/edit/form';
