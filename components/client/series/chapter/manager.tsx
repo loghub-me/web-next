@@ -80,7 +80,7 @@ export default function SeriesChapterManager({ series, prefixPath }: Readonly<Se
         {chapters.length === 0 && <ListEmpty message={'아직 작성된 챕터가 없습니다.'} />}
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
           <SortableContext items={chapters} strategy={verticalListSortingStrategy}>
-            {chapters.map((chapter, index) => (
+            {chapters.map((chapter) => (
               <SeriesChapterManagerItem
                 key={chapter.id}
                 chapter={chapter}
