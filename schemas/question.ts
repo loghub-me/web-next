@@ -2,6 +2,7 @@ import zodFields from '@/schemas/fields';
 import { z } from 'zod';
 
 const { page, query, sort } = zodFields;
+const { title, content, topicSlugs } = zodFields;
 
 const questionSearchSchema = z.object({
   query,
@@ -10,4 +11,6 @@ const questionSearchSchema = z.object({
   filter: z.enum(['all', 'open', 'closed', 'solved'], { message: '잘못된 필터입니다.' }).default('all'),
 });
 
-export { questionSearchSchema };
+const questionPostSchema = z.object({ title, content, topicSlugs });
+
+export { questionSearchSchema, questionPostSchema };

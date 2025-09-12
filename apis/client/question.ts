@@ -1,6 +1,11 @@
 'use client';
 
 import { clientAPI } from '@/apis/client/instance';
+import { questionPostSchema } from '@/schemas/question';
+import { z } from 'zod';
+
+const postQuestion = (json: z.infer<typeof questionPostSchema>) =>
+  clientAPI.post(`questions`, { json }).json<RedirectResponseBody>();
 
 const deleteQuestion = (questionId: number) => clientAPI.delete(`questions/${questionId}`).json<MessageResponseBody>();
 
@@ -16,4 +21,4 @@ const addQuestionStar = (questionId: number) =>
 const removeQuestionStar = (questionId: number) =>
   clientAPI.delete(`questions/star/${questionId}`).json<MessageResponseBody>();
 
-export { deleteQuestion, deleteQuestionAnswer, existsQuestionStar, addQuestionStar, removeQuestionStar };
+export { postQuestion, deleteQuestion, deleteQuestionAnswer, existsQuestionStar, addQuestionStar, removeQuestionStar };
