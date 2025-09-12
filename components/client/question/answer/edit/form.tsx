@@ -3,13 +3,12 @@
 import { editQuestionAnswer } from '@/apis/client/question';
 import { TitleFormField } from '@/components/client/form-field';
 import { handleFormError } from '@/lib/error';
-import { questionEditSchema } from '@/schemas/question';
+import { questionAnswerEditSchema } from '@/schemas/question';
 import { Button } from '@ui/button';
 import { DialogClose } from '@ui/dialog';
 import { Form, FormField, FormMessage } from '@ui/form';
 import { PencilIcon, XIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -17,14 +16,13 @@ import { z } from 'zod';
 interface QuestionAnswerEditFormProps {
   questionId: number;
   answerId: number;
-  form: UseFormReturn<z.infer<typeof questionEditSchema>>;
+  form: UseFormReturn<z.infer<typeof questionAnswerEditSchema>>;
 }
 
 export default function QuestionAnswerEditForm({ questionId, answerId, form }: Readonly<QuestionAnswerEditFormProps>) {
   const router = useRouter();
-  const [topicSlugs, setTopicSlugs] = useState(new Set(form.getValues('topicSlugs')));
 
-  function onSubmit(values: z.infer<typeof questionEditSchema>) {
+  function onSubmit(values: z.infer<typeof questionAnswerEditSchema>) {
     editQuestionAnswer(questionId, answerId, values)
       .then(({ pathname, message }) => {
         toast.success(message);
@@ -32,10 +30,6 @@ export default function QuestionAnswerEditForm({ questionId, answerId, form }: R
       })
       .catch((err) => handleFormError(err, form.setError));
   }
-
-  useEffect(() => {
-    form.setValue('topicSlugs', [...topicSlugs]);
-  }, [form, topicSlugs]);
 
   return (
     <Form {...form}>
