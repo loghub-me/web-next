@@ -1,5 +1,5 @@
-import { TopicBadge } from '@/components/client/topic';
-import { UserInline } from '@/components/client/user';
+import { TopicLink } from '@/components/client/topic';
+import { UserLink } from '@/components/client/user';
 import { InteractiveThumbnail } from '@ui/thumbnail';
 import Timestamp from '@ui/timestamp';
 import Link from 'next/link';
@@ -13,20 +13,22 @@ export default function SeriesListItem({ series }: Readonly<SeriesListItemProps>
   const href = `/${writer.username}/series/${slug}`;
 
   return (
-    <Link href={href} className="p-1 h-full group flex flex-col gap-2 rounded-xl">
-      <InteractiveThumbnail aspect={'3:4'} src={thumbnail} alt={title} width={320} height={426} />
-      <h3 className="font-medium line-clamp-2 transition-colors group-hover:text-accent-foreground/50">{title}</h3>
+    <div className="p-1 h-full flex flex-col gap-1.5">
+      <Link href={href} className="group space-y-1.5">
+        <InteractiveThumbnail aspect={'3:4'} src={thumbnail} alt={title} width={640} height={360} />
+        <h3 className="font-medium line-clamp-2 transition-colors group-hover:text-accent-foreground/50">{title}</h3>
+      </Link>
       {topics.length > 0 && (
         <div className="flex gap-1 flex-wrap">
           {topics.map((topic) => (
-            <TopicBadge key={topic.slug} topic={topic} />
+            <TopicLink key={topic.slug} topic={topic} />
           ))}
         </div>
       )}
-      <div className="mt-auto flex items-center gap-2 justify-between">
-        <UserInline {...writer} />
+      <div className="pt-2 relative mt-auto flex items-center gap-2 justify-end">
+        <UserLink {...writer} className="absolute -left-1.5 -bottom-1.5" />
         <Timestamp {...series} />
       </div>
-    </Link>
+    </div>
   );
 }
