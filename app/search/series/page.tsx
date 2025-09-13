@@ -4,6 +4,7 @@ import { SeriesSearchForm } from '@/components/client/series';
 import { SeriesList, SeriesListItem, SeriesListSkeleton } from '@/components/server/series';
 import { parseObject } from '@/lib/parse';
 import { seriesSearchSchema } from '@/schemas/series';
+import ListEmpty from '@ui/list-empty';
 import { Suspense } from 'react';
 
 export default async function SeriesSearchPage({ searchParams }: PageProps<'/search/series'>) {
@@ -31,6 +32,11 @@ interface SeriesListItemsProps {
 
 async function SeriesListItems({ series }: Readonly<SeriesListItemsProps>) {
   const resolvedSeries = await series;
+
+  if (resolvedSeries.content.length === 0) {
+    return <ListEmpty message={'검색된 시리즈가 없습니다.'} className="py-4" />;
+  }
+
   return resolvedSeries.content.map((item) => <SeriesListItem key={item.id} series={item} />);
 }
 

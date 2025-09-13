@@ -4,6 +4,7 @@ import { QuestionSearchForm } from '@/components/client/question';
 import { QuestionList, QuestionListItem, QuestionListSkeleton } from '@/components/server/question';
 import { parseObject } from '@/lib/parse';
 import { questionSearchSchema } from '@/schemas/question';
+import ListEmpty from '@ui/list-empty';
 import { Suspense } from 'react';
 
 export default async function QuestionSearchPage({ searchParams }: PageProps<'/search/questions'>) {
@@ -31,6 +32,11 @@ interface QuestionListContentProps {
 
 async function QuestionListContent({ questions }: Readonly<QuestionListContentProps>) {
   const resolvedQuestions = await questions;
+
+  if (resolvedQuestions.content.length === 0) {
+    return <ListEmpty message={'검색된 질문이 없습니다.'} className="py-4" />;
+  }
+
   return resolvedQuestions.content.map((question) => <QuestionListItem key={question.id} question={question} />);
 }
 
