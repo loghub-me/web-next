@@ -17,7 +17,7 @@ export default async function UserDetailLayout({ params, children }: LayoutProps
             <UserDetailAsideContent user={user} />
           </Suspense>
         </UserDetailAside>
-        <div className="min-w-0 space-y-4">
+        <div className="flex-1 min-w-0 space-y-4">
           <UserDetailNav {...parsedParam} />
           {children}
         </div>
@@ -36,7 +36,7 @@ async function UserDetailAsideContent({ user }: Readonly<UserDetailAsideContentP
 
   return (
     <>
-      <UserAvatar size={'xl'} {...resolvedUser} />
+      <UserAvatar size={'xl'} {...resolvedUser} className="shadow-xs" />
       <div className="w-full space-y-1.5">
         <h3 className="text-lg font-semibold">@{username}</h3>
         <p className="text-sm text-muted-foreground">{nickname}</p>

@@ -1,6 +1,6 @@
 import { Skeleton } from '@ui/skeleton';
 
-export default function TopicDetailAsideDetail() {
+export default function UserAsideDetail() {
   return (
     <>
       <Skeleton className="size-64 rounded-full" />
