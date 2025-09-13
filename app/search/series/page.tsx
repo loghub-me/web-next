@@ -30,7 +30,7 @@ interface SeriesListItemsProps {
   series: Promise<Page<Series>>;
 }
 
-async function SeriesListItems({ series }: Readonly<SeriesListItemsProps>) {
+export async function SeriesListItems({ series }: Readonly<SeriesListItemsProps>) {
   const resolvedSeries = await series;
 
   if (resolvedSeries.content.length === 0) {
@@ -44,7 +44,7 @@ interface SeriesPageNavProps extends SeriesListItemsProps {
   currentPage: number;
 }
 
-async function SeriesPageNav({ currentPage, series }: Readonly<SeriesPageNavProps>) {
+export async function SeriesPageNav({ currentPage, series }: Readonly<SeriesPageNavProps>) {
   const resolvedSeries = await series;
   return <PageNav currentPage={currentPage} totalPages={resolvedSeries.page.totalPages} />;
 }

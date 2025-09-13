@@ -8,9 +8,10 @@ import { z } from 'zod';
 
 interface QuestionSearchFilterProps {
   defaultValues: z.infer<typeof questionSearchSchema>;
+  action: string;
 }
 
-export default function QuestionSearchFilter({ defaultValues }: Readonly<QuestionSearchFilterProps>) {
+export default function QuestionSearchFilter({ defaultValues, action }: Readonly<QuestionSearchFilterProps>) {
   const { pending } = useFormStatus();
 
   return (
@@ -20,7 +21,7 @@ export default function QuestionSearchFilter({ defaultValues }: Readonly<Questio
         <ButtonLink
           key={key}
           href={{
-            pathname: '/search/questions',
+            pathname: action,
             query: { ...defaultValues, filter: key },
           }}
           variant={defaultValues.filter === key ? 'secondary' : 'ghost'}

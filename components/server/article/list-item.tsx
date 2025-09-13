@@ -19,14 +19,14 @@ export default function ArticleListItem({ article }: Readonly<ArticleListItemPro
         <h3 className="font-medium line-clamp-2 transition-colors group-hover:text-accent-foreground/50">{title}</h3>
       </Link>
       {topics.length > 0 && (
-        <div className="flex gap-1 flex-wrap">
+        <div className="mt-0.5 flex flex-wrap gap-1">
           {topics.map((topic) => (
             <TopicLink key={topic.slug} topic={topic} />
           ))}
         </div>
       )}
-      <div className="pt-2 relative mt-auto flex items-center gap-2 justify-end">
-        <UserLink {...writer} className="absolute -left-1.5 -bottom-1.5" />
+      <div className="mt-auto flex items-center justify-between gap-2">
+        <UserLink {...writer} className="-ml-1.5" />
         <Timestamp {...article} />
       </div>
     </div>
