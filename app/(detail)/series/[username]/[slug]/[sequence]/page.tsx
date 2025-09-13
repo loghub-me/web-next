@@ -16,10 +16,11 @@ import { Suspense } from 'react';
 
 export const experimental_ppr = true;
 
-export default async function SeriesChapterDetailPage({ params }: PageProps<'/[username]/series/[slug]/[sequence]'>) {
+export default async function SeriesChapterDetailPage({ params }: PageProps<'/series/[username]/[slug]/[sequence]'>) {
   const { username, slug, sequence } = parseObject(await params, seriesChapterDetailSchema);
   const series = await getSeriesDetail(username, slug);
   const chapter = getSeriesChapterDetail(series.id, sequence);
+  const prefixPath = `/series/${username}/${slug}`;
 
   return (
     <main className="container mx-auto pt-20 pb-4 min-h-screen space-y-4">
@@ -29,14 +30,14 @@ export default async function SeriesChapterDetailPage({ params }: PageProps<'/[u
             <SeriesDetailHeader {...series} />
             <SeriesDetailContent {...series} />
           </Card>
-          <SeriesChapterCard chapters={series.chapters} prefixPath={`/${username}/series/${slug}`} />
+          <SeriesChapterCard chapters={series.chapters} prefixPath={prefixPath} />
         </SeriesDetailAside>
         <div className="w-full min-w-0 space-y-4">
           <Suspense fallback={<SeriesChapterDetailSkeleton />}>
             <SeriesChapterDetail
               chapter={chapter}
               series={series}
-              prefixPath={`/${username}/series/${slug}`}
+              prefixPath={prefixPath}
               totalChapters={series.chapters.length}
             />
           </Suspense>

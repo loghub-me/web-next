@@ -11,7 +11,7 @@ import { parseObject } from '@/lib/parse';
 import { compositeKeySchema } from '@/schemas/common';
 import { Card } from '@ui/card';
 
-export default async function ArticleDetailPage({ params }: PageProps<'/[username]/articles/[slug]'>) {
+export default async function ArticleDetailPage({ params }: PageProps<'/articles/[username]/[slug]'>) {
   const { username, slug } = parseObject(await params, compositeKeySchema);
   const article = await getArticleDetail(username, slug);
 
