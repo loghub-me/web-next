@@ -43,8 +43,8 @@ async function TopicDetailAsideContent({ topic }: Readonly<TopicDetailAsideConte
         />
       </div>
       <div className="w-full space-y-1.5">
-        <h3 className="font-semibold">{name}</h3>
-        <p className="tex-sm text-muted-foreground">{description}</p>
+        <h3 className="text-lg font-semibold">{name}</h3>
+        <p className="text-sm text-muted-foreground">{description}</p>
       </div>
     </>
   );

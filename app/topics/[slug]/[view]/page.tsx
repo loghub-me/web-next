@@ -6,35 +6,28 @@ import { TopicArticleList, TopicDetailNav, TopicQuestionList, TopicSeriesList } 
 import { parseObject } from '@/lib/parse';
 import { topicDetailSchema } from '@/schemas/topic';
 import ListEmpty from '@ui/list-empty';
-import { ComponentType, Suspense } from 'react';
+import { ComponentType, ReactNode, Suspense } from 'react';
 
-const LIST_COMPONENTS: Record<
-  TopicDetailView,
-  {
-    list: ComponentType<any>;
-    listItem: ComponentType<any>;
-    listSkeleton: ComponentType<any>;
-    propName: string;
-  }
-> = {
+export const experimental_ppr = true;
+
+interface ListComponents {
+  list: ComponentType<{ children?: ReactNode }>;
+  listSkeleton: ComponentType<{ size?: number }>;
+}
+
+const LIST_COMPONENTS = {
   articles: {
     list: TopicArticleList,
-    listItem: ArticleListItem,
     listSkeleton: ArticleListSkeleton,
-    propName: 'article',
-  },
+  } satisfies ListComponents,
   series: {
     list: TopicSeriesList,
-    listItem: SeriesListItem,
     listSkeleton: SeriesListSkeleton,
-    propName: 'series',
-  },
+  } satisfies ListComponents,
   questions: {
     list: TopicQuestionList,
-    listItem: QuestionListItem,
     listSkeleton: QuestionListSkeleton,
-    propName: 'question',
-  },
+  } satisfies ListComponents,
 };
 
 export default async function TopicTrendingPostPage({ params }: PageProps<'/topics/[slug]/[view]'>) {
@@ -61,12 +54,20 @@ interface TopicTrendingListContentProps {
 }
 
 async function TopicTrendingListContent({ posts, view }: Readonly<TopicTrendingListContentProps>) {
-  const { listItem: ListItem, propName } = LIST_COMPONENTS[view];
   const resolvedPosts = await posts;
 
   if (resolvedPosts.length === 0) {
     return <ListEmpty message={'검색 결과를 찾을 수 없습니다.'} className="py-4" />;
   }
 
-  return resolvedPosts.map((post) => <ListItem key={post.id} {...{ [propName]: post }} />);
+  switch (view) {
+    case 'articles':
+      return (resolvedPosts as Article[]).map((post) => <ArticleListItem key={post.id} article={post} />);
+    case 'series':
+      return (resolvedPosts as Series[]).map((post) => <SeriesListItem key={post.id} series={post} />);
+    case 'questions':
+      return (resolvedPosts as Question[]).map((post) => <QuestionListItem key={post.id} question={post} />);
+    default:
+      return null;
+  }
 }
