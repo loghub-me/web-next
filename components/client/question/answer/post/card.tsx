@@ -2,7 +2,7 @@
 
 import { QuestionAnswerPostForm } from '@/components/client/question';
 import { useAuth } from '@/hooks/use-auth';
-import { Button } from '@ui/button';
+import { ButtonLink } from '@ui/button';
 import { Card } from '@ui/card';
 import { LogInIcon } from 'lucide-react';
 
@@ -21,9 +21,9 @@ export default function QuestionAnswerPostCard({ question }: Readonly<QuestionAn
     case 'unauthenticated':
       return (
         <Card className="p-4 flex-row items-center bg-primary/10 gap-3">
-          <Button>
+          <ButtonLink variant={'default'} href={'/login'}>
             <LogInIcon /> 로그인
-          </Button>
+          </ButtonLink>
           <p className="text-sm text-accent-foreground">하고 답변을 작성해 보세요!</p>
         </Card>
       );
