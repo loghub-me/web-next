@@ -10,4 +10,12 @@ interface User {
   role: UserRole;
 }
 
+interface UserDetail {
+  id: number;
+  username: string;
+  nickname: string;
+  readme: string;
+  role: UserRole;
+}
+
 type UserRole = 'MEMBER' | 'ADMIN' | 'BOT';

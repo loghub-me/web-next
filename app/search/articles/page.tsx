@@ -16,7 +16,7 @@ export default async function ArticleSearchPage({ searchParams }: PageProps<'/se
       <ArticleSearchForm defaultValues={parsedSearchParams} />
       <ArticleList>
         <Suspense fallback={<ArticleListSkeleton />}>
-          <ArticleListContent articles={articles} />
+          <ArticleListItems articles={articles} />
         </Suspense>
       </ArticleList>
       <Suspense fallback={<PageSkeleton />}>
@@ -26,11 +26,11 @@ export default async function ArticleSearchPage({ searchParams }: PageProps<'/se
   );
 }
 
-interface ArticleListContentProps {
+interface ArticleListItemsProps {
   articles: Promise<Page<Article>>;
 }
 
-async function ArticleListContent({ articles }: Readonly<ArticleListContentProps>) {
+export async function ArticleListItems({ articles }: Readonly<ArticleListItemsProps>) {
   const resolvedArticles = await articles;
 
   if (resolvedArticles.content.length === 0) {
@@ -40,11 +40,11 @@ async function ArticleListContent({ articles }: Readonly<ArticleListContentProps
   return resolvedArticles.content.map((article) => <ArticleListItem key={article.id} article={article} />);
 }
 
-interface ArticlePageNavProps extends ArticleListContentProps {
+interface ArticlePageNavProps extends ArticleListItemsProps {
   currentPage: number;
 }
 
-async function ArticlePageNav({ currentPage, articles }: Readonly<ArticlePageNavProps>) {
+export async function ArticlePageNav({ currentPage, articles }: Readonly<ArticlePageNavProps>) {
   const resolvedArticles = await articles;
   return <PageNav currentPage={currentPage} totalPages={resolvedArticles.page.totalPages} />;
 }

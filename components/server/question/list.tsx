@@ -1,5 +1,6 @@
 interface QuestionListProps {
   children?: React.ReactNode;
+  hasAside?: boolean;
 }
 
 export default function QuestionList({ children }: Readonly<QuestionListProps>) {

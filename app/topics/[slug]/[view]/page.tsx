@@ -1,8 +1,8 @@
 import { getTopicTrendingPosts } from '@/apis/server/topic';
-import { ArticleListItem, ArticleListSkeleton } from '@/components/server/article';
-import { QuestionListItem, QuestionListSkeleton } from '@/components/server/question';
-import { SeriesListItem, SeriesListSkeleton } from '@/components/server/series';
-import { TopicArticleList, TopicDetailNav, TopicQuestionList, TopicSeriesList } from '@/components/server/topic';
+import { ArticleList, ArticleListItem, ArticleListSkeleton } from '@/components/server/article';
+import { QuestionList, QuestionListItem, QuestionListSkeleton } from '@/components/server/question';
+import { SeriesList, SeriesListItem, SeriesListSkeleton } from '@/components/server/series';
+import { TopicDetailNav } from '@/components/server/topic';
 import { parseObject } from '@/lib/parse';
 import { topicDetailSchema } from '@/schemas/topic';
 import ListEmpty from '@ui/list-empty';
@@ -11,21 +11,21 @@ import { ComponentType, ReactNode, Suspense } from 'react';
 export const experimental_ppr = true;
 
 interface ListComponents {
-  list: ComponentType<{ children?: ReactNode }>;
+  list: ComponentType<{ children?: ReactNode; hasAside?: boolean }>;
   listSkeleton: ComponentType<{ size?: number }>;
 }
 
 const LIST_COMPONENTS = {
   articles: {
-    list: TopicArticleList,
+    list: ArticleList,
     listSkeleton: ArticleListSkeleton,
   } satisfies ListComponents,
   series: {
-    list: TopicSeriesList,
+    list: SeriesList,
     listSkeleton: SeriesListSkeleton,
   } satisfies ListComponents,
   questions: {
-    list: TopicQuestionList,
+    list: QuestionList,
     listSkeleton: QuestionListSkeleton,
   } satisfies ListComponents,
 };
@@ -39,7 +39,7 @@ export default async function TopicTrendingPostPage({ params }: PageProps<'/topi
   return (
     <div className="flex-1 space-y-4">
       <TopicDetailNav {...parsedParam} />
-      <List>
+      <List hasAside={true}>
         <Suspense fallback={<ListSkeleton />}>
           <TopicTrendingListContent posts={posts} view={parsedParam.view} />
         </Suspense>

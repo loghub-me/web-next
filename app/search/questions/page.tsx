@@ -16,7 +16,7 @@ export default async function QuestionSearchPage({ searchParams }: PageProps<'/s
       <QuestionSearchForm defaultValues={parsedSearchParams} />
       <QuestionList>
         <Suspense fallback={<QuestionListSkeleton />}>
-          <QuestionListContent questions={questions} />
+          <QuestionListItems questions={questions} />
         </Suspense>
       </QuestionList>
       <Suspense fallback={<PageSkeleton />}>
@@ -26,11 +26,11 @@ export default async function QuestionSearchPage({ searchParams }: PageProps<'/s
   );
 }
 
-interface QuestionListContentProps {
+interface QuestionListItemsProps {
   questions: Promise<Page<Question>>;
 }
 
-async function QuestionListContent({ questions }: Readonly<QuestionListContentProps>) {
+export async function QuestionListItems({ questions }: Readonly<QuestionListItemsProps>) {
   const resolvedQuestions = await questions;
 
   if (resolvedQuestions.content.length === 0) {
@@ -40,11 +40,11 @@ async function QuestionListContent({ questions }: Readonly<QuestionListContentPr
   return resolvedQuestions.content.map((question) => <QuestionListItem key={question.id} question={question} />);
 }
 
-interface QuestionPageNavProps extends QuestionListContentProps {
+interface QuestionPageNavProps extends QuestionListItemsProps {
   currentPage: number;
 }
 
-async function QuestionPageNav({ currentPage, questions }: Readonly<QuestionPageNavProps>) {
+export async function QuestionPageNav({ currentPage, questions }: Readonly<QuestionPageNavProps>) {
   const resolvedQuestions = await questions;
   return <PageNav currentPage={currentPage} totalPages={resolvedQuestions.page.totalPages} />;
 }

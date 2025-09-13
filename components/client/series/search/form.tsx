@@ -8,13 +8,17 @@ import { z } from 'zod';
 
 interface SeriesSearchFormProps {
   defaultValues: z.infer<typeof seriesSearchSchema>;
+  action?: string;
 }
 
-export default function SeriesSearchForm({ defaultValues }: Readonly<SeriesSearchFormProps>) {
+export default function SeriesSearchForm({
+  defaultValues,
+  action = '/search/series',
+}: Readonly<SeriesSearchFormProps>) {
   const formRef = useRef<HTMLFormElement>(null);
 
   return (
-    <Form ref={formRef} action={'/search/series'} className="flex gap-2">
+    <Form ref={formRef} action={action} className="flex gap-2">
       <SeriesSearchSort defaultValue={defaultValues.sort} formRef={formRef} />
       <SeriesSearchQuery defaultValue={defaultValues.query} />
       <SeriesSearchSubmit />

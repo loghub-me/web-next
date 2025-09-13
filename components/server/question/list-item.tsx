@@ -1,5 +1,5 @@
 import { TopicLink } from '@/components/client/topic';
-import { UserInline } from '@/components/client/user';
+import { UserLink } from '@/components/client/user';
 import { QUESTION_STATUS_OPTIONS } from '@/constants/options';
 import { cn } from '@/lib/utils';
 import { Badge } from '@ui/badge';
@@ -32,14 +32,14 @@ export default function QuestionListItem({ question }: Readonly<QuestionListItem
           </Badge>
         </h3>
         {topics.length > 0 && (
-          <div className="flex gap-1 flex-wrap">
+          <div className="mt-0.5 flex flex-wrap gap-1">
             {topics.map((topic) => (
               <TopicLink key={topic.slug} topic={topic} />
             ))}
           </div>
         )}
-        <div className="mt-auto flex items-center gap-2 justify-between">
-          <UserInline {...writer} />
+        <div className="mt-auto flex items-center justify-between gap-2">
+          <UserLink {...writer} className="-ml-1.5" />
           <Timestamp {...question} />
         </div>
       </div>

@@ -13,19 +13,23 @@ import { z } from 'zod';
 
 interface QuestionSearchFormProps {
   defaultValues: z.infer<typeof questionSearchSchema>;
+  action?: string;
 }
 
-export default function QuestionSearchForm({ defaultValues }: Readonly<QuestionSearchFormProps>) {
+export default function QuestionSearchForm({
+  defaultValues,
+  action = '/search/questions',
+}: Readonly<QuestionSearchFormProps>) {
   const formRef = useRef<HTMLFormElement>(null);
 
   return (
-    <Form ref={formRef} action={'/search/questions'} className="space-y-3">
+    <Form ref={formRef} action={action} className="space-y-3">
       <div className="flex gap-2">
         <QuestionSearchSort defaultValue={defaultValues.sort} formRef={formRef} />
         <QuestionSearchQuery defaultValue={defaultValues.query} />
         <QuestionSearchSubmit />
       </div>
-      <QuestionSearchFilter defaultValues={defaultValues} />
+      <QuestionSearchFilter defaultValues={defaultValues} action={action} />
     </Form>
   );
 }
