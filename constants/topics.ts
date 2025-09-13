@@ -98,7 +98,7 @@ export function getTopicSetBySlugs(slugs: Set<string>): Topic[] {
 
 export function searchTopics(query: string) {
   if (query.trim().length === 0) {
-    return [];
+    return TOPICS.slice(0, 40);
   }
 
   const lowerQuery = query.toLowerCase();
