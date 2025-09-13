@@ -5,7 +5,10 @@ import {
   CircleDotIcon,
   CircleXIcon,
   FlameIcon,
+  LayersIcon,
   LucideIcon,
+  MessagesSquareIcon,
+  ScrollIcon,
   TargetIcon,
 } from 'lucide-react';
 
@@ -43,10 +46,17 @@ const QUESTION_FILTER_OPTIONS: Record<QuestionFilter, { label: string }> = {
   solved: { label: '해결됨' },
 };
 
+const USER_STAR_TARGET_OPTIONS: Record<UserStarTarget, { label: string; path: string; icon: LucideIcon }> = {
+  ARTICLE: { label: '아티클', path: '/articles', icon: ScrollIcon },
+  SERIES: { label: '시리즈', path: '/series', icon: LayersIcon },
+  QUESTION: { label: '질문', path: '/questions', icon: MessagesSquareIcon },
+};
+
 export {
   ARTICLE_SORT_OPTIONS,
   SERIES_SORT_OPTIONS,
   QUESTION_SORT_OPTIONS,
   QUESTION_STATUS_OPTIONS,
   QUESTION_FILTER_OPTIONS,
+  USER_STAR_TARGET_OPTIONS,
 };

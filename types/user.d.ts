@@ -18,4 +18,14 @@ interface UserDetail {
   role: UserRole;
 }
 
+interface UserStar {
+  id: number;
+  slug: string;
+  title: string;
+  writer: UserSimple;
+  topics: Topic[];
+  target: UserStarTarget;
+}
+
 type UserRole = 'MEMBER' | 'ADMIN' | 'BOT';
+type UserStarTarget = 'ARTICLE' | 'SERIES' | 'QUESTION';

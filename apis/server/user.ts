@@ -2,6 +2,7 @@ import { serverAPI } from '@/apis/server/instance';
 import { articleSearchSchema } from '@/schemas/article';
 import { questionSearchSchema } from '@/schemas/question';
 import { seriesSearchSchema } from '@/schemas/series';
+import { userStarSearchSchema } from '@/schemas/user';
 import { z } from 'zod';
 
 const getUserDetail = (username: string) => serverAPI.get(`users/@${username}`).json<UserDetail>();
@@ -15,4 +16,7 @@ const getUserSeries = async (username: string, searchParams: z.infer<typeof seri
 const getUserQuestions = async (username: string, searchParams: z.infer<typeof questionSearchSchema>) =>
   serverAPI.get(`users/@${username}/questions`, { searchParams }).json<Page<Question>>();
 
-export { getUserDetail, getUserArticles, getUserSeries, getUserQuestions };
+const getUserStars = (username: string, searchParams: z.infer<typeof userStarSearchSchema>) =>
+  serverAPI.get(`users/${username}/stars`, { searchParams }).json<Page<UserStar>>();
+
+export { getUserDetail, getUserArticles, getUserSeries, getUserQuestions, getUserStars };
