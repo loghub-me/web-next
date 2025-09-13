@@ -27,5 +27,10 @@ const FOOTER_LINKS = [
   { label: 'Legal', links: LEGAL_LINKS },
   { label: 'Contact', links: CONTACT_LINKS },
 ];
+const TOPIC_DETAIL_LINKS = [
+  { label: '아티클', view: 'articles', icon: ScrollIcon },
+  { label: '시리즈', view: 'series', icon: LayersIcon },
+  { label: '질문', view: 'questions', icon: MessagesSquareIcon },
+];
 
-export { HEADER_LINKS, FOOTER_LINKS };
+export { HEADER_LINKS, FOOTER_LINKS, TOPIC_DETAIL_LINKS };
