@@ -6,7 +6,7 @@ import { parseObject } from '@/lib/parse';
 import { compositeKeySchema } from '@/schemas/common';
 import { Card } from '@ui/card';
 
-export default async function SeriesDetailPage({ params }: PageProps<'/[username]/series/[slug]'>) {
+export default async function SeriesDetailPage({ params }: PageProps<'/series/[username]/[slug]'>) {
   const { username, slug } = parseObject(await params, compositeKeySchema);
   const series = await getSeriesDetail(username, slug);
 
@@ -18,7 +18,7 @@ export default async function SeriesDetailPage({ params }: PageProps<'/[username
             <SeriesDetailHeader {...series} />
             <SeriesDetailContent {...series} />
           </Card>
-          <SeriesChapterCard chapters={series.chapters} prefixPath={`/${username}/series/${slug}`} />
+          <SeriesChapterCard chapters={series.chapters} prefixPath={`/series/${username}/${slug}`} />
         </SeriesDetailAside>
         <div className="w-full min-w-0 space-y-4">
           <SeriesReviews id={series.id} />

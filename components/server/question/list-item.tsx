@@ -13,7 +13,7 @@ interface QuestionListItemProps {
 
 export default function QuestionListItem({ question }: Readonly<QuestionListItemProps>) {
   const { slug, title, topics, status, stats, writer } = question;
-  const href = `/${writer.username}/questions/${slug}`;
+  const href = `/questions/${writer.username}/${slug}`;
   const { icon: StatusIcon, color: statusColor } = QUESTION_STATUS_OPTIONS[status];
 
   return (

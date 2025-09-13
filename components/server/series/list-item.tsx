@@ -10,7 +10,7 @@ interface SeriesListItemProps {
 
 export default function SeriesListItem({ series }: Readonly<SeriesListItemProps>) {
   const { slug, title, thumbnail, topics, writer } = series;
-  const href = `/${writer.username}/series/${slug}`;
+  const href = `/series/${writer.username}/${slug}`;
 
   return (
     <div className="p-1 h-full flex flex-col gap-1.5">

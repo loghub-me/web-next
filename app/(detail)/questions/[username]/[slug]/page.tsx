@@ -17,7 +17,7 @@ import { Suspense } from 'react';
 
 export const experimental_ppr = true;
 
-export default async function QuestionDetailPage({ params }: PageProps<'/[username]/questions/[slug]'>) {
+export default async function QuestionDetailPage({ params }: PageProps<'/questions/[username]/[slug]'>) {
   const { username, slug } = parseObject(await params, compositeKeySchema);
   const question = await getQuestionDetail(username, slug);
   const answers = getQuestionAnswers(question.id);
