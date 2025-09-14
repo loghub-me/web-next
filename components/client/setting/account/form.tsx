@@ -22,7 +22,7 @@ export default function SettingAccountForm({ session }: Readonly<SettingAccountF
         <div className="flex-1 space-y-2">
           <label className="inline-block text-sm font-medium leading-none">유저네임</label>
           <div className="flex gap-2">
-            <InputWithIcon icon={AtSignIcon} type={'email'} value={session.username} disabled />
+            <InputWithIcon icon={AtSignIcon} type={'text'} value={session.username} disabled />
             <SettingUsernameDialog open={usernameDialogOpen} onOpenChange={setUsernameDialogOpen}>
               <SettingUsernameForm username={session.username} closeDialog={() => setUsernameDialogOpen(false)} />
             </SettingUsernameDialog>

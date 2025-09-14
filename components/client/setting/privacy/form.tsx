@@ -23,7 +23,6 @@ export default function SettingPrivacyForm({ privacy }: Readonly<SettingPrivacyF
   });
 
   function onSubmit(values: z.infer<typeof settingPrivacyUpdateSchema>) {
-    console.log(values);
     updateSelfPrivacy(values)
       .then(({ message }) => toast.success(message))
       .catch((err) => handleFormError(err, form.setError));
