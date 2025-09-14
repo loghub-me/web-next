@@ -6,7 +6,7 @@ import { handleError } from '@/lib/error';
 import { Button, ButtonLink } from '@ui/button';
 import {
   Dialog,
-  DialogClose,
+  DialogCloseButton,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -15,7 +15,7 @@ import {
   DialogTrigger,
 } from '@ui/dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@ui/dropdown-menu';
-import { CircleXIcon, EllipsisIcon, PencilIcon, TrashIcon, XIcon } from 'lucide-react';
+import { CircleXIcon, EllipsisIcon, PencilIcon, TrashIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
@@ -79,11 +79,7 @@ function QuestionDeleteButton({ id }: Readonly<Pick<QuestionActionMenuProps, 'id
           <DialogDescription>삭제된 질문은 복구할 수 없습니다. 정말로 삭제하시겠습니까?</DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <DialogClose asChild>
-            <Button type="button" variant="ghost">
-              <XIcon /> 취소하기
-            </Button>
-          </DialogClose>
+          <DialogCloseButton>취소하기</DialogCloseButton>
           <Button type="submit" variant="destructive" onClick={onDeleteButtonClick}>
             <TrashIcon /> 삭제하기
           </Button>
@@ -118,11 +114,7 @@ function QuestionCloseButton({ id }: Readonly<Pick<QuestionActionMenuProps, 'id'
           <DialogDescription>닫은 질문은 복구할 수 없습니다. 정말로 닫겠습니까?</DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <DialogClose asChild>
-            <Button type="button" variant="ghost">
-              <XIcon /> 취소하기
-            </Button>
-          </DialogClose>
+          <DialogCloseButton>취소하기</DialogCloseButton>
           <Button type="submit" variant="destructive" onClick={onCloseButtonClick}>
             <CircleXIcon /> 닫기
           </Button>

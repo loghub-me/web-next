@@ -6,7 +6,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '@ui/button';
 import {
   Dialog,
-  DialogClose,
+  DialogCloseButton,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -14,7 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@ui/dialog';
-import { PlusIcon, XIcon } from 'lucide-react';
+import { PlusIcon } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -50,11 +50,7 @@ export default function SeriesChapterCreateButton({ seriesId }: Readonly<SeriesC
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <DialogClose asChild>
-            <Button type="button" variant="ghost">
-              <XIcon /> 취소하기
-            </Button>
-          </DialogClose>
+          <DialogCloseButton>취소하기</DialogCloseButton>
           <Button type="submit" onClick={onCreateButtonClick}>
             <PlusIcon /> 챕터 생성
           </Button>

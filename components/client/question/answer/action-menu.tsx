@@ -8,7 +8,7 @@ import { Badge } from '@ui/badge';
 import { Button } from '@ui/button';
 import {
   Dialog,
-  DialogClose,
+  DialogCloseButton,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -17,7 +17,7 @@ import {
   DialogTrigger,
 } from '@ui/dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@ui/dropdown-menu';
-import { EllipsisIcon, TrashIcon, UserRound, XIcon } from 'lucide-react';
+import { EllipsisIcon, TrashIcon, UserRound } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'sonner';
@@ -86,11 +86,7 @@ function QuestionDeleteButton({ questionId, answerId }: Readonly<{ questionId: n
           <DialogDescription>삭제된 답변은 복구할 수 없습니다. 정말로 삭제하시겠습니까?</DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <DialogClose asChild>
-            <Button type="button" variant="ghost">
-              <XIcon /> 취소하기
-            </Button>
-          </DialogClose>
+          <DialogCloseButton>취소하기</DialogCloseButton>
           <Button type="submit" variant="destructive" onClick={onDeleteButtonClick}>
             <TrashIcon /> 삭제하기
           </Button>
