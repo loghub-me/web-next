@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@ui/button';
 import {
   Dialog,
-  DialogClose,
+  DialogCloseButton,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -16,7 +16,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@ui/dialog';
-import { CheckCircleIcon, TrashIcon, XIcon } from 'lucide-react';
+import { CheckCircleIcon, TrashIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
@@ -55,11 +55,7 @@ export default function QuestionAnswerAcceptButton({ question, id }: Readonly<Qu
             <DialogDescription>채택된 답변은 취소할 수 없습니다. 정말로 채택하시겠습니까?</DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <DialogClose asChild>
-              <Button type="button" variant="ghost">
-                <XIcon /> 취소하기
-              </Button>
-            </DialogClose>
+            <DialogCloseButton>취소하기</DialogCloseButton>
             <Button type="submit" variant={'secondary'} className="border" onClick={onAcceptButtonClick}>
               <CheckCircleIcon className={cn(QUESTION_STATUS_OPTIONS['SOLVED'].color)} /> 채택하기
             </Button>

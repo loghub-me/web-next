@@ -6,9 +6,9 @@ import { handleFormError } from '@/lib/error';
 import { seriesChapterEditSchema } from '@/schemas/series';
 import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '@ui/button';
-import { DialogClose } from '@ui/dialog';
+import { DialogCloseButton } from '@ui/dialog';
 import { Form, FormField, FormMessage } from '@ui/form';
-import { PencilIcon, XIcon } from 'lucide-react';
+import { PencilIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -39,11 +39,7 @@ export default function SeriesChapterEditForm({ seriesId, sequence, form }: Read
         <TitleFormField control={form.control} />
         <FormField control={form.control} name="content" render={() => <FormMessage />} />
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
-          <DialogClose asChild>
-            <Button type="button" variant="ghost">
-              <XIcon /> 취소하기
-            </Button>
-          </DialogClose>
+          <DialogCloseButton>취소하기</DialogCloseButton>
           <Button type="submit" disabled={form.formState.isSubmitting}>
             <PencilIcon /> 수정하기
           </Button>
