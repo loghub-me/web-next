@@ -1,5 +1,4 @@
-import SeriesChapterEditLink from '@/components/client/question/edit/link';
-import { SeriesChapterTOCMenu } from '@/components/client/series';
+import { SeriesChapterEditLink, SeriesChapterTOCMenu } from '@/components/client/series';
 import { CardHeader } from '@ui/card';
 import ScrollProgressBar from '@ui/scroll-progress-bar';
 

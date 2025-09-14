@@ -1,9 +1,11 @@
 'use client';
 
 import { deleteQuestionAnswer } from '@/apis/client/question';
+import { QuestionAnswerEditDialog, QuestionAnswerEditForm } from '@/components/client/question';
 import { useAuth } from '@/hooks/use-auth';
 import { handleError } from '@/lib/error';
-import { Button, ButtonLink } from '@ui/button';
+import { Badge } from '@ui/badge';
+import { Button } from '@ui/button';
 import {
   Dialog,
   DialogClose,
@@ -15,49 +17,55 @@ import {
   DialogTrigger,
 } from '@ui/dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@ui/dropdown-menu';
-import { EllipsisIcon, PencilIcon, TrashIcon, XIcon } from 'lucide-react';
+import { EllipsisIcon, TrashIcon, UserRound, XIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { toast } from 'sonner';
 
 interface QuestionAnswerActionMenuProps {
   questionId: number;
-  id: number;
-  writer: UserDetail;
+  answer: QuestionAnswer;
 }
 
-export default function QuestionAnswerActionMenu({ questionId, id, writer }: Readonly<QuestionAnswerActionMenuProps>) {
+export default function QuestionAnswerActionMenu({ questionId, answer }: Readonly<QuestionAnswerActionMenuProps>) {
   const { session } = useAuth();
+  const [openEdit, setOpenEdit] = useState(false);
 
   return (
-    session?.id === writer.id && (
-      <DropdownMenu modal={false}>
-        <DropdownMenuTrigger asChild>
-          <Button variant={'ghost'} size={'icon'} className="rounded-full">
-            <EllipsisIcon />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="flex flex-col gap-1">
-          <QuestionEditLink questionId={questionId} id={id} />
-          <QuestionDeleteButton questionId={questionId} id={id} />
-        </DropdownMenuContent>
-      </DropdownMenu>
+    session?.id === answer.writer.id && (
+      <>
+        <Badge variant={'outline'} className="px-1">
+          <UserRound /> 내 답변
+        </Badge>
+        <DropdownMenu modal={false}>
+          <DropdownMenuTrigger asChild>
+            <Button variant={'ghost'} size={'icon'} className="rounded-full">
+              <EllipsisIcon />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="flex flex-col gap-1">
+            <QuestionAnswerEditDialog open={openEdit} onOpenChange={setOpenEdit}>
+              {openEdit && (
+                <QuestionAnswerEditForm
+                  questionId={questionId}
+                  answer={answer}
+                  closeDialog={() => setOpenEdit(false)}
+                />
+              )}
+            </QuestionAnswerEditDialog>
+            <QuestionDeleteButton questionId={questionId} answerId={answer.id} />
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </>
     )
   );
 }
 
-function QuestionEditLink({ questionId, id }: Readonly<Pick<QuestionAnswerActionMenuProps, 'questionId' | 'id'>>) {
-  return (
-    <ButtonLink href={`/edit/questions/${questionId}/answers/${id}`} variant={'ghost'} size={'sm'}>
-      <PencilIcon /> 수정하기
-    </ButtonLink>
-  );
-}
-
-function QuestionDeleteButton({ questionId, id }: Readonly<Pick<QuestionAnswerActionMenuProps, 'questionId' | 'id'>>) {
+function QuestionDeleteButton({ questionId, answerId }: Readonly<{ questionId: number; answerId: number }>) {
   const router = useRouter();
 
   function onDeleteButtonClick() {
-    deleteQuestionAnswer(questionId, id)
+    deleteQuestionAnswer(questionId, answerId)
       .then(({ message }) => {
         toast.success(message, { icon: <TrashIcon className="size-4" /> });
         router.refresh();

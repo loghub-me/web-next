@@ -13,7 +13,6 @@ export { default as QuestionPostDialog } from '@/components/client/question/post
 export { default as QuestionPostForm } from '@/components/client/question/post/form';
 export { default as QuestionEditDialog } from '@/components/client/question/edit/dialog';
 export { default as QuestionEditForm } from '@/components/client/question/edit/form';
-export { default as QuestionEditLink } from '@/components/client/question/edit/link';
 
 export { default as QuestionAnswerTOCCard } from '@/components/client/question/answer/toc-card';
 export { default as QuestionAnswerTOCSkeleton } from '@/components/client/question/answer/toc-skeleton';

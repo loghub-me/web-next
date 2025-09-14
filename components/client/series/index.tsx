@@ -17,6 +17,7 @@ export { default as SeriesChapterActionMenu } from '@/components/client/series/c
 export { default as SeriesChapterCreateButton } from '@/components/client/series/chapter/create/button';
 export { default as SeriesChapterEditDialog } from '@/components/client/series/chapter/edit/dialog';
 export { default as SeriesChapterEditForm } from '@/components/client/series/chapter/edit/form';
+export { default as SeriesChapterEditLink } from '@/components/client/series/chapter/edit/link';
 export { default as SeriesChapterManager } from '@/components/client/series/chapter/manager';
 
 export { default as SeriesReviewForm } from '@/components/client/series/review/form';

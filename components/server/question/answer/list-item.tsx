@@ -28,7 +28,7 @@ export default function QuestionAnswerListItem({ answer, question }: Readonly<Qu
           </Badge>
         )}
         {question.status === 'OPEN' && <QuestionAnswerAcceptButton question={question} {...answer} />}
-        <QuestionAnswerActionMenu questionId={question.id} {...answer} />
+        <QuestionAnswerActionMenu questionId={question.id} answer={answer} />
       </CardHeader>
       <CardContent className="pb-4 border-b">
         <div className="markdown-it" dangerouslySetInnerHTML={{ __html: content.html }} />
