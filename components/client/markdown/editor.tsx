@@ -2,6 +2,7 @@
 
 import { ErrorMessage } from '@/constants/messages';
 import { useAuth } from '@/hooks/use-auth';
+import { handleError } from '@/lib/error';
 import { defaultInputFileProps, uploadImageFile } from '@/lib/image/upload';
 import { buildAssetsUrl, cn } from '@/lib/utils';
 import '@/styles/easymde.css';
@@ -44,7 +45,7 @@ export default function MarkdownEditor({
           const newLine = `\n![${filename}](${buildAssetsUrl(path)})\n`;
           easyMDERef.current?.value(easyMDERef.current?.value() + newLine);
         })
-        .catch((err) => toast.error(err.message)),
+        .catch(handleError),
   };
 
   function onModeChange(value: string) {

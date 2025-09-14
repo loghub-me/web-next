@@ -60,8 +60,8 @@ export default function QuestionAnswerAcceptButton({ question, id }: Readonly<Qu
                 <XIcon /> 취소하기
               </Button>
             </DialogClose>
-            <Button type="submit" onClick={onAcceptButtonClick}>
-              <CheckCircleIcon /> 채택하기
+            <Button type="submit" variant={'secondary'} className="border" onClick={onAcceptButtonClick}>
+              <CheckCircleIcon className={cn(QUESTION_STATUS_OPTIONS['SOLVED'].color)} /> 채택하기
             </Button>
           </DialogFooter>
         </DialogContent>
