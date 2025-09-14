@@ -8,7 +8,10 @@ import {
   LayersIcon,
   LucideIcon,
   MessagesSquareIcon,
+  MonitorIcon,
+  MoonIcon,
   ScrollIcon,
+  SunIcon,
   TargetIcon,
 } from 'lucide-react';
 
@@ -58,6 +61,12 @@ const USER_ACTIVITY_ACTION_OPTIONS: Record<UserActivityAction, { path: string; l
   POST_QUESTION: { path: '/questions/{username}/{slug}', label: '질문 작성' },
 };
 
+const THEME_OPTIONS: Record<string, { label: string; icon: LucideIcon }> = {
+  system: { label: '시스템 설정', icon: MonitorIcon },
+  light: { label: '라이트 모드', icon: SunIcon },
+  dark: { label: '다크 모드', icon: MoonIcon },
+};
+
 export {
   ARTICLE_SORT_OPTIONS,
   SERIES_SORT_OPTIONS,
@@ -66,4 +75,5 @@ export {
   QUESTION_FILTER_OPTIONS,
   USER_STAR_TARGET_OPTIONS,
   USER_ACTIVITY_ACTION_OPTIONS,
+  THEME_OPTIONS,
 };

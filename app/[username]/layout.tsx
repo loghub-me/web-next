@@ -4,6 +4,7 @@ import { UserDetailAside, UserDetailAsideSkeleton } from '@/components/server/us
 import { parseObject } from '@/lib/parse';
 import { userDetailSchema } from '@/schemas/user';
 import { MailIcon } from 'lucide-react';
+import Link from 'next/link';
 import { Suspense } from 'react';
 
 export default async function UserDetailLayout({ params, children }: LayoutProps<'/[username]'>) {
@@ -44,7 +45,14 @@ async function UserDetailAsideContent({ user }: Readonly<UserDetailAsideContentP
       </div>
       <div className="space-y-1.5 w-full">
         <p className="flex items-center gap-2 text-sm text-muted-foreground">
-          <MailIcon className="size-4" /> {email || '비공개'}
+          <MailIcon className="size-4" />{' '}
+          {email ? (
+            <Link href={`mailto:${email}`} className="hover:underline">
+              {email}
+            </Link>
+          ) : (
+            '비공개'
+          )}
         </p>
       </div>
     </>

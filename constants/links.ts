@@ -1,4 +1,13 @@
-import { LayersIcon, MessagesSquareIcon, ScrollIcon, TagIcon } from 'lucide-react';
+import {
+  GlobeIcon,
+  IdCardIcon,
+  LayersIcon,
+  MessagesSquareIcon,
+  MonitorIcon,
+  ScrollIcon,
+  SquareUserIcon,
+  TagIcon,
+} from 'lucide-react';
 
 const SEARCH_LINKS = [
   { label: '아티클', href: '/search/articles', icon: ScrollIcon },
@@ -32,5 +41,11 @@ const TOPIC_DETAIL_LINKS = [
   { label: '시리즈', view: 'series', icon: LayersIcon },
   { label: '질문', view: 'questions', icon: MessagesSquareIcon },
 ];
+const SETTING_LINKS = [
+  { label: '계정', href: '/settings/account', icon: IdCardIcon },
+  { label: '프로필', href: '/settings/profile', icon: SquareUserIcon },
+  { label: '개인정보', href: '/settings/privacy', icon: GlobeIcon },
+  { label: '테마', href: '/settings/theme', icon: MonitorIcon },
+];
 
-export { HEADER_LINKS, FOOTER_LINKS, TOPIC_DETAIL_LINKS };
+export { HEADER_LINKS, FOOTER_LINKS, TOPIC_DETAIL_LINKS, SETTING_LINKS };

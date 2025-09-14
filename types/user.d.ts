@@ -17,6 +17,10 @@ interface UserProfile {
   readme: UserRole;
 }
 
+interface UserPrivacy {
+  emailPublic: boolean;
+}
+
 interface UserStar {
   id: number;
   slug: string;
