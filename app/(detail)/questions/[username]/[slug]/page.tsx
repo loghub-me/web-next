@@ -54,7 +54,7 @@ interface QuestionAnswerListContentProps {
   question: {
     id: number;
     status: QuestionStatus;
-    writer: User;
+    writer: UserDetail;
   };
 }
 

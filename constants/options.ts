@@ -52,6 +52,12 @@ const USER_STAR_TARGET_OPTIONS: Record<UserStarTarget, { label: string; path: st
   QUESTION: { label: '질문', path: '/questions', icon: MessagesSquareIcon },
 };
 
+const USER_ACTIVITY_ACTION_OPTIONS: Record<UserActivityAction, { path: string; label: string }> = {
+  POST_ARTICLE: { path: '/articles/{username}/{slug}', label: '아티클 작성' },
+  POST_SERIES: { path: '/series/{username}/{slug}', label: '시리즈 작성' },
+  POST_QUESTION: { path: '/questions/{username}/{slug}', label: '질문 작성' },
+};
+
 export {
   ARTICLE_SORT_OPTIONS,
   SERIES_SORT_OPTIONS,
@@ -59,4 +65,5 @@ export {
   QUESTION_STATUS_OPTIONS,
   QUESTION_FILTER_OPTIONS,
   USER_STAR_TARGET_OPTIONS,
+  USER_ACTIVITY_ACTION_OPTIONS,
 };

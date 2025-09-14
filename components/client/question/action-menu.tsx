@@ -22,7 +22,7 @@ import { toast } from 'sonner';
 interface QuestionActionMenuProps {
   id: number;
   status: QuestionStatus;
-  writer: User;
+  writer: UserDetail;
 }
 
 export default function QuestionActionMenu({ id, status, writer }: Readonly<QuestionActionMenuProps>) {

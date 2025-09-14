@@ -62,7 +62,7 @@ function MemberMenu({ type, session }: Readonly<AuthMenuProps & { session: Sessi
   const { unregisterSession } = useAuth();
 
   const navLinks = [
-    [{ href: `/@${session?.username}`, label: '프로필', icon: UserCircleIcon }],
+    [{ href: `/${session?.username}`, label: '프로필', icon: UserCircleIcon }],
     [
       { href: '/post', label: '포스트', icon: PencilIcon },
       { href: '/manual', label: '메뉴얼', icon: NotepadTextIcon },
@@ -80,7 +80,10 @@ function MemberMenu({ type, session }: Readonly<AuthMenuProps & { session: Sessi
   return (
     <DropdownMenu modal={false} open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
-        <Button variant={open ? 'secondary' : 'outline'} className={cn('border', type === 'sheet' && 'flex-1')}>
+        <Button
+          variant={open ? 'secondary' : 'outline'}
+          className={cn('has-[>svg]:px-1.5 border', type === 'sheet' && 'flex-1')}
+        >
           <UserAvatar {...session} /> {session.username}
           <ChevronUpIcon
             className={cn(

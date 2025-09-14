@@ -9,7 +9,7 @@ import { LogInIcon } from 'lucide-react';
 interface QuestionAnswerPostCardProps {
   question: {
     id: number;
-    writer: User;
+    writer: UserDetail;
   };
 }
 

@@ -9,7 +9,7 @@ interface SeriesChapterDetailHeaderProps {
   anchors: Anchor[];
   series: {
     id: number;
-    writer: User;
+    writer: UserDetail;
   };
 }
 

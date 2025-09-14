@@ -8,7 +8,7 @@ interface QuestionDetailHeroProps {
   status: QuestionStatus;
   stats: QuestionStats;
   title: string;
-  writer: User;
+  writer: UserDetail;
   createdAt: string;
   updatedAt: string;
 }

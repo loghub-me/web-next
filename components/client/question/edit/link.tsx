@@ -6,7 +6,7 @@ import { PencilIcon } from 'lucide-react';
 
 interface SeriesChapterEditLinkProps {
   href: string;
-  writer: User;
+  writer: UserDetail;
 }
 
 export default function SeriesChapterEditLink({ href, writer }: Readonly<SeriesChapterEditLinkProps>) {

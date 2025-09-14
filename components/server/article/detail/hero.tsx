@@ -4,7 +4,7 @@ import { DotIcon } from 'lucide-react';
 
 interface ArticleDetailHeroProps {
   title: string;
-  writer: User;
+  writer: UserDetail;
   createdAt: string;
   updatedAt: string;
 }
