@@ -20,7 +20,7 @@ export default function JoinRequestForm() {
   const router = useRouter();
   const form = useForm<FormType>({
     resolver: zodResolver(joinRequestSchema),
-    defaultValues: { email: '', nickname: '' },
+    defaultValues: { email: '', username: '', nickname: '' },
   });
 
   function onSubmit(values: FormType) {
@@ -38,12 +38,25 @@ export default function JoinRequestForm() {
         <EmailFormField control={form.control} />
         <FormField
           control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>유저네임</FormLabel>
+              <FormControl>
+                <Input placeholder="gymynnym" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
           name="nickname"
           render={({ field }) => (
             <FormItem>
               <FormLabel>닉네임</FormLabel>
               <FormControl>
-                <Input placeholder="gymynnym" {...field} />
+                <Input placeholder="JohnDoe" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

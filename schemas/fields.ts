@@ -46,6 +46,21 @@ const topicSlugs = z
   .array(z.string({ message: '토픽은 문자열이어야 합니다.' }))
   .max(10, { message: '토픽은 최대 10개까지 선택할 수 있습니다.' });
 
+const usernameRegex = /^[a-zA-Z0-9]+$/;
+const username = z
+  .string({ message: '유저네임은 문자열이어야 합니다.' })
+  .trim()
+  .min(4, '유저네임은 4글자 이상이어야 합니다.')
+  .max(16, '유저네임은 16글자 이하여야 합니다.')
+  .regex(usernameRegex, { message: '유저네임은 영문자와 숫자로만 이루어져야 합니다.' });
+const nicknameRegex = /^[a-zA-Z0-9가-힣_]+$/;
+const nickname = z
+  .string({ message: '닉네임은 문자열이어야 합니다.' })
+  .trim()
+  .min(2, '닉네임은 2글자 이상이어야 합니다.')
+  .max(12, '닉네임은 12글자 이하여야 합니다.')
+  .regex(nicknameRegex, { message: '닉네임은 영문자, 숫자, 한글, 밑줄(_)로만 이루어져야 합니다.' });
+
 const zodFields = {
   id,
   coercedId,
@@ -60,6 +75,8 @@ const zodFields = {
   content,
   thumbnail,
   topicSlugs,
+  username,
+  nickname,
 };
 
 export default zodFields;
