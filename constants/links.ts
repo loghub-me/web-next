@@ -2,6 +2,7 @@ import {
   GlobeIcon,
   IdCardIcon,
   LayersIcon,
+  MessageSquareIcon,
   MessagesSquareIcon,
   MonitorIcon,
   ScrollIcon,
@@ -47,5 +48,51 @@ const SETTING_LINKS = [
   { label: '개인정보', href: '/settings/privacy', icon: GlobeIcon },
   { label: '테마', href: '/settings/theme', icon: MonitorIcon },
 ];
+const POST_LINKS = [
+  {
+    href: '/post/articles',
+    title: '아티클',
+    description: '글을 작성하고 공유해보세요.',
+    icon: ScrollIcon,
+    style: 'md:col-span-3',
+    image: {
+      light: '/images/articles.png',
+      dark: '/images/articles-dark.png',
+    },
+  },
+  {
+    href: '/post/series',
+    title: '시리즈',
+    description: '글을 묶어서 시리즈로 작성해보세요.',
+    icon: LayersIcon,
+    style: 'md:col-span-2',
+    image: {
+      light: '/images/series.png',
+      dark: '/images/series-dark.png',
+    },
+  },
+  {
+    href: '/post/questions',
+    title: '질문',
+    description: '질문을 작성하고 답변을 받아보세요.',
+    icon: MessageSquareIcon,
+    style: 'md:col-span-2',
+    image: {
+      light: '/images/questions.png',
+      dark: '/images/questions-dark.png',
+    },
+  },
+  {
+    href: '/search/questions',
+    title: '답변',
+    description: '다른 사람의 질문에 답변해보세요.',
+    icon: MessagesSquareIcon,
+    style: 'md:col-span-3',
+    image: {
+      light: '/images/questions.png',
+      dark: '/images/questions-dark.png',
+    },
+  },
+];
 
-export { HEADER_LINKS, FOOTER_LINKS, TOPIC_DETAIL_LINKS, SETTING_LINKS };
+export { HEADER_LINKS, FOOTER_LINKS, TOPIC_DETAIL_LINKS, SETTING_LINKS, POST_LINKS };
