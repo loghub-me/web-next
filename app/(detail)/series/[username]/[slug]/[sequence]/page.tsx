@@ -51,7 +51,7 @@ interface SeriesChapterDetailProps {
   chapter: Promise<SeriesChapterDetail>;
   series: {
     id: number;
-    writer: User;
+    writer: UserDetail;
   };
   prefixPath: string;
   totalChapters: number;

@@ -21,7 +21,7 @@ import { toast } from 'sonner';
 
 interface SeriesActionMenuProps {
   id: number;
-  writer: User;
+  writer: UserDetail;
 }
 
 export default function SeriesActionMenu({ id, writer }: Readonly<SeriesActionMenuProps>) {

@@ -19,7 +19,7 @@ interface ArticleCommentFormProps {
   articleId: number;
   parent?: {
     id: number;
-    writer: UserSimple;
+    writer: User;
   };
   queryKeys: (string | number)[][];
   closeForm?: () => void;

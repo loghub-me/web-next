@@ -5,7 +5,7 @@ import { CardHeader } from '@ui/card';
 interface SeriesDetailHeaderProps {
   id: number;
   slug: string;
-  writer: User;
+  writer: UserDetail;
   stats: { starCount: number };
 }
 

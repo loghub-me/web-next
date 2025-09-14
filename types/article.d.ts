@@ -4,7 +4,7 @@ interface Article extends Timestamps {
   title: string;
   thumbnail: string;
   stats: ArticleStats;
-  writer: UserSimple;
+  writer: User;
   topics: Topic[];
 }
 
@@ -16,7 +16,7 @@ interface ArticleDetail extends Timestamps {
   anchors: Anchor[];
   thumbnail: string;
   stats: ArticleStats;
-  writer: User;
+  writer: UserDetail;
   topics: Topic[];
 }
 
@@ -38,8 +38,8 @@ interface ArticleComment extends Timestamps {
   content: string;
   deleted: boolean;
   replyCount: number;
-  mention: UserSimple | null;
-  writer: UserSimple;
+  mention: User | null;
+  writer: User;
 }
 
 type ArticleSort = 'latest' | 'oldest' | 'relevant' | 'trending';

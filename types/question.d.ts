@@ -4,7 +4,7 @@ interface Question extends Timestamps {
   title: string;
   status: QuestionStatus;
   stats: QuestionStats;
-  writer: UserSimple;
+  writer: User;
   topics: Topic[];
 }
 
@@ -16,7 +16,7 @@ interface QuestionDetail extends Timestamps {
   anchors: Anchor[];
   status: QuestionStatus;
   stats: QuestionStats;
-  writer: User;
+  writer: UserDetail;
   topics: Topic[];
 }
 
@@ -37,7 +37,7 @@ interface QuestionAnswer extends Timestamps {
   title: string;
   content: Content;
   accepted: boolean;
-  writer: User;
+  writer: UserDetail;
 }
 
 interface QuestionAnswerForEdit {

@@ -3,6 +3,7 @@ import { UserAvatar, UserDetailNav } from '@/components/client/user';
 import { UserDetailAside, UserDetailAsideSkeleton } from '@/components/server/user';
 import { parseObject } from '@/lib/parse';
 import { userDetailSchema } from '@/schemas/user';
+import { MailIcon } from 'lucide-react';
 import { Suspense } from 'react';
 
 export default async function UserDetailLayout({ params, children }: LayoutProps<'/[username]'>) {
@@ -32,7 +33,7 @@ interface UserDetailAsideContentProps {
 
 async function UserDetailAsideContent({ user }: Readonly<UserDetailAsideContentProps>) {
   const resolvedUser = await user;
-  const { username, nickname } = resolvedUser;
+  const { username, nickname, email } = resolvedUser;
 
   return (
     <>
@@ -40,6 +41,11 @@ async function UserDetailAsideContent({ user }: Readonly<UserDetailAsideContentP
       <div className="w-full space-y-1.5">
         <h3 className="text-lg font-semibold">@{username}</h3>
         <p className="text-sm text-muted-foreground">{nickname}</p>
+      </div>
+      <div className="space-y-1.5 w-full">
+        <p className="flex items-center gap-2 text-sm text-muted-foreground">
+          <MailIcon className="size-4" /> {email || '비공개'}
+        </p>
       </div>
     </>
   );

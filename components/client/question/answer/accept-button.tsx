@@ -23,7 +23,7 @@ import { toast } from 'sonner';
 interface QuestionAnswerAcceptButtonProps {
   question: {
     id: number;
-    writer: User;
+    writer: UserDetail;
   };
   id: number;
 }

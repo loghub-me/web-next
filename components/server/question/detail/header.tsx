@@ -6,7 +6,7 @@ import ScrollProgressBar from '@ui/scroll-progress-bar';
 interface QuestionDetailHeaderProps {
   id: number;
   slug: string;
-  writer: User;
+  writer: UserDetail;
   status: QuestionStatus;
   stats: { starCount: number };
 }

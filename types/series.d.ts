@@ -4,7 +4,7 @@ interface Series extends Timestamps {
   title: string;
   thumbnail: string;
   stats: SeriesStats;
-  writer: UserSimple;
+  writer: User;
   topics: Topic[];
 }
 
@@ -15,7 +15,7 @@ interface SeriesDetail extends Timestamps {
   content: string;
   thumbnail: string;
   stats: SeriesStats;
-  writer: User;
+  writer: UserDetail;
   topics: Topic[];
   chapters: SeriesChapter[];
 }
@@ -59,7 +59,7 @@ interface SeriesReview extends Timestamps {
   id: number;
   content: string;
   rating: number;
-  writer: UserSimple;
+  writer: User;
 }
 
 type SeriesSort = 'latest' | 'oldest' | 'relevant' | 'trending';

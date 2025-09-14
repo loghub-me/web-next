@@ -16,7 +16,9 @@ const coercedSequence = z.coerce
   .number({ message: '시퀀스 번호는 숫자여야 합니다.' })
   .int({ message: '시퀀스 번호는 정수여야 합니다.' })
   .positive({ message: '시퀀스 번호는 양수여야 합니다.' });
-
+const coercedDate = z.coerce
+  .date({ message: '올바르지 않은 날짜 형식입니다.' })
+  .transform((date) => date.toISOString().slice(0, 10));
 const query = z.string({ message: '검색어는 문자열이어야 합니다.' }).trim().default('');
 const sort = z
   .enum(['latest', 'oldest', 'relevant', 'trending'], { message: '잘못된 정렬 기준입니다.' })
@@ -49,6 +51,7 @@ const zodFields = {
   coercedId,
   sequence,
   coercedSequence,
+  coercedDate,
   query,
   sort,
   page,
