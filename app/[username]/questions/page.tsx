@@ -16,7 +16,7 @@ export default async function UserQuestionSearchPage({ params, searchParams }: P
   return (
     <div className="space-y-4">
       <QuestionSearchForm defaultValues={parsedSearchParams} action={`/${parsedParam.username}/questions`} />
-      <QuestionList hasAside={true}>
+      <QuestionList>
         <Suspense fallback={<QuestionListSkeleton />}>
           <QuestionListItems questions={questions} />
         </Suspense>

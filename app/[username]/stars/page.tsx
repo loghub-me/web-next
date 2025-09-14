@@ -13,7 +13,7 @@ export default async function UserStarSearchPage({ params, searchParams }: PageP
 
   return (
     <div className="space-y-4">
-      <StarList hasAside={true}>
+      <StarList>
         <Suspense fallback={<StarListSkeleton />}>
           <StarListItems stars={stars} />
         </Suspense>
