@@ -24,3 +24,4 @@ export { default as SeriesReviewForm } from '@/components/client/series/review/f
 export { default as SeriesReviewList } from '@/components/client/series/review/list';
 export { default as SeriesReviewListItem } from '@/components/client/series/review/list-item';
 export { default as SeriesReviewListSkeleton } from '@/components/client/series/review/list-skeleton';
+export { default as SeriesReviewActionMenu } from '@/components/client/series/review/action-menu';

@@ -35,6 +35,9 @@ const getSeriesReviews = (seriesId: number, page = 1) =>
 const postSeriesReview = (seriesId: number, json: z.infer<typeof seriesReviewPostSchema>) =>
   clientAPI.post(`series/${seriesId}/reviews`, { json: { ...json } }).json<MethodResponseBody>();
 
+const deleteSeriesReview = (seriesId: number, reviewId: number) =>
+  clientAPI.delete(`series/${seriesId}/reviews/${reviewId}`).json<MethodResponseBody>();
+
 const existsSeriesStar = (seriesId: number) =>
   clientAPI.get(`series/star/${seriesId}`).json<DataResponseBody<boolean>>();
 
@@ -54,6 +57,7 @@ export {
   changeChapterSequence,
   getSeriesReviews,
   postSeriesReview,
+  deleteSeriesReview,
   existsSeriesStar,
   addSeriesStar,
   removeSeriesStar,

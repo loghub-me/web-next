@@ -30,7 +30,13 @@ export default function ArticleCommentListItem({
         <UserLink {...writer} variant={'link'} />
         <DotIcon className="text-muted-foreground" />
         <Timestamp {...comment} />
-        <ArticleCommentActionMenu replying={replying} setReplying={setReplying} deleted={deleted} />
+        <ArticleCommentActionMenu
+          replying={replying}
+          setReplying={setReplying}
+          articleId={articleId}
+          comment={comment}
+          queryKeys={[commentsQueryKey, repliesQueryKey]}
+        />
       </div>
       <div className="pl-7.5 space-y-1">
         <p className="leading-6 text-sm">

@@ -24,6 +24,9 @@ const getArticleCommentReplies = (articleId: number, commentId: number) =>
 const postArticleComment = (articleId: number, json: z.infer<typeof articleCommentPostSchema>, parentId?: number) =>
   clientAPI.post(`articles/${articleId}/comments`, { json: { ...json, parentId } }).json<MethodResponseBody>();
 
+const deleteArticleComment = (articleId: number, commentId: number) =>
+  clientAPI.delete(`articles/${articleId}/comments/${commentId}`).json<MethodResponseBody>();
+
 const existsArticleStar = (articleId: number) =>
   clientAPI.get(`articles/star/${articleId}`).json<DataResponseBody<boolean>>();
 
@@ -40,6 +43,7 @@ export {
   getArticleComments,
   getArticleCommentReplies,
   postArticleComment,
+  deleteArticleComment,
   existsArticleStar,
   addArticleStar,
   removeArticleStar,

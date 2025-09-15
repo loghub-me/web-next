@@ -1,37 +1,28 @@
 'use client';
 
-import { deleteArticleComment } from '@/apis/client/article';
+import { deleteSeriesReview } from '@/apis/client/series';
 import { useAuth } from '@/hooks/use-auth';
 import { handleError } from '@/lib/error';
 import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '@ui/button';
-import { ReplyIcon, XIcon } from 'lucide-react';
+import { XIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
-interface ArticleCommentActionMenuProps {
-  replying: boolean;
-  setReplying: React.Dispatch<React.SetStateAction<boolean>>;
-  articleId: number;
-  comment: {
+interface SeriesReviewActionMenuProps {
+  seriesId: number;
+  review: {
     id: number;
     writer: { id: number };
-    deleted: boolean;
   };
   queryKeys: (string | number)[][];
 }
 
-export default function ArticleCommentActionMenu({
-  replying,
-  setReplying,
-  articleId,
-  comment,
-  queryKeys,
-}: Readonly<ArticleCommentActionMenuProps>) {
+export default function SeriesReviewActionMenu({ seriesId, review, queryKeys }: Readonly<SeriesReviewActionMenuProps>) {
   const { status, session } = useAuth();
   const queryClient = useQueryClient();
 
   function onClickDelete() {
-    deleteArticleComment(articleId, comment.id)
+    deleteSeriesReview(seriesId, review.id)
       .then(async ({ message }) => {
         toast.success(message);
         await Promise.all(queryKeys.map((key) => queryClient.invalidateQueries({ queryKey: key })));
@@ -42,17 +33,7 @@ export default function ArticleCommentActionMenu({
   return (
     status === 'authenticated' && (
       <div className="ml-2 flex gap-1">
-        {!comment.deleted && (
-          <Button
-            variant={replying ? 'secondary' : 'ghost'}
-            size={'icon'}
-            className="size-6 rounded-full"
-            onClick={() => setReplying((prev) => !prev)}
-          >
-            <ReplyIcon className="size-3 text-muted-foreground" />
-          </Button>
-        )}
-        {!comment.deleted && session?.id === comment.writer.id && (
+        {session?.id === review.writer.id && (
           <Button variant={'ghost'} size={'icon'} className="size-6 rounded-full" onClick={onClickDelete}>
             <XIcon className="size-3 text-muted-foreground" />
           </Button>

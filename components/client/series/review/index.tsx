@@ -37,7 +37,12 @@ export default function SeriesReviews({ id: seriesId }: Readonly<SeriesReviewsPr
             <ListEmpty message={'아직 작성된 리뷰가 없습니다. 첫 리뷰를 작성해보세요!'} />
           )}
           {reviews?.content.map((review) => (
-            <SeriesReviewListItem key={review.id} review={review} />
+            <SeriesReviewListItem
+              key={review.id}
+              seriesId={seriesId}
+              review={review}
+              reviewsQueryKey={reviewsQueryKey}
+            />
           ))}
 
           {status === 'pending' && <PageSkeleton />}
