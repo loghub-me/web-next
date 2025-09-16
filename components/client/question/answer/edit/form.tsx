@@ -1,79 +1,47 @@
 'use client';
 
 import { editQuestionAnswer } from '@/apis/client/question';
-import { MarkdownEditor } from '@/components/client/markdown';
+import { TitleFormField } from '@/components/client/form-field';
 import { handleFormError } from '@/lib/error';
 import { questionAnswerEditSchema } from '@/schemas/question';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@ui/button';
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@ui/form';
-import { InputWithIcon } from '@ui/input';
-import { LetterTextIcon, PencilIcon } from 'lucide-react';
+import { DialogCloseButton } from '@ui/dialog';
+import { Form, FormField, FormMessage } from '@ui/form';
+import { PencilIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
 interface QuestionAnswerEditFormProps {
   questionId: number;
-  answer: QuestionAnswer;
-  closeDialog: () => void;
+  answerId: number;
+  form: UseFormReturn<z.infer<typeof questionAnswerEditSchema>>;
 }
 
-export default function QuestionAnswerEditForm({
-  questionId,
-  answer,
-  closeDialog,
-}: Readonly<QuestionAnswerEditFormProps>) {
-  const easyMDERef = useRef<EasyMDE>(null);
-  const form = useForm<z.infer<typeof questionAnswerEditSchema>>({
-    resolver: zodResolver(questionAnswerEditSchema),
-    defaultValues: { title: answer.title, content: answer.content.markdown },
-  });
+export default function QuestionAnswerEditForm({ questionId, answerId, form }: Readonly<QuestionAnswerEditFormProps>) {
   const router = useRouter();
 
   function onSubmit(values: z.infer<typeof questionAnswerEditSchema>) {
-    editQuestionAnswer(questionId, answer.id, values)
-      .then(({ message }) => {
+    editQuestionAnswer(questionId, answerId, values)
+      .then(({ pathname, message }) => {
         toast.success(message);
-        form.reset();
-        easyMDERef.current?.value('');
-        router.refresh();
-        closeDialog();
+        router.push(pathname);
       })
       .catch((err) => handleFormError(err, form.setError));
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="p-2 border-b">
-          <FormField
-            control={form.control}
-            name={'title'}
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <InputWithIcon icon={LetterTextIcon} placeholder="제목을 입력해주세요" {...field} />
-                </FormControl>
-                <FormMessage />
-                <FormField control={form.control} name="content" render={() => <FormMessage />} />
-              </FormItem>
-            )}
-          />
-        </div>
-        <MarkdownEditor title={`[수정] ${answer.title}`} ref={easyMDERef} defaultValue={form.getValues('content')}>
-          <Button
-            type={'button'}
-            onClick={() => {
-              form.setValue('content', easyMDERef.current?.value() || '');
-              form.handleSubmit(onSubmit)();
-            }}
-          >
-            <PencilIcon /> 답변 수정
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <TitleFormField control={form.control} />
+        <FormField control={form.control} name="content" render={() => <FormMessage />} />
+        <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+          <DialogCloseButton>취소하기</DialogCloseButton>
+          <Button type="submit" disabled={form.formState.isSubmitting}>
+            <PencilIcon /> 수정하기
           </Button>
-        </MarkdownEditor>
+        </div>
       </form>
     </Form>
   );
