@@ -1,5 +1,6 @@
 'use client';
 
+export { default as TopicSearch } from '@/components/client/topic/search';
 export { default as TopicList } from '@/components/client/topic/list';
 export { default as TopicListItem } from '@/components/client/topic/list-item';
 

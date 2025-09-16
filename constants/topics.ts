@@ -102,8 +102,8 @@ const TOPICS = [
 
   // === 클라우드 ===
   { slug: 'aws', name: 'AWS' },
-  { slug: 'gcp', name: 'Google Cloud Platform' },
-  { slug: 'azure', name: 'Microsoft Azure' },
+  { slug: 'gcp', name: 'GCP' },
+  { slug: 'azure', name: 'Azure' },
   { slug: 'cloudflare', name: 'Cloudflare' },
   { slug: 'vercel', name: 'Vercel' },
   { slug: 'heroku', name: 'Heroku' },
@@ -148,7 +148,7 @@ const TOPICS = [
   { slug: 'nginx', name: 'NGINX' },
 
   // === 에디터 & IDE ===
-  { slug: 'vscode', name: 'Visual Studio Code' },
+  { slug: 'vscode', name: 'VSCode' },
   { slug: 'intellij', name: 'IntelliJ IDEA' },
   { slug: 'vim', name: 'Vim' },
   { slug: 'neovim', name: 'Neovim' },

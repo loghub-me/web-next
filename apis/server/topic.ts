@@ -1,5 +1,7 @@
 import { serverAPI } from '@/apis/server/instance';
 
+const getTrendingTopics = () => serverAPI.get('topics/trending').json<Topic[]>();
+
 const getTopicDetail = (topicSlug: string) => serverAPI.get(`topics/${topicSlug}`).json<TopicDetail>();
 
 const getTopicTrendingPosts = (topicSlug: string, target: TopicDetailView) => {
@@ -14,4 +16,4 @@ const getTopicTrendingPosts = (topicSlug: string, target: TopicDetailView) => {
   }
 };
 
-export { getTopicDetail, getTopicTrendingPosts };
+export { getTrendingTopics, getTopicDetail, getTopicTrendingPosts };
