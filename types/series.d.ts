@@ -12,7 +12,7 @@ interface SeriesDetail extends Timestamps {
   id: number;
   slug: string;
   title: string;
-  content: string;
+  description: string;
   thumbnail: string;
   stats: SeriesStats;
   writer: UserDetail;
@@ -23,7 +23,7 @@ interface SeriesDetail extends Timestamps {
 interface SeriesForEdit {
   id: number;
   title: string;
-  content: string;
+  description: string;
   thumbnail: string;
   topicSlugs: string[];
   chapters: SeriesChapter[];

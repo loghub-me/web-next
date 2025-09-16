@@ -5,7 +5,7 @@ import Timestamp from '@ui/timestamp';
 
 interface SeriesDetailContentProps {
   title: string;
-  content: string;
+  description: string;
   thumbnail: string;
   topics: Topic[];
   createdAt: string;
@@ -14,7 +14,7 @@ interface SeriesDetailContentProps {
 
 export default function SeriesDetailContent({
   title,
-  content,
+  description,
   thumbnail,
   topics,
   createdAt,
@@ -25,7 +25,7 @@ export default function SeriesDetailContent({
       <Thumbnail aspect={'3:4'} src={thumbnail} alt={`${title}-thumbnail`} width={320} height={426} />
       <div className="flex-1 space-y-1.5">
         <h3 className="font-semibold">{title}</h3>
-        <p className="text-sm text-muted-foreground">{content}</p>
+        <p className="text-sm text-muted-foreground">{description}</p>
         {topics.length > 0 && (
           <div className="flex flex-wrap gap-1">
             {topics.map((topic) => (
