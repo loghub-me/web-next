@@ -14,7 +14,7 @@ function afterResponseHook(
 }
 
 const serverAPI = ky.create({
-  prefixUrl: process.env.NEXT_PUBLIC_API_HOST,
+  prefixUrl: process.env.API_HOST,
   hooks: { afterResponse: [afterResponseHook] },
 });
 

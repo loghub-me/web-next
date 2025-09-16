@@ -10,11 +10,11 @@ export default function LoginSocialLinks() {
         <p className="text-xs text-muted-foreground whitespace-nowrap">또는 소셜 계정으로</p>
         <hr className="flex-grow" />
       </div>
-      <ButtonLink variant={'outline'} href={buildAPIUrl('oauth2/authorize/github')} type="submit" className="w-full">
+      <ButtonLink variant={'outline'} href={buildAPIUrl('oauth2/authorize/google')} type="submit" className="w-full">
         <TopicIcon slug="google" name="Google" />
         구글로 로그인
       </ButtonLink>
-      <ButtonLink variant={'outline'} href={buildAPIUrl('oauth2/authorize/google')} type="submit" className="w-full">
+      <ButtonLink variant={'outline'} href={buildAPIUrl('oauth2/authorize/github')} type="submit" className="w-full">
         <TopicIcon slug="github" name="GitHub" />
         깃허브로 로그인
       </ButtonLink>
