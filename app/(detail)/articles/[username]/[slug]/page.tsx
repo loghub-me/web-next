@@ -10,6 +10,16 @@ import {
 import { parseObject } from '@/lib/parse';
 import { compositeKeySchema } from '@/schemas/common';
 import { Card } from '@ui/card';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: PageProps<'/articles/[username]/[slug]'>): Promise<Metadata> {
+  const { username, slug } = parseObject(await params, compositeKeySchema);
+  const article = await getArticleDetail(username, slug);
+  return {
+    title: article.title,
+    description: article.content.markdown.slice(0, 160).replace(/\n/g, ' '),
+  };
+}
 
 export default async function ArticleDetailPage({ params }: PageProps<'/articles/[username]/[slug]'>) {
   const { username, slug } = parseObject(await params, compositeKeySchema);

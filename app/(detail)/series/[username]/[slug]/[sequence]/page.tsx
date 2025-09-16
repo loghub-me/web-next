@@ -7,8 +7,21 @@ import {
 import { parseObject } from '@/lib/parse';
 import { seriesChapterDetailSchema } from '@/schemas/series';
 import { Card } from '@ui/card';
+import { Metadata } from 'next';
 
 export const experimental_ppr = true;
+
+export async function generateMetadata({
+  params,
+}: PageProps<'/series/[username]/[slug]/[sequence]'>): Promise<Metadata> {
+  const { username, slug, sequence } = parseObject(await params, seriesChapterDetailSchema);
+  const series = await getSeriesDetail(username, slug);
+  const chapter = await getSeriesChapterDetail(series.id, sequence);
+  return {
+    title: chapter.title,
+    description: chapter.content.markdown.slice(0, 160).replace(/\n/g, ' '),
+  };
+}
 
 export default async function SeriesChapterDetailPage({ params }: PageProps<'/series/[username]/[slug]/[sequence]'>) {
   const { username, slug, sequence } = parseObject(await params, seriesChapterDetailSchema);

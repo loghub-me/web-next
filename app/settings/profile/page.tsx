@@ -6,7 +6,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@ui/card';
 
-export default function ProfileSettingPage({}: PageProps<'/settings/profile'>) {
+export default function ProfileSettingPage() {
   const { status: authStatus, session } = useAuth();
   const { data: profile } = useQuery({
     queryKey: ['getSelfProfile'],

@@ -3,7 +3,7 @@
 import { SettingThemeForm } from '@/components/client/setting';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@ui/card';
 
-export default function ThemeSettingPage({}: PageProps<'/settings/theme'>) {
+export default function ThemeSettingPage() {
   return (
     <Card className="mx-auto max-w-3xl w-full">
       <CardHeader className="space-y-1.5 pb-4 border-b">

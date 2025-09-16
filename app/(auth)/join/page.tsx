@@ -1,6 +1,12 @@
 import { JoinRequestForm, LoginSocialLinks } from '@/components/client/auth';
 import Symbol from '@/components/global/symbol';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: '회원가입',
+  description: '회원가입을 위해 폼을 입력해주세요.',
+};
 
 export default async function JoinRequestPage() {
   return (

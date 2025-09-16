@@ -13,9 +13,19 @@ import {
 import { parseObject } from '@/lib/parse';
 import { compositeKeySchema } from '@/schemas/common';
 import { Card } from '@ui/card';
+import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 export const experimental_ppr = true;
+
+export async function generateMetadata({ params }: PageProps<'/questions/[username]/[slug]'>): Promise<Metadata> {
+  const { username, slug } = parseObject(await params, compositeKeySchema);
+  const question = await getQuestionDetail(username, slug);
+  return {
+    title: question.title,
+    description: question.content.markdown.slice(0, 160).replace(/\n/g, ' '),
+  };
+}
 
 export default async function QuestionDetailPage({ params }: PageProps<'/questions/[username]/[slug]'>) {
   const { username, slug } = parseObject(await params, compositeKeySchema);

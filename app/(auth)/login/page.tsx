@@ -1,6 +1,12 @@
 import { LoginRequestForm, LoginSocialLinks } from '@/components/client/auth';
 import Symbol from '@/components/global/symbol';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: '로그인',
+  description: '로그인을 위해 이메일을 입력해주세요.',
+};
 
 export default async function LoginRequestPage() {
   return (

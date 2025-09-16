@@ -20,7 +20,13 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ['400', '500', '600', '700'],
 });
 
-export const metadata: Metadata = { title: 'LogHub' };
+export const metadata: Metadata = {
+  title: {
+    template: '%s | LogHub',
+    default: '홈 | LogHub',
+  },
+  description: 'LogHub는 개발자들이 자신의 지식을 공유하고, 서로의 경험을 나누는 공간입니다.',
+};
 
 export default function RootLayout({ children }: Readonly<LayoutProps<'/'>>) {
   return (

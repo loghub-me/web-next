@@ -4,7 +4,13 @@ import { cn } from '@/lib/utils';
 import { ButtonLink } from '@ui/button';
 import { LightRays } from '@ui/light-rays';
 import { HelpCircleIcon, LucideIcon } from 'lucide-react';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: '포스트',
+  description: '아티클, 시리즈, 질문, 답변 등 다양한 글을 작성하고 공유해보세요.',
+};
 
 export default function PostPortalPage() {
   return (

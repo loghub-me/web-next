@@ -2,6 +2,12 @@ import { JoinConfirmForm } from '@/components/client/auth';
 import Symbol from '@/components/global/symbol';
 import { parseObject } from '@/lib/parse';
 import { joinConfirmSearchParamsSchema } from '@/schemas/auth';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '회원가입 확인',
+  description: '회원가입 확인을 위해 인증번호를 입력해주세요.',
+};
 
 export default async function JoinConfirmPage({ searchParams }: PageProps<'/join/confirm'>) {
   const parsedSearchParams = parseObject(await searchParams, joinConfirmSearchParamsSchema);

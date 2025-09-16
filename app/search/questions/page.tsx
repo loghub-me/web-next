@@ -5,7 +5,13 @@ import { QuestionList, QuestionListItem, QuestionListSkeleton } from '@/componen
 import { parseObject } from '@/lib/parse';
 import { questionSearchSchema } from '@/schemas/question';
 import ListEmpty from '@ui/list-empty';
+import { Metadata } from 'next';
 import { Suspense } from 'react';
+
+export const metadata: Metadata = {
+  title: '질문 검색',
+  description: '질문은 사용자 간의 질문과 답변을 공유하는 공간입니다.',
+};
 
 export default async function QuestionSearchPage({ searchParams }: PageProps<'/search/questions'>) {
   const parsedSearchParams = parseObject(await searchParams, questionSearchSchema);

@@ -2,6 +2,12 @@ import { LoginConfirmForm } from '@/components/client/auth';
 import Symbol from '@/components/global/symbol';
 import { parseObject } from '@/lib/parse';
 import { loginConfirmSearchParamsSchema } from '@/schemas/auth';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '로그인 확인',
+  description: '로그인을 확인을 위해 인증번호를 입력해주세요.',
+};
 
 export default async function LoginConfirmPage({ searchParams }: PageProps<'/login/confirm'>) {
   const parsedSearchParams = parseObject(await searchParams, loginConfirmSearchParamsSchema);

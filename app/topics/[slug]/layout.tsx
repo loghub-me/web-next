@@ -3,7 +3,17 @@ import ThemedImage from '@/components/global/themed-image';
 import { TopicDetailAside, TopicDetailAsideSkeleton } from '@/components/server/topic';
 import { parseObject } from '@/lib/parse';
 import { topicDetailSchema } from '@/schemas/topic';
+import { Metadata } from 'next';
 import { Suspense } from 'react';
+
+export async function generateMetadata({ params }: LayoutProps<'/topics/[slug]'>): Promise<Metadata> {
+  const parsedParam = parseObject(await params, topicDetailSchema);
+  const topic = await getTopicDetail(parsedParam.slug);
+  return {
+    title: topic.name,
+    description: topic.description,
+  };
+}
 
 export default async function TopicDetailLayout({ params, children }: LayoutProps<'/topics/[slug]'>) {
   const parsedParam = parseObject(await params, topicDetailSchema);

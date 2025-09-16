@@ -4,7 +4,7 @@ import { SettingAccountForm, SettingWithdrawDialog } from '@/components/client/s
 import { useAuth } from '@/hooks/use-auth';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@ui/card';
 
-export default function AccountSettingPage({}: PageProps<'/settings/account'>) {
+export default function AccountSettingPage() {
   const { status: authStatus, session } = useAuth();
 
   return (

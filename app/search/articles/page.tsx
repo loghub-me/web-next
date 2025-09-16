@@ -5,7 +5,13 @@ import { ArticleList, ArticleListItem, ArticleListSkeleton } from '@/components/
 import { parseObject } from '@/lib/parse';
 import { articleSearchSchema } from '@/schemas/article';
 import ListEmpty from '@ui/list-empty';
+import { Metadata } from 'next';
 import { Suspense } from 'react';
+
+export const metadata: Metadata = {
+  title: '아티클 검색',
+  description: '아티클은 다양한 주제에 대한 글을 작성하고 공유하는 공간입니다.',
+};
 
 export default async function ArticleSearchPage({ searchParams }: PageProps<'/search/articles'>) {
   const parsedSearchParams = parseObject(await searchParams, articleSearchSchema);
