@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@ui/card';
 
 export default function PrivacySettingPage({}: PageProps<'/settings/privacy'>) {
-  const { status: authStatus, session } = useAuth();
+  const { status: authStatus } = useAuth();
   const { data: privacy } = useQuery({
     queryKey: ['getSelfPrivacy'],
     queryFn: getSelfPrivacy,

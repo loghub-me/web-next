@@ -35,7 +35,7 @@ export default function LoginConfirmForm({ defaultValues }: Readonly<LoginConfir
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <EmailFormField control={form.control} />
+        <EmailFormField control={form.control} readOnly />
         <OTPFormField control={form.control} />
         <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
           <LogInIcon /> 인증번호 확인
