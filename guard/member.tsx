@@ -19,7 +19,7 @@ export default function MemberGuard({ children }: Readonly<MemberGuardProps>) {
       toast.error(ErrorMessage.LOGIN_REQUIRED);
       router.replace('/login');
     }
-  }, [status]);
+  }, [router, status]);
 
   return <div style={{ visibility: status === 'authenticated' ? 'visible' : 'hidden' }}>{children}</div>;
 }

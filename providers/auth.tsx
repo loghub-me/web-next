@@ -38,7 +38,7 @@ export default function AuthProvider({ children }: Readonly<{ children: React.Re
         console.info(body.message);
       })
       .catch(unregisterSession);
-  }, []);
+  }, [registerSession, unregisterSession]);
 
   return (
     <AuthContext.Provider value={{ ...state, registerSession, unregisterSession }}>{children}</AuthContext.Provider>

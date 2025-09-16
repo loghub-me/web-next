@@ -37,5 +37,5 @@ export function useQueryErrorHandle(error: Error | null, notFoundRedirectPath: s
     if (error) {
       onError(error).catch(console.error);
     }
-  }, [router, error]);
+  }, [router, error, notFoundRedirectPath]);
 }

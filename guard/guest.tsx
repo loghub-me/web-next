@@ -16,7 +16,7 @@ export default function GuestGuard({ children }: Readonly<GuestGuardProps>) {
     if (status === 'authenticated') {
       router.replace('/');
     }
-  }, [status]);
+  }, [router, status]);
 
   return <div style={{ visibility: status === 'unauthenticated' ? 'visible' : 'hidden' }}>{children}</div>;
 }
