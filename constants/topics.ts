@@ -104,3 +104,5 @@ export function searchTopics(query: string) {
   const lowerQuery = query.toLowerCase();
   return TOPICS.filter((topic) => `${topic.slug} ${topic.name}`.toLowerCase().includes(lowerQuery));
 }
+
+export { TOPICS };

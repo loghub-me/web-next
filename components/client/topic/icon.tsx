@@ -3,11 +3,12 @@ import ThemedImage from '@/components/global/themed-image';
 interface TopicIconProps {
   slug: string;
   name: string;
-  size?: 'sm' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | number;
 }
 
 export default function TopicIcon({ slug, name, size = 'sm' }: Readonly<TopicIconProps>) {
-  const [width, height] = size === 'sm' ? [16, 16] : [48, 48];
+  const [width, height] =
+    typeof size === 'number' ? [size, size] : size === 'sm' ? [16, 16] : size === 'md' ? [32, 32] : [48, 48];
 
   return (
     <ThemedImage

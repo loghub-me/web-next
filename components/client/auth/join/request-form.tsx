@@ -43,7 +43,7 @@ export default function JoinRequestForm() {
             <FormItem>
               <FormLabel>유저네임</FormLabel>
               <FormControl>
-                <Input placeholder="gymynnym" {...field} />
+                <Input placeholder="foo" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -56,7 +56,7 @@ export default function JoinRequestForm() {
             <FormItem>
               <FormLabel>닉네임</FormLabel>
               <FormControl>
-                <Input placeholder="JohnDoe" {...field} />
+                <Input placeholder="bar" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

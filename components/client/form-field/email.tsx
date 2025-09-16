@@ -4,15 +4,15 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@ui/fo
 import { Input } from '@ui/input';
 import { Control, Path } from 'react-hook-form';
 
-interface TitleFormFieldProps<T extends { email: string }> {
+interface EmailFormFieldProps<T extends { email: string }> {
   control: Control<T>;
   readOnly?: boolean;
 }
 
-export default function TitleFormField<T extends { email: string }>({
+export default function EmailFormField<T extends { email: string }>({
   control,
   readOnly = false,
-}: TitleFormFieldProps<T>) {
+}: EmailFormFieldProps<T>) {
   return (
     <FormField
       control={control}
@@ -21,7 +21,7 @@ export default function TitleFormField<T extends { email: string }>({
         <FormItem>
           <FormLabel>E-mail</FormLabel>
           <FormControl>
-            <Input type={'email'} placeholder="user@loghub.me" readOnly={readOnly} {...field} />
+            <Input type={'email'} placeholder="foo@loghub.me" readOnly={readOnly} {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>

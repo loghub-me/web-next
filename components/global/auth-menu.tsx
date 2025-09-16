@@ -14,15 +14,7 @@ import {
   DropdownMenuTrigger,
 } from '@ui/dropdown-menu';
 import { Skeleton } from '@ui/skeleton';
-import {
-  ChevronUpIcon,
-  LogInIcon,
-  LogOutIcon,
-  NotepadTextIcon,
-  PencilIcon,
-  SettingsIcon,
-  UserCircleIcon,
-} from 'lucide-react';
+import { ChevronUpIcon, LogInIcon, LogOutIcon, PencilIcon, SettingsIcon, StarIcon, UserCircleIcon } from 'lucide-react';
 import { Fragment, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -65,7 +57,7 @@ function MemberMenu({ type, session }: Readonly<AuthMenuProps & { session: Sessi
     [{ href: `/${session?.username}`, label: '프로필', icon: UserCircleIcon }],
     [
       { href: '/post', label: '포스트', icon: PencilIcon },
-      { href: '/manual', label: '메뉴얼', icon: NotepadTextIcon },
+      { href: `/${session?.username}/stars`, label: '스타', icon: StarIcon },
       { href: '/settings', label: '설정', icon: SettingsIcon },
     ],
   ];

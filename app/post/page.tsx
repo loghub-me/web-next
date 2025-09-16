@@ -1,8 +1,9 @@
 import ThemedImage from '@/components/global/themed-image';
 import { POST_LINKS } from '@/constants/links';
 import { cn } from '@/lib/utils';
+import { ButtonLink } from '@ui/button';
 import { LightRays } from '@ui/light-rays';
-import { LucideIcon } from 'lucide-react';
+import { HelpCircleIcon, LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 
 export default function PostPortalPage() {
@@ -19,6 +20,20 @@ export default function PostPortalPage() {
           <PostBentoGridItem key={card.href} {...card} />
         ))}
       </PostBentoGrid>
+      <div className="py-8 space-y-2 text-center">
+        <p className="text-sm text-muted-foreground">마크다운이 처음이신가요?</p>
+        <ButtonLink
+          href={'https://www.markdownguide.org/basic-syntax/'}
+          target={'_blank'}
+          variant={'outline'}
+          className="pl-1.5 pr-2.5 rounded-full shadow-sm"
+        >
+          <span className={'p-1 text-accent-foreground bg-accent border rounded-full'}>
+            <HelpCircleIcon className="size-3 stroke-2.5" />
+          </span>
+          마크다운 가이드 보기
+        </ButtonLink>
+      </div>
     </main>
   );
 }

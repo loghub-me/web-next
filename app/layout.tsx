@@ -6,30 +6,32 @@ import { ThemeProvider } from '@/providers/theme';
 import '@/styles/markdown-it.css';
 import { Toaster } from '@ui/sonner';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { IBM_Plex_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const pretendard = localFont({
+  src: '../public/fonts/PretendardVariable.woff2',
+  display: 'swap',
+  weight: '45 920',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: '--font-ibm-plex-mono',
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = { title: 'LogHub' };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<LayoutProps<'/'>>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${pretendard.className} ${ibmPlexMono.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ReactQueryProvider>
             <AuthProvider>
               <GlobalHeader />
               {children}
-              <Toaster position={'top-center'} richColors={true} />
+              <Toaster position={'top-center'} expand={true} richColors={true} />
             </AuthProvider>
           </ReactQueryProvider>
         </ThemeProvider>

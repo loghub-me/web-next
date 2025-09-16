@@ -37,8 +37,8 @@ const POST_LINKS = [
     icon: ScrollIcon,
     style: 'md:col-span-3',
     image: {
-      light: '/images/articles.png',
-      dark: '/images/articles-dark.png',
+      light: '/images/articles.webp',
+      dark: '/images/articles-dark.webp',
     },
   },
   {
@@ -48,8 +48,8 @@ const POST_LINKS = [
     icon: LayersIcon,
     style: 'md:col-span-2',
     image: {
-      light: '/images/series.png',
-      dark: '/images/series-dark.png',
+      light: '/images/series.webp',
+      dark: '/images/series-dark.webp',
     },
   },
   {
@@ -59,8 +59,8 @@ const POST_LINKS = [
     icon: MessageSquareIcon,
     style: 'md:col-span-2',
     image: {
-      light: '/images/questions.png',
-      dark: '/images/questions-dark.png',
+      light: '/images/questions.webp',
+      dark: '/images/questions-dark.webp',
     },
   },
   {
@@ -70,8 +70,8 @@ const POST_LINKS = [
     icon: MessagesSquareIcon,
     style: 'md:col-span-3',
     image: {
-      light: '/images/questions.png',
-      dark: '/images/questions-dark.png',
+      light: '/images/questions.webp',
+      dark: '/images/questions-dark.webp',
     },
   },
 ];
