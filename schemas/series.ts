@@ -3,7 +3,7 @@ import zodFields from '@/schemas/fields';
 import { z } from 'zod';
 
 const { page, query, sort } = zodFields;
-const { coercedSequence } = zodFields;
+const { coercedId, coercedSequence } = zodFields;
 const { title, content, thumbnail, topicSlugs } = zodFields;
 
 const seriesSearchSchema = z.object({
@@ -25,6 +25,7 @@ const seriesPostSchema = z.object({
 const seriesEditSchema = seriesPostSchema;
 
 const seriesChapterEditSchema = z.object({ title, content });
+const seriesChapterEditPageSchema = z.object({ id: coercedId, sequence: coercedSequence });
 
 const seriesReviewPostSchema = z.object({
   content: z
@@ -45,5 +46,6 @@ export {
   seriesPostSchema,
   seriesEditSchema,
   seriesChapterEditSchema,
+  seriesChapterEditPageSchema,
   seriesReviewPostSchema,
 };

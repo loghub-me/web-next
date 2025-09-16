@@ -6,9 +6,7 @@ import { SeriesChapterEditDialog, SeriesChapterEditForm } from '@/components/cli
 import { useAuth } from '@/hooks/use-auth';
 import { useQueryErrorHandle } from '@/hooks/use-query-error-handle';
 import { parseObject } from '@/lib/parse';
-import { idSchema } from '@/schemas/common';
-import zodFields from '@/schemas/fields';
-import { seriesChapterEditSchema } from '@/schemas/series';
+import { seriesChapterEditPageSchema, seriesChapterEditSchema } from '@/schemas/series';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import type EasyMDE from 'easymde';
@@ -19,11 +17,11 @@ import { z } from 'zod';
 
 export default function SeriesChapterEditPage() {
   const params = useParams<{ id: string; sequence: string }>();
-  const { id, sequence } = parseObject(params, idSchema.extend({ sequence: zodFields.coercedSequence }));
+  const { id: seriesId, sequence } = parseObject(params, seriesChapterEditPageSchema);
   const { status } = useAuth();
   const { data: series, error } = useQuery({
-    queryKey: ['getSeriesChapterForEdit', id, sequence],
-    queryFn: () => getSeriesChapterForEdit(id, sequence),
+    queryKey: ['getSeriesChapterForEdit', seriesId, sequence],
+    queryFn: () => getSeriesChapterForEdit(seriesId, sequence),
     enabled: status === 'authenticated',
     retry: false,
     refetchOnMount: false,
@@ -33,7 +31,7 @@ export default function SeriesChapterEditPage() {
 
   return (
     <main className="max-h-screen h-screen pt-16">
-      {series && <SeriesChapterEditor seriesId={id} defaultValues={series} />}
+      {series && <SeriesChapterEditor seriesId={seriesId} defaultValues={series} />}
     </main>
   );
 }

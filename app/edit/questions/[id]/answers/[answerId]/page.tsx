@@ -6,9 +6,7 @@ import { QuestionAnswerEditDialog, QuestionAnswerEditForm } from '@/components/c
 import { useAuth } from '@/hooks/use-auth';
 import { useQueryErrorHandle } from '@/hooks/use-query-error-handle';
 import { parseObject } from '@/lib/parse';
-import { idSchema } from '@/schemas/common';
-import zodFields from '@/schemas/fields';
-import { questionAnswerEditSchema } from '@/schemas/question';
+import { questionAnswerEditPageSchema, questionAnswerEditSchema } from '@/schemas/question';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import type EasyMDE from 'easymde';
@@ -19,7 +17,7 @@ import { z } from 'zod';
 
 export default function QuestionAnswerEditPage() {
   const params = useParams<{ id: string; answerId: string }>();
-  const { id: questionId, answerId } = parseObject(params, idSchema.extend({ answerId: zodFields.coercedId }));
+  const { id: questionId, answerId } = parseObject(params, questionAnswerEditPageSchema);
   const { status } = useAuth();
   const { data: answer, error } = useQuery({
     queryKey: ['getQuestionAnswerForEdit', questionId, answerId],

@@ -2,6 +2,7 @@ import zodFields from '@/schemas/fields';
 import { z } from 'zod';
 
 const { page, query, sort } = zodFields;
+const { coercedId } = zodFields;
 const { title, content, topicSlugs } = zodFields;
 
 const questionSearchSchema = z.object({
@@ -16,6 +17,7 @@ const questionEditSchema = questionPostSchema;
 
 const questionAnswerPostSchema = z.object({ title, content });
 const questionAnswerEditSchema = questionAnswerPostSchema;
+const questionAnswerEditPageSchema = z.object({ id: coercedId, answerId: coercedId });
 
 export {
   questionSearchSchema,
@@ -23,4 +25,5 @@ export {
   questionEditSchema,
   questionAnswerPostSchema,
   questionAnswerEditSchema,
+  questionAnswerEditPageSchema,
 };
