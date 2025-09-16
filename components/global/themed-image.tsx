@@ -48,5 +48,5 @@ export default function ThemedImage(
       break;
   }
 
-  return <Image src={resolvedSrc} alt={alt || 'themed image'} {...rest} />;
+  return <Image src={resolvedSrc} alt={alt || 'themed image'} loading={'lazy'} {...rest} />;
 }

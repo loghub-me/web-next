@@ -1,5 +1,4 @@
 import '@/app/globals.css';
-import GlobalFooter from '@/components/global/footer';
 import GlobalHeader from '@/components/global/header';
 import AuthProvider from '@/providers/auth';
 import ReactQueryProvider from '@/providers/react-query';
@@ -30,7 +29,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <AuthProvider>
               <GlobalHeader />
               {children}
-              <GlobalFooter />
               <Toaster position={'top-center'} richColors={true} />
             </AuthProvider>
           </ReactQueryProvider>

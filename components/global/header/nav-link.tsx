@@ -12,7 +12,12 @@ export default function HeaderNavLink({ href, children }: Readonly<HeaderNavLink
   const pathname = usePathname();
 
   return (
-    <ButtonLink href={href} variant={pathname.startsWith(href) ? 'secondary' : 'ghost'} size={'sm'}>
+    <ButtonLink
+      href={href}
+      variant={pathname.startsWith(href) ? 'secondary' : 'ghost'}
+      size={'sm'}
+      className="hidden md:flex"
+    >
       {children}
     </ButtonLink>
   );
