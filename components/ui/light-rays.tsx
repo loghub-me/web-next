@@ -3,6 +3,8 @@
 import { Mesh, Program, Renderer, Triangle } from 'ogl';
 import { useEffect, useRef, useState } from 'react';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export type RaysOrigin =
   | 'top-center'
   | 'top-left'

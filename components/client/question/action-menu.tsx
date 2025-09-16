@@ -1,8 +1,10 @@
 'use client';
 
 import { closeQuestion, deleteQuestion } from '@/apis/client/question';
+import { QUESTION_STATUS_OPTIONS } from '@/constants/options';
 import { useAuth } from '@/hooks/use-auth';
 import { handleError } from '@/lib/error';
+import { cn } from '@/lib/utils';
 import { Button, ButtonLink } from '@ui/button';
 import {
   Dialog,
@@ -115,8 +117,8 @@ function QuestionCloseButton({ id }: Readonly<Pick<QuestionActionMenuProps, 'id'
         </DialogHeader>
         <DialogFooter>
           <DialogCloseButton>취소하기</DialogCloseButton>
-          <Button type="submit" variant="destructive" onClick={onCloseButtonClick}>
-            <CircleXIcon /> 닫기
+          <Button type="submit" variant={'secondary'} className="border" onClick={onCloseButtonClick}>
+            <CircleXIcon className={cn(QUESTION_STATUS_OPTIONS['CLOSED'].color)} /> 닫기
           </Button>
         </DialogFooter>
       </DialogContent>

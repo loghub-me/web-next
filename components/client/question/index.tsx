@@ -17,6 +17,7 @@ export { default as QuestionEditForm } from '@/components/client/question/edit/f
 export { default as QuestionAnswerTOCCard } from '@/components/client/question/answer/toc-card';
 export { default as QuestionAnswerTOCSkeleton } from '@/components/client/question/answer/toc-skeleton';
 
+export { default as QuestionAnswerGenerateButton } from '@/components/client/question/answer/generate-button';
 export { default as QuestionAnswerAcceptButton } from '@/components/client/question/answer/accept-button';
 export { default as QuestionAnswerActionMenu } from '@/components/client/question/answer/action-menu';
 
