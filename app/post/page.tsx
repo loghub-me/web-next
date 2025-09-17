@@ -54,7 +54,7 @@ function PostBentoGrid({ children }: Readonly<PostBentoGridProps>) {
 
 interface PostBentoGridItemProps {
   href: string;
-  title: string;
+  label: string;
   description: string;
   icon: LucideIcon;
   style: string;
@@ -64,7 +64,7 @@ interface PostBentoGridItemProps {
   };
 }
 
-function PostBentoGridItem({ href, title, description, style, image, icon: Icon }: Readonly<PostBentoGridItemProps>) {
+function PostBentoGridItem({ href, label, description, style, image, icon: Icon }: Readonly<PostBentoGridItemProps>) {
   return (
     <Link
       href={href}
@@ -80,13 +80,13 @@ function PostBentoGridItem({ href, title, description, style, image, icon: Icon 
       />
       <ThemedImage
         src={image}
-        alt={title}
+        alt={label}
         className="object-cover object-top transition-[filter] blur-xs group-hover:blur-sm duration-500"
         fill
       />
       <div className="absolute top-2 left-2 px-3 py-2 space-y-1.5 bg-card/50 border rounded-md backdrop-blur-sm transition-[top,left] group-hover:top-4 group-hover:left-4">
         <h3 className="font-semibold">
-          <Icon className="size-4 inline-block mr-1" /> {title}
+          <Icon className="size-4 inline-block mr-1" /> {label}
         </h3>
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>

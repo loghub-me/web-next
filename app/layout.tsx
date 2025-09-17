@@ -1,4 +1,5 @@
 import '@/app/globals.css';
+import GlobalFooter from '@/components/global/footer';
 import GlobalHeader from '@/components/global/header';
 import AuthProvider from '@/providers/auth';
 import ReactQueryProvider from '@/providers/react-query';
@@ -31,12 +32,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<LayoutProps<'/'>>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className={`${pretendard.className} ${ibmPlexMono.variable} antialiased`}>
+      <body className={`${pretendard.className} ${ibmPlexMono.variable} antialiased flex flex-col min-h-screen`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ReactQueryProvider>
             <AuthProvider>
               <GlobalHeader />
               {children}
+              <GlobalFooter />
               <Toaster position={'top-center'} expand={true} richColors={true} />
             </AuthProvider>
           </ReactQueryProvider>
