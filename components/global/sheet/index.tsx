@@ -12,6 +12,7 @@ import { useState } from 'react';
 
 export default function GlobalSheet() {
   const [open, setOpen] = useState(false);
+  const closeSheet = () => setOpen(false);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -30,13 +31,13 @@ export default function GlobalSheet() {
         </SheetHeader>
         <nav className="px-4 flex flex-col gap-1">
           {HEADER_LINKS.map(({ href, label, icon: Icon }) => (
-            <SheetNavLink key={href} href={href} setOpen={setOpen}>
+            <SheetNavLink key={href} href={href} closeSheet={closeSheet}>
               <Icon /> {label}
             </SheetNavLink>
           ))}
         </nav>
         <SheetFooter className="flex-row">
-          <AuthMenu type={'sheet'} onNavigate={() => setOpen(false)} />
+          <AuthMenu type={'sheet'} closeSheet={closeSheet} />
         </SheetFooter>
       </SheetContent>
     </Sheet>

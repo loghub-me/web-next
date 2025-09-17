@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation';
 interface SheetNavLinkProps {
   href: string;
   children?: React.ReactNode;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  closeSheet: () => void;
 }
 
-export default function SheetNavLink({ href, children, setOpen }: Readonly<SheetNavLinkProps>) {
+export default function SheetNavLink({ href, closeSheet, children }: Readonly<SheetNavLinkProps>) {
   const pathname = usePathname();
 
   return (
@@ -17,7 +17,7 @@ export default function SheetNavLink({ href, children, setOpen }: Readonly<Sheet
       href={href}
       variant={pathname.startsWith(href) ? 'secondary' : 'ghost'}
       className={'justify-start'}
-      onNavigate={() => setOpen(false)}
+      onNavigate={closeSheet}
     >
       {children}
     </ButtonLink>

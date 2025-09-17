@@ -20,36 +20,36 @@ import { toast } from 'sonner';
 
 interface AuthMenuProps {
   type: 'header' | 'sheet';
-  onNavigate?: () => void;
+  closeSheet?: () => void;
 }
 
-export default function AuthMenu({ type, onNavigate }: Readonly<AuthMenuProps>) {
+export default function AuthMenu({ type, closeSheet }: Readonly<AuthMenuProps>) {
   const { status, session } = useAuth();
 
   switch (status) {
     case 'loading':
       return <Skeleton className={cn('h-9', type === 'header' ? 'w-24' : 'flex-1')} />;
     case 'unauthenticated':
-      return <GuestMenu type={type} onNavigate={onNavigate} />;
+      return <GuestMenu type={type} closeSheet={closeSheet} />;
     case 'authenticated':
-      return <MemberMenu type={type} session={session} />;
+      return <MemberMenu type={type} session={session} closeSheet={closeSheet} />;
   }
 }
 
-function GuestMenu({ type, onNavigate }: Readonly<AuthMenuProps>) {
+function GuestMenu({ type, closeSheet }: Readonly<AuthMenuProps>) {
   return (
     <ButtonLink
       href={'/login'}
       variant={'default'}
       className={cn(type === 'sheet' && 'flex-1')}
-      onNavigate={onNavigate}
+      onNavigate={closeSheet}
     >
       <LogInIcon /> 로그인
     </ButtonLink>
   );
 }
 
-function MemberMenu({ type, session }: Readonly<AuthMenuProps & { session: Session }>) {
+function MemberMenu({ type, session, closeSheet }: Readonly<AuthMenuProps & { session: Session }>) {
   const [open, setOpen] = useState(false);
   const { unregisterSession } = useAuth();
 
@@ -90,7 +90,7 @@ function MemberMenu({ type, session }: Readonly<AuthMenuProps & { session: Sessi
           <Fragment key={index}>
             {group.map(({ href, label, icon: Icon }) => (
               <DropdownMenuItem key={href} asChild>
-                <ButtonLink href={href} className="justify-start" size={'sm'}>
+                <ButtonLink href={href} className="justify-start" size={'sm'} onNavigate={closeSheet}>
                   <Icon /> {label}
                 </ButtonLink>
               </DropdownMenuItem>
