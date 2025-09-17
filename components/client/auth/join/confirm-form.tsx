@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@ui/button';
 import { Form } from '@ui/form';
 import { UserPlusIcon } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -22,6 +23,7 @@ interface JoinConfirmSearchParams {
 export default function JoinConfirmForm({ defaultValues }: Readonly<JoinConfirmSearchParams>) {
   const { registerSession } = useAuth();
   const form = useForm<FormType>({ resolver: zodResolver(joinConfirmSchema), defaultValues });
+  const submitRef = useRef<HTMLButtonElement>(null);
 
   function onSubmit(values: FormType) {
     confirmJoin(values)
@@ -32,12 +34,18 @@ export default function JoinConfirmForm({ defaultValues }: Readonly<JoinConfirmS
       .catch((error) => handleFormError(error, form.setError));
   }
 
+  useEffect(() => {
+    if (submitRef.current && defaultValues.otp) {
+      submitRef.current.click();
+    }
+  }, [submitRef, defaultValues.otp]);
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <EmailFormField control={form.control} readOnly />
         <OTPFormField control={form.control} />
-        <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
+        <Button ref={submitRef} type="submit" className="w-full" disabled={form.formState.isSubmitting}>
           <UserPlusIcon /> 인증번호 확인
         </Button>
       </form>
