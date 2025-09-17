@@ -21,7 +21,7 @@ export default function QuestionListItem({ question }: Readonly<QuestionListItem
       <StatusIcon className={cn('mt-1 size-5', statusColor)} />
       <div className="flex-1 space-y-1.5">
         <h3 className="font-medium line-clamp-2">
-          <Link href={href} className="mr-2 transition-colors hover:text-accent-foreground/50">
+          <Link href={href} className="mr-1 transition-colors hover:text-accent-foreground/50">
             {title}
           </Link>
           <Badge variant={'muted'} className="px-1">
@@ -40,7 +40,7 @@ export default function QuestionListItem({ question }: Readonly<QuestionListItem
         )}
         <div className="mt-auto flex items-center justify-between gap-2">
           <UserLink {...writer} className="-ml-1.5" />
-          <Timestamp {...question} />
+          <Timestamp createdAt={question.createdAt} />
         </div>
       </div>
     </div>

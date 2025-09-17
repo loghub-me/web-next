@@ -14,6 +14,7 @@ export interface ThumbnailProps {
   height?: number;
   fill?: boolean;
   loading?: 'eager' | 'lazy';
+  className?: string;
 }
 
 const defaultProps: Pick<ThumbnailProps, 'fill' | 'loading'> = {
@@ -21,7 +22,7 @@ const defaultProps: Pick<ThumbnailProps, 'fill' | 'loading'> = {
   loading: 'lazy',
 };
 
-function Thumbnail(props: ThumbnailProps) {
+function Thumbnail({ className, ...props }: ThumbnailProps) {
   props = {
     ...defaultProps,
     ...props,
@@ -32,7 +33,8 @@ function Thumbnail(props: ThumbnailProps) {
     <div
       className={cn(
         'relative flex items-center justify-center bg-muted border rounded-lg overflow-hidden',
-        ASPECT_OPTIONS[props.aspect]
+        ASPECT_OPTIONS[props.aspect],
+        className
       )}
     >
       <Image {...props} alt={props.alt} />

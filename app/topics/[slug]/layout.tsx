@@ -42,7 +42,7 @@ async function TopicDetailAsideContent({ topic }: Readonly<TopicDetailAsideConte
 
   return (
     <>
-      <div className="relative w-xs aspect-square border rounded-xl shadow-xs overflow-hidden">
+      <div className="relative w-xs aspect-square bg-card border rounded-xl shadow-xs overflow-hidden">
         <ThemedImage
           src={{
             light: `/icons/${slug}.svg`,
@@ -50,6 +50,7 @@ async function TopicDetailAsideContent({ topic }: Readonly<TopicDetailAsideConte
           }}
           alt={name}
           fill
+          className="p-6"
         />
       </div>
       <div className="w-full space-y-1.5">
