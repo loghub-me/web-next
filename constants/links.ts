@@ -72,7 +72,7 @@ const LEGAL_LINKS = [
   { label: '이용약관', href: '/legal#terms' },
   { label: '개인정보처리', href: '/legal#privacy' },
 ];
-const SUPPORT_LINKS = [{ label: '문의하기', href: '/contact' }];
+const SUPPORT_LINKS = [{ label: '문의하기', href: '/support' }];
 
 const TOPIC_DETAIL_LINKS = [
   { label: '아티클', view: 'articles', icon: ScrollIcon },

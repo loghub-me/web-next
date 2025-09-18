@@ -1,9 +1,8 @@
 import zodFields from '@/schemas/fields';
 import z from 'zod';
 
-const { username, nickname } = zodFields;
+const { email, username, nickname } = zodFields;
 
-const email = z.email('올바른 이메일 형식이 아닙니다.').trim();
 const otp = z
   .string({ message: '인증번호는 문자열이어야 합니다.' })
   .trim()
