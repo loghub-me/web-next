@@ -27,7 +27,7 @@ export default function HomePage() {
 function HeroSection() {
   return (
     <section className="px-4 py-16 flex flex-col items-center gap-6">
-      <ButtonLink href={'/post'} variant={'outline'} className="pl-1.5 pr-2.5 rounded-full shadow-sm">
+      <ButtonLink href={'/post'} variant={'outline'} className="pl-1.5 pr-2.5 rounded-full">
         <span className={'p-1 text-accent-foreground bg-accent border rounded-full'}>
           <PencilIcon className="size-3 stroke-2.5" />
         </span>

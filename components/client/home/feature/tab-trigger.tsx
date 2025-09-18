@@ -14,8 +14,8 @@ export default function FeatureTabsTrigger({
 }>) {
   return (
     <TabsTrigger value={value}>
-      <span className="size-8 text-accent-foreground bg-accent border rounded-md">
-        <Icon className="m-2 size-4" />
+      <span className="min-w-8 min-h-8 size-8 flex items-center justify-center text-accent-foreground bg-accent border rounded-md">
+        <Icon className="size-4" />
       </span>
       <div className="text-left">
         <h5 className="font-semibold">{title}</h5>
