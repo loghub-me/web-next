@@ -5,10 +5,13 @@ import { EmailFormField } from '@/components/client/form-field';
 import { handleFormError } from '@/lib/error';
 import { joinRequestSchema } from '@/schemas/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Badge } from '@ui/badge';
 import { Button } from '@ui/button';
+import { Checkbox } from '@ui/checkbox';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@ui/form';
 import { Input } from '@ui/input';
 import { UserPlusIcon } from 'lucide-react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -20,7 +23,7 @@ export default function JoinRequestForm() {
   const router = useRouter();
   const form = useForm<FormType>({
     resolver: zodResolver(joinRequestSchema),
-    defaultValues: { email: '', username: '', nickname: '' },
+    defaultValues: { email: '', username: '', nickname: '', agreeTerms: false, agreePrivacy: false },
   });
 
   function onSubmit(values: FormType) {
@@ -62,6 +65,42 @@ export default function JoinRequestForm() {
             </FormItem>
           )}
         />
+        <div className="space-y-2">
+          <FormField
+            control={form.control}
+            name={'agreeTerms'}
+            render={({ field }) => (
+              <FormItem className="flex items-center gap-2 space-y-0">
+                <FormControl>
+                  <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                </FormControl>
+                <FormLabel>이용약관 동의</FormLabel>
+                <Badge variant={'outline'} className="px-1" asChild>
+                  <Link href={'/legal#terms'} className="text-primary">
+                    보기
+                  </Link>
+                </Badge>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name={'agreePrivacy'}
+            render={({ field }) => (
+              <FormItem className="flex items-center gap-2 space-y-0">
+                <FormControl>
+                  <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                </FormControl>
+                <FormLabel>개인정보 처리방침 동의</FormLabel>
+                <Badge variant={'outline'} className="px-1" asChild>
+                  <Link href={'/legal#privacy'} className="text-primary">
+                    보기
+                  </Link>
+                </Badge>
+              </FormItem>
+            )}
+          />
+        </div>
         <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
           <UserPlusIcon /> 회원가입
         </Button>

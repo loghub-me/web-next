@@ -1,4 +1,4 @@
-import { LoginRequestForm, LoginSocialLinks } from '@/components/client/auth';
+import { LoginRequestForm, SocialLoginLinks } from '@/components/client/auth';
 import Symbol from '@/components/global/symbol';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -18,7 +18,7 @@ export default async function LoginRequestPage() {
           <p className="text-sm text-muted-foreground">로그인을 위해 이메일을 입력해주세요.</p>
         </div>
         <LoginRequestForm />
-        <LoginSocialLinks />
+        <SocialLoginLinks />
         <p className="text-sm text-muted-foreground text-center">
           계정이 없으신가요?{' '}
           <Link href={'/join'} className="text-foreground hover:text-foreground/80 underline">

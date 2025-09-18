@@ -5,16 +5,18 @@ import { useTheme } from 'next-themes';
 import Image, { ImageProps } from 'next/image';
 import { useEffect, useState } from 'react';
 
-export default function ThemedImage(
-  props: Readonly<
-    Omit<ImageProps, 'src' | 'priority' | 'loading'> & {
-      src: {
-        light: string;
-        dark: string;
-      };
-    }
-  >
-) {
+export default function ThemedImage({
+  skeletonClassName,
+  ...props
+}: Readonly<
+  Omit<ImageProps, 'src' | 'priority' | 'loading'> & {
+    src: {
+      light: string;
+      dark: string;
+    };
+    skeletonClassName?: string;
+  }
+>) {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const { src, alt, ...rest } = props;
@@ -32,6 +34,7 @@ export default function ThemedImage(
         aria-hidden="true"
         aria-label={props.alt || `Loading ${props.alt}`}
         style={{ width: props.width, height: props.height }}
+        className={skeletonClassName}
       />
     );
   }

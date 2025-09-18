@@ -4,4 +4,5 @@ export { default as JoinRequestForm } from '@/components/client/auth/join/reques
 export { default as JoinConfirmForm } from '@/components/client/auth/join/confirm-form';
 export { default as LoginRequestForm } from '@/components/client/auth/login/request-form';
 export { default as LoginConfirmForm } from '@/components/client/auth/login/confirm-form';
-export { default as LoginSocialLinks } from '@/components/client/auth/login/social-links';
+
+export { default as SocialLoginLinks } from '@/components/client/auth/login/social-links';
