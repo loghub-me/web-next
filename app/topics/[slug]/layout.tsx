@@ -20,7 +20,7 @@ export default async function TopicDetailLayout({ params, children }: LayoutProp
   const topic = getTopicDetail(parsedParam.slug);
 
   return (
-    <main className="container mx-auto p-4 pt-20 min-h-screen space-y-4">
+    <main className="container mx-auto px-4 py-20 min-h-screen space-y-4">
       <div className="flex flex-col md:flex-row gap-4">
         <TopicDetailAside>
           <Suspense fallback={<TopicDetailAsideSkeleton />}>

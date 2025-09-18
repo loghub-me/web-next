@@ -21,7 +21,7 @@ export default async function UserDetailLayout({ params, children }: LayoutProps
   const user = getUserDetail(parsedParam.username);
 
   return (
-    <main className="container mx-auto p-4 pt-20 min-h-screen space-y-4">
+    <main className="container mx-auto px-4 py-20 min-h-screen space-y-4">
       <div className="flex flex-col md:flex-row gap-4">
         <UserDetailAside>
           <Suspense fallback={<UserDetailAsideSkeleton />}>

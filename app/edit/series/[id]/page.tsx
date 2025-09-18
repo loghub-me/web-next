@@ -29,7 +29,7 @@ export default function SeriesEditPage() {
   useQueryErrorHandle(error, '/search/series');
 
   return (
-    <main className="container mx-auto p-4 pt-20 min-h-screen space-y-4">
+    <main className="container mx-auto px-4 py-20 min-h-screen space-y-4">
       {series && <SeriesEditor defaultValues={series} />}
       {series && <SeriesChapterManager series={series} prefixPath={`/edit/series/${series.id}`} />}
     </main>

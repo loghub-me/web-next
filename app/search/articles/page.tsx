@@ -18,7 +18,7 @@ export default async function ArticleSearchPage({ searchParams }: PageProps<'/se
   const articles = getArticles(parsedSearchParams);
 
   return (
-    <main className="container mx-auto p-4 pt-20 min-h-screen space-y-4">
+    <main className="container mx-auto px-4 py-20 min-h-screen space-y-4">
       <ArticleSearchForm defaultValues={parsedSearchParams} />
       <ArticleList>
         <Suspense fallback={<ArticleListSkeleton />}>

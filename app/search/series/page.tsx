@@ -18,7 +18,7 @@ export default async function SeriesSearchPage({ searchParams }: PageProps<'/sea
   const series = getSeries(parsedSearchParams);
 
   return (
-    <main className="container mx-auto p-4 pt-20 min-h-screen space-y-4">
+    <main className="container mx-auto px-4 py-20 min-h-screen space-y-4">
       <SeriesSearchForm defaultValues={parsedSearchParams} />
       <SeriesList>
         <Suspense fallback={<SeriesListSkeleton />}>

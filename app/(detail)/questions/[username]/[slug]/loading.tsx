@@ -3,7 +3,7 @@ import { Skeleton } from '@ui/skeleton';
 
 export default function QuestionDetailLoading() {
   return (
-    <main className="container mx-auto pt-20 pb-4 space-y-4">
+    <main className="container mx-auto py-20 space-y-4">
       <div className="p-16 space-y-4">
         <div className="mt-auto flex items-center justify-center gap-2">
           <Skeleton className="w-18 h-9" />

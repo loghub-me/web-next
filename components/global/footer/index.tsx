@@ -15,7 +15,7 @@ export default function GlobalFooter() {
 
   return (
     <footer className={cn('mt-auto w-full', isPostEditPage && 'hidden')}>
-      <div className="mt-16 border-t py-12 bg-card/50">
+      <div className="border-t py-12 bg-card/50">
         <div className="flex flex-col md:flex-row gap-4 md:gap-16 container mx-auto px-4">
           <div className="max-w-64 lg:max-w-128 space-y-2">
             <Logo width={96} height={24} />
@@ -23,15 +23,10 @@ export default function GlobalFooter() {
               LogHub는 개발자들이 자신의 지식을 공유하고, 서로의 경험을 나누는 공간입니다.
             </p>
             <div className="-ml-2">
-              <ButtonLink variant={'ghost'} href={process.env.NEXT_PUBLIC_GITHUB_URL!!} target={'_blank'} size={'icon'}>
+              <ButtonLink variant={'ghost'} href={process.env.NEXT_PUBLIC_GITHUB_URL!} target={'_blank'} size={'icon'}>
                 <TopicIcon slug="github" name="GitHub" />
               </ButtonLink>
-              <ButtonLink
-                variant={'ghost'}
-                href={process.env.NEXT_PUBLIC_DISCORD_URL!!}
-                target={'_blank'}
-                size={'icon'}
-              >
+              <ButtonLink variant={'ghost'} href={process.env.NEXT_PUBLIC_DISCORD_URL!} target={'_blank'} size={'icon'}>
                 <TopicIcon slug="discord" name="Discord" />
               </ButtonLink>
             </div>

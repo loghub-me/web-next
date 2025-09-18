@@ -33,7 +33,7 @@ export default async function QuestionDetailPage({ params }: PageProps<'/questio
   const answers = getQuestionAnswers(question.id);
 
   return (
-    <main className="container mx-auto pt-20 pb-4 min-h-screen space-y-4">
+    <main className="container mx-auto py-20 min-h-screen space-y-4">
       <QuestionDetailHero {...question} />
       <div className="flex gap-4">
         <div className="w-full min-w-0 space-y-4">

@@ -14,7 +14,7 @@ export default function SeriesPostPage() {
   });
 
   return (
-    <main className="container mx-auto p-4 pt-20 min-h-screen space-y-4">
+    <main className="container mx-auto px-4 py-20 min-h-screen space-y-4">
       <Card className="mx-auto max-w-3xl w-full">
         <CardHeader className="space-y-1.5 pb-4 border-b">
           <CardTitle>새 시리즈 만들기</CardTitle>

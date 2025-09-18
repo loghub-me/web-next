@@ -10,7 +10,7 @@ export default async function SeriesDetailLayout({ params, children }: LayoutPro
   const series = await getSeriesDetail(username, slug);
 
   return (
-    <main className="container mx-auto pt-20 pb-4 min-h-screen space-y-4">
+    <main className="container mx-auto py-20 min-h-screen space-y-4">
       <div className="flex flex-col md:flex-row gap-4">
         <SeriesDetailAside>
           <Card className="pt-0">

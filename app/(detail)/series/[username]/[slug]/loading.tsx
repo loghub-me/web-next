@@ -3,7 +3,7 @@ import { Skeleton } from '@ui/skeleton';
 
 export default function SeriesDetailLoading() {
   return (
-    <main className="container mx-auto pt-20 pb-4 min-h-screen space-y-4">
+    <main className="container mx-auto py-20 min-h-screen space-y-4">
       <div className="flex flex-col md:flex-row gap-4">
         <SeriesDetailAside>
           <div className="p-4 space-y-8">
