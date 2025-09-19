@@ -19,7 +19,7 @@ module.exports = {
       lastmod: new Date().toISOString(),
     };
   },
-  additionalPaths: async (_config) => {
+  additionalPaths: async () => {
     return [
       { loc: '/search/articles', changefreq: 'daily', priority: 1, lastmod: new Date().toISOString() },
       { loc: '/search/series', changefreq: 'daily', priority: 1, lastmod: new Date().toISOString() },

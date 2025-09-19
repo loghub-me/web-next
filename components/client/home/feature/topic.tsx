@@ -5,7 +5,7 @@ import zodFields from '@/schemas/fields';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@ui/button';
 import { Form } from '@ui/form';
-import { CheckIcon } from 'lucide-react';
+import { CheckIcon, TagIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -24,7 +24,7 @@ export default function HomeFeatureTopic() {
       toast.error('토픽을 하나 이상 선택해주세요');
       return;
     }
-    toast.success('토픽이 선택되었습니다');
+    toast.success('토픽이 선택되었습니다!', { icon: <TagIcon className="size-4" /> });
   }
 
   useEffect(() => {
@@ -32,9 +32,9 @@ export default function HomeFeatureTopic() {
   }, [form, topicSlugs]);
 
   return (
-    <div className="p-4 flex items-center justify-center w-full h-full border rounded-xl overflow-hidden">
+    <div className="p-4 flex items-center justify-center w-full h-full border rounded-xl">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <TopicSlugsFormField control={form.control} topicSlugs={topicSlugs} setTopicSlugs={setTopicSlugs} />
           <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
             <Button type="submit" disabled={form.formState.isSubmitting}>

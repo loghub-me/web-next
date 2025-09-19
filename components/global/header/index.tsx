@@ -20,8 +20,8 @@ export default function GlobalHeader() {
             </HeaderNavLink>
           ))}
         </nav>
-        <ThemeSwitch />
         <div className="hidden md:flex items-center gap-1 ml-0 h-full">
+          <ThemeSwitch />
           <AuthMenu type={'header'} />
         </div>
         <div className="flex md:hidden items-center gap-1 ml-0 h-full">

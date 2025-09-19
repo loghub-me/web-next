@@ -63,7 +63,7 @@
     }
 
     table {
-      @apply border-collapse border;
+      @apply inline-block max-w-full border-collapse overflow-x-auto;
 
       th,
       td {
@@ -71,7 +71,7 @@
       }
 
       th {
-        @apply font-bold;
+        @apply font-bold whitespace-nowrap;
       }
     }
 

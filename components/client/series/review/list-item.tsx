@@ -20,8 +20,8 @@ export default function SeriesReviewListItem({
   return (
     <div>
       <div className="flex items-center">
-        <UserLink {...writer} variant={'link'} />
-        <DotIcon className="text-muted-foreground" />
+        <UserLink {...writer} />
+        <DotIcon className="text-muted-foreground -ml-1" />
         <Timestamp {...review} />
         <div className="pl-2.5 flex items-center gap-0.5">
           <StarIcon size={rating} fill={true} className="size-3" />

@@ -17,7 +17,7 @@ export function OrbitingCircle({
   className,
   children,
   reverse,
-  duration = 20,
+  duration = 64,
   radius = 160,
   path = true,
   iconSize = 30,
@@ -42,9 +42,9 @@ export function OrbitingCircle({
           <div
             style={
               {
-                '--duration': calculatedDuration,
-                '--radius': radius,
-                '--angle': angle,
+                '--orbit-duration': calculatedDuration,
+                '--orbit-radius': radius,
+                '--orbit-angle': angle,
                 '--icon-size': `${iconSize}px`,
               } as React.CSSProperties
             }

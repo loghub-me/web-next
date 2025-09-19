@@ -18,12 +18,14 @@ export default function ArticleListItem({ article }: Readonly<ArticleListItemPro
     <div className="p-1 h-full flex flex-col gap-1.5">
       <Link href={href} className="group space-y-1.5">
         <InteractiveThumbnail aspect={'16:9'} src={thumbnail} alt={title} width={640} height={360} />
-        <h3 className="line-clamp-2">
-          <span className="mr-1 font-medium transition-colors group-hover:text-accent-foreground/50">{title}</span>
-          <Badge variant={'muted'} className="px-1">
+        <h3 className="flex flex-wrap items-center">
+          <span className="line-clamp-2 font-medium transition-colors group-hover:text-accent-foreground/50">
+            {title}
+          </span>
+          <Badge variant="muted" className="px-1">
             <MessagesSquareIcon /> {stats.commentCount}
           </Badge>
-          <Badge variant={'muted'} className="px-1">
+          <Badge variant="muted" className="px-1">
             <StarIcon /> {stats.starCount}
           </Badge>
         </h3>

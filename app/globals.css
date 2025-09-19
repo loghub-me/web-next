@@ -3,9 +3,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
+@theme inline {
   --animate-swing: swing 0.5s ease-in-out;
-  --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
+  --animate-orbit: orbit calc(var(--orbit-duration) * 1s) linear infinite;
+  --animate-slide-ltr: slide-ltr 3s ease-in-out infinite;
+  --animate-slide-rtl: slide-rtl 3s ease-in-out infinite;
 
   @keyframes swing {
     0% {
@@ -22,17 +24,38 @@
     }
   }
 
-  --angle: 0;
-  --radius: 16;
-  --duration: 16;
   @keyframes orbit {
     0% {
-      transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px))
-        rotate(calc(var(--angle) * -1deg));
+      transform: rotate(calc(var(--orbit-angle) * 1deg)) translateY(calc(var(--orbit-radius) * 1px))
+        rotate(calc(var(--orbit-angle) * -1deg));
     }
     100% {
-      transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px))
-        rotate(calc((var(--angle) * -1deg) - 360deg));
+      transform: rotate(calc(var(--orbit-angle) * 1deg + 360deg)) translateY(calc(var(--orbit-radius) * 1px))
+        rotate(calc((var(--orbit-angle) * -1deg) - 360deg));
+    }
+  }
+
+  @keyframes slide-ltr {
+    0%,
+    100% {
+      transform: translateX(-100%);
+      left: 0;
+    }
+    50% {
+      transform: translateX(100%);
+      left: 100%;
+    }
+  }
+
+  @keyframes slide-rtl {
+    0%,
+    100% {
+      transform: translateX(-100%);
+      right: 0;
+    }
+    50% {
+      transform: translateX(100%);
+      right: 100%;
     }
   }
 }

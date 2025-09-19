@@ -3,6 +3,7 @@
 import AuthMenu from '@/components/global/auth-menu';
 import SheetNavLink from '@/components/global/sheet/nav-link';
 import Symbol from '@/components/global/symbol';
+import ThemeSwitch from '@/components/global/theme-switch';
 import { HEADER_LINKS } from '@/constants/links';
 import { Button } from '@ui/button';
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@ui/sheet';
@@ -24,7 +25,7 @@ export default function GlobalSheet() {
       <SheetContent>
         <SheetHeader className="h-16 border-b">
           <SheetTitle asChild>
-            <Link href={'/'} className="transition-opacity hover:opacity-70">
+            <Link href={'/'} className="transition-opacity hover:opacity-70" onNavigate={closeSheet}>
               <Symbol size={36} />
             </Link>
           </SheetTitle>
@@ -37,6 +38,7 @@ export default function GlobalSheet() {
           ))}
         </nav>
         <SheetFooter className="flex-row">
+          <ThemeSwitch />
           <AuthMenu type={'sheet'} closeSheet={closeSheet} />
         </SheetFooter>
       </SheetContent>

@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@ui/dialog';
+import { GlowEffect } from '@ui/glow-effect';
 import { BotIcon } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
@@ -40,7 +41,11 @@ export default function QuestionAnswerGenerateButton({ question }: Readonly<Ques
     session?.id === question.writer.id && (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant={'outline'} size={'sm'} className="rounded-full">
+          <Button
+            variant={'outline'}
+            className="relative overflow-hidden rounded-full border-blue-400/40 dark:border-blue-400/40"
+          >
+            <GlowEffect color={'bg-blue-400'} />
             <BotIcon className="text-blue-400" /> 답변 생성
           </Button>
         </DialogTrigger>

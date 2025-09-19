@@ -22,7 +22,7 @@ export default function ThemeSwitch() {
   }, []);
 
   return (
-    <Button variant={'ghost'} size={'icon'} onClick={onClickButton} className="rounded-full">
+    <Button variant={'ghost'} size={'icon'} onClick={onClickButton}>
       {mounted &&
         theme &&
         Object.entries(THEME_OPTIONS).map(([key, { icon: Icon }]) => (

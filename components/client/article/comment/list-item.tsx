@@ -27,8 +27,8 @@ export default function ArticleCommentListItem({
   return (
     <div>
       <div className="flex items-center">
-        <UserLink {...writer} variant={'link'} />
-        <DotIcon className="text-muted-foreground" />
+        <UserLink {...writer} />
+        <DotIcon className="text-muted-foreground -ml-1" />
         <Timestamp {...comment} />
         <ArticleCommentActionMenu
           replying={replying}

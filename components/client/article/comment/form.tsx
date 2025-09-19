@@ -4,6 +4,7 @@ import { postArticleComment } from '@/apis/client/article';
 import { UserLink } from '@/components/client/user';
 import { useAuth } from '@/hooks/use-auth';
 import { handleFormError } from '@/lib/error';
+import { cn } from '@/lib/utils';
 import { articleCommentPostSchema } from '@/schemas/article';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQueryClient } from '@tanstack/react-query';
@@ -63,23 +64,25 @@ export default function ArticleCommentForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <div className="flex items-center gap-2">{!parent && <UserLink {...session} />}</div>
+      <form onSubmit={form.handleSubmit(onSubmit)} className={cn('space-y-2', parent && 'mt-2 rounded-md')}>
+        <div className="flex items-center justify-between gap-2">
+          <UserLink {...session} />
+          <Button type="submit" className="" disabled={form.formState.isSubmitting}>
+            <MessageSquareIcon /> 댓글 작성
+          </Button>
+        </div>
         <FormField
           control={form.control}
           name="content"
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea placeholder="댓글을 작성해주세요!" {...field} />
+                <Textarea placeholder={`${parent ? '답글' : '댓글'}을 작성해주세요!`} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-          <MessageSquareIcon /> 작성
-        </Button>
       </form>
     </Form>
   );

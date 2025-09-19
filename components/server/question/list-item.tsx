@@ -20,8 +20,8 @@ export default function QuestionListItem({ question }: Readonly<QuestionListItem
     <div className="flex gap-2 p-4 border-b last:border-b-0">
       <StatusIcon className={cn('mt-1 size-5', statusColor)} />
       <div className="flex-1 space-y-1.5">
-        <h3 className="font-medium line-clamp-2">
-          <Link href={href} className="mr-1 transition-colors hover:text-accent-foreground/50">
+        <h3 className="flex flex-wrap items-center">
+          <Link href={href} className="line-clamp-2 font-medium transition-colors hover:text-accent-foreground/50">
             {title}
           </Link>
           <Badge variant={'muted'} className="px-1">

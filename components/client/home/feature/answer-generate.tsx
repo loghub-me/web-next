@@ -13,19 +13,22 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@ui/dialog';
-import { BotIcon, EllipsisIcon } from 'lucide-react';
+import { GlowEffect } from '@ui/glow-effect';
+import { BotIcon } from 'lucide-react';
+import { toast } from 'sonner';
 
 export default function HomeFeatureAnswerGenerate() {
   return (
     <div className="p-4 flex items-center justify-center w-full h-full border rounded-xl overflow-hidden">
-      <Card className="flex-row items-center gap-2 p-4 rounded-xl">
-        <h3 className="flex-1 font-medium">AI가 작성한 답변을 통해 궁금증을 해결해보세요!</h3>
-        <Button variant={'ghost'} size={'icon'} className="rounded-full" disabled>
-          <EllipsisIcon />
-        </Button>
+      <Card className="flex-col md:flex-row items-center gap-2 p-4 rounded-xl">
+        <h3 className="flex-1 font-medium">AI가 당신의 질문에 답변을 생성해 드립니다!</h3>
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant={'outline'} size={'sm'} className="rounded-full">
+            <Button
+              variant={'outline'}
+              className="relative overflow-hidden rounded-full border-blue-400/40 dark:border-blue-400/40"
+            >
+              <GlowEffect color={'bg-blue-400'} />
               <BotIcon className="text-blue-400" /> 답변 생성
             </Button>
           </DialogTrigger>
@@ -37,7 +40,12 @@ export default function HomeFeatureAnswerGenerate() {
             <DialogFooter>
               <DialogCloseButton>취소하기</DialogCloseButton>
               <DialogClose asChild>
-                <Button type="submit" variant={'secondary'} className="border">
+                <Button
+                  type="submit"
+                  variant={'secondary'}
+                  className="border"
+                  onClick={() => toast.success('질문 작성 후 요청해주세요!', { icon: <BotIcon className="size-4" /> })}
+                >
                   <BotIcon className="text-blue-400" /> 요청하기
                 </Button>
               </DialogClose>

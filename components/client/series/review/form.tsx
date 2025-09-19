@@ -2,7 +2,6 @@
 
 import { postSeriesReview } from '@/apis/client/series';
 import { RatingFormField } from '@/components/client/form-field';
-import { UserLink } from '@/components/client/user';
 import { useAuth } from '@/hooks/use-auth';
 import { handleFormError } from '@/lib/error';
 import { seriesReviewPostSchema } from '@/schemas/series';
@@ -55,26 +54,25 @@ export default function SeriesReviewForm({ seriesId, queryKeys, closeForm }: Rea
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <div className="flex items-center gap-2">
-          <UserLink {...session} />
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+        <div className="flex items-center justify-between gap-2">
+          <RatingFormField control={form.control} />
+          <Button type="submit" disabled={form.formState.isSubmitting}>
+            <MessageSquareIcon /> 리뷰 등록
+          </Button>
         </div>
-        <RatingFormField control={form.control} />
         <FormField
           control={form.control}
           name="content"
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea placeholder="리뷰를 작성해주세요!" {...field} />
+                <Textarea placeholder="리뷰를 작성해주세요!" className="h-24" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-          <MessageSquareIcon /> 작성
-        </Button>
       </form>
     </Form>
   );

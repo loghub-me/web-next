@@ -32,7 +32,7 @@ export default function PostPortalPage() {
           href={'https://www.markdownguide.org/basic-syntax/'}
           target={'_blank'}
           variant={'outline'}
-          className="pl-1.5 pr-2.5 rounded-full shadow-sm"
+          className="pl-1.5 pr-2.5 rounded-full"
         >
           <span className={'p-1 text-accent-foreground bg-accent border rounded-full'}>
             <HelpCircleIcon className="size-3 stroke-2.5" />

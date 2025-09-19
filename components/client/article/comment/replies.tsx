@@ -20,6 +20,7 @@ export default function ArticleCommentReplies({
   commentsQueryKey,
 }: Readonly<ArticleCommentRepliesProps>) {
   const [load, setLoad] = useState(false);
+  const toggleLoad = () => setLoad((prev) => !prev);
   const repliesQueryKey = ['getArticleCommentReplies', articleId, parentId];
   const { data: replies, status } = useQuery({
     queryKey: repliesQueryKey,
@@ -27,25 +28,34 @@ export default function ArticleCommentReplies({
     enabled: load,
   });
 
-  if (!load) {
-    return (
-      <Button variant={'link'} className="p-0 h-7 text-xs" onClick={() => setLoad(true)}>
-        {replyCount}개의 답글
+  // if (!load) {
+  //   return (
+  //     <Button variant={'link'} className="p-0 h-7 text-xs" onClick={() => setLoad(true)}>
+  //       {replyCount}개의 답글
+  //     </Button>
+  //   );
+  // }
+
+  // if (status === 'pending') {
+  //   return <ArticleCommentListSkeleton size={1} />;
+  // }
+
+  return (
+    <>
+      <Button variant={'link'} className="p-0 h-7 text-xs" onClick={toggleLoad}>
+        {load ? '답글 접기' : `${replyCount}개의 답글`}
       </Button>
-    );
-  }
-
-  if (status === 'pending') {
-    return <ArticleCommentListSkeleton size={1} />;
-  }
-
-  return replies?.map((reply) => (
-    <ArticleCommentListItem
-      key={reply.id}
-      articleId={articleId}
-      comment={reply}
-      commentsQueryKey={commentsQueryKey}
-      repliesQueryKey={repliesQueryKey}
-    />
-  ));
+      {load && status === 'pending' && <ArticleCommentListSkeleton size={1} />}
+      {load &&
+        replies?.map((reply) => (
+          <ArticleCommentListItem
+            key={reply.id}
+            articleId={articleId}
+            comment={reply}
+            commentsQueryKey={commentsQueryKey}
+            repliesQueryKey={repliesQueryKey}
+          />
+        ))}
+    </>
+  );
 }

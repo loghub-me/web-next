@@ -16,6 +16,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@ui/dialog';
+import { GlowEffect } from '@ui/glow-effect';
 import { CheckCircleIcon, TrashIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
@@ -45,7 +46,11 @@ export default function QuestionAnswerAcceptButton({ question, id }: Readonly<Qu
     session?.id === question.writer.id && (
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant={'outline'} size={'sm'}>
+          <Button
+            variant={'outline'}
+            className="relative overflow-hidden rounded-full border-purple-400/40 dark:border-purple-400/40"
+          >
+            <GlowEffect color={'bg-purple-400'} />
             <CheckCircleIcon className={cn('mr-0.5', QUESTION_STATUS_OPTIONS['SOLVED'].color)} /> 채택하기
           </Button>
         </DialogTrigger>
