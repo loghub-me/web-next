@@ -80,8 +80,22 @@ const quotes = [
     by: '백업의 미스터리',
   },
 ];
+const notFoundQuotes = [
+  '관리자가 이 페이지의 존재를 잊는 데 성공했습니다.',
+  '이 에러는 관리자의 연봉 인상 요청처럼 조용히 무시되었습니다.',
+  '페이지를 찾을 수 없습니다. 관리자가 어제 야근하다 실수로 지운 것 같습니다.',
+  '관리자가 이 페이지를 백업과 함께 안드로메다로 보냈습니다.',
+  '이 페이지는 관리자의 전 직장 동료에 대한 기억처럼 깨끗하게 삭제되었습니다.',
+  '관리자가 서버실에서 잠든 사이, 무언가 끔찍한 일이 일어났습니다.',
+  '이 페이지의 실종 신고는 접수되었으나, 관리자는 아직 수사를 시작하지 않았습니다.',
+];
 
 export function getRandomQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
   return quotes[randomIndex];
+}
+
+export function getRandomNotFoundQuote() {
+  const randomIndex = Math.floor(Math.random() * notFoundQuotes.length);
+  return notFoundQuotes[randomIndex];
 }

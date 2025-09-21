@@ -50,11 +50,11 @@
   @keyframes slide-rtl {
     0%,
     100% {
-      transform: translateX(-100%);
+      transform: translateX(100%);
       right: 0;
     }
     50% {
-      transform: translateX(100%);
+      transform: translateX(-100%);
       right: 100%;
     }
   }
