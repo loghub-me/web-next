@@ -9,7 +9,7 @@ import '@/styles/easymde.css';
 import { Button } from '@ui/button';
 import { ToggleGroup, ToggleGroupItem } from '@ui/toggle-group';
 import type EasyMDE from 'easymde';
-import { MarkdownRenderer } from 'loghub-markdown-renderer';
+import { MarkdownRenderer } from 'loghub-me-markdown-renderer';
 import { Columns2Icon, EyeIcon, ImageUpIcon, PencilIcon } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
@@ -87,6 +87,7 @@ export default function MarkdownEditor({
         spellChecker: false,
         initialValue: defaultValue,
         placeholder: '# 나의 글은 최강이다.',
+        inputStyle: 'textarea',
       });
       easyMDERef.current = easyMDE;
 
