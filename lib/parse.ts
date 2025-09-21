@@ -2,8 +2,8 @@ import { ErrorMessage } from '@/constants/messages';
 import { notFound } from 'next/navigation';
 import { z } from 'zod';
 
-export function parseObject<S extends z.ZodTypeAny>(searchParams: unknown, schema: S): z.infer<S> {
-  const input = searchParams instanceof URLSearchParams ? Object.fromEntries(searchParams) : searchParams;
+export function parseObject<S extends z.ZodTypeAny>(obj: unknown, schema: S): z.infer<S> {
+  const input = obj instanceof URLSearchParams ? Object.fromEntries(obj) : obj;
 
   const result = schema.safeParse(input);
   if (!result.success) {
