@@ -18,19 +18,21 @@ export function useQueryErrorHandle(error: Error | null, notFoundRedirectPath: s
       }
 
       const body = await error.response.json<ErrorResponseBody>();
-      switch (error.response.status) {
-        case 401:
-          toast.error(body.message);
-          router.replace('/login');
-          break;
-        case 403:
-          toast.error(body.message);
-          router.replace('/');
-          break;
-        case 404:
-          toast.error(body.message);
-          router.replace(notFoundRedirectPath);
-          break;
+      const status = error.response.status;
+      if (status >= 400) {
+        toast.error(body.message);
+
+        switch (error.response.status) {
+          case 401:
+            router.replace('/login');
+            break;
+          case 403:
+            router.replace('/');
+            break;
+          case 404:
+            router.replace(notFoundRedirectPath);
+            break;
+        }
       }
     }
 

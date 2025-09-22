@@ -66,7 +66,7 @@ function extractSessionFromToken(token: string) {
 
 function setAuthorizationHeader(token: string | null) {
   extendClientAPIConfig({
-    headers: token ? { Authorization: `Bearer ${token}` } : {},
+    headers: { Authorization: token ? `Bearer ${token}` : '' },
   });
 }
 

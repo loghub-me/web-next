@@ -54,7 +54,7 @@ const username = z
   .min(4, '유저네임은 4글자 이상이어야 합니다.')
   .max(16, '유저네임은 16글자 이하여야 합니다.')
   .regex(usernameRegex, { message: '유저네임은 영문자와 숫자로만 이루어져야 합니다.' });
-const nicknameRegex = /^[a-zA-Z0-9가-힣_]+$/;
+const nicknameRegex = /^[a-zA-Z0-9가-힣_]+(?: [a-zA-Z0-9가-힣_]+)*$/;
 const nickname = z
   .string({ message: '닉네임은 문자열이어야 합니다.' })
   .trim()
