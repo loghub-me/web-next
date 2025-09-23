@@ -79,6 +79,14 @@
       @apply border-l-primary bg-accent border-l-4 p-2 pl-4;
     }
 
+    :not(pre) > code {
+      @apply bg-code rounded px-1 font-mono;
+    }
+
+    p > code {
+      @apply text-sm;
+    }
+
     pre {
       @apply bg-code overflow-x-auto rounded-md border p-4;
 
@@ -134,8 +142,8 @@
         }
 
         .hljs-formula {
+          @apply italic;
           background-color: #eee;
-          font-style: italic;
         }
 
         .hljs-selector-class,
@@ -153,11 +161,11 @@
 
         .hljs-doctag,
         .hljs-strong {
-          font-weight: 700;
+          @apply font-semibold;
         }
 
         .hljs-emphasis {
-          font-style: italic;
+          @apply italic;
         }
       }
     }

@@ -1,6 +1,6 @@
 'use client';
 
-import { QuestionAnswerPostForm } from '@/components/client/question';
+import { QuestionAnswerGenerateButton, QuestionAnswerPostForm } from '@/components/client/question';
 import { useAuth } from '@/hooks/use-auth';
 import { ButtonLink } from '@ui/button';
 import { Card } from '@ui/card';
@@ -28,12 +28,15 @@ export default function QuestionAnswerPostCard({ question }: Readonly<QuestionAn
         </Card>
       );
     case 'authenticated':
-      return (
-        session?.id != question.writer.id && (
-          <Card className="p-0 overflow-hidden">
-            <QuestionAnswerPostForm questionId={question.id} />
-          </Card>
-        )
+      return session?.id === question.writer.id ? (
+        <Card className="p-4 flex-row items-center bg-primary/10 gap-3">
+          <QuestionAnswerGenerateButton question={question} />
+          <p className="text-sm text-accent-foreground">을 통해 AI에게 답변 작성을 요청할 수 있습니다.</p>
+        </Card>
+      ) : (
+        <Card className="p-0 overflow-hidden">
+          <QuestionAnswerPostForm questionId={question.id} />
+        </Card>
       );
   }
 }

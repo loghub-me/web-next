@@ -13,8 +13,9 @@ export default function ScrollProgressBar({ className }: Readonly<ScrollProgress
   useEffect(() => {
     const handleScroll = () => {
       const scrollableHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
-      setScaleX(progress > 1 ? 1 : progress);
+      const rawProgress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+      const progress = Math.min(1, Math.max(0, rawProgress));
+      setScaleX(progress);
     };
 
     window.addEventListener('scroll', handleScroll);

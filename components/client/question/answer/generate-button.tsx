@@ -52,7 +52,9 @@ export default function QuestionAnswerGenerateButton({ question }: Readonly<Ques
         <DialogContent>
           <DialogHeader>
             <DialogTitle>AI 답변 생성 요청</DialogTitle>
-            <DialogDescription>답변 생성은 10분에 한 번만 요청할 수 있습니다.</DialogDescription>
+            <DialogDescription>
+              답변 생성은 <strong>10분에 한 번씩</strong> 요청할 수 있습니다.
+            </DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <DialogCloseButton>취소하기</DialogCloseButton>

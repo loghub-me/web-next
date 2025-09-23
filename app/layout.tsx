@@ -18,7 +18,7 @@ const pretendard = localFont({
 
 const ibmPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
-  weight: ['400', '500', '600', '700'],
+  weight: ['500', '600', '700'],
 });
 
 export const metadata: Metadata = {
