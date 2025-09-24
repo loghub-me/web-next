@@ -1,0 +1,32 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    env:
+      NEXT_PUBLIC_API_HOST: ${{ secrets.NEXT_PUBLIC_API_HOST }}
+      NEXT_PUBLIC_ASSETS_HOST: ${{ secrets.NEXT_PUBLIC_ASSETS_HOST }}
+      NEXT_PUBLIC_GITHUB_URL: ${{ secrets.NEXT_PUBLIC_GITHUB_URL }}
+      NEXT_PUBLIC_DISCORD_URL: ${{ secrets.NEXT_PUBLIC_DISCORD_URL }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and Push Docker Image
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          IMAGE=ghcr.io/${{ github.repository }}:$VERSION
+          docker build -t $IMAGE .
+          docker push $IMAGE
+
