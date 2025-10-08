@@ -89,6 +89,13 @@ const notFoundQuotes = [
   '관리자가 서버실에서 잠든 사이, 무언가 끔찍한 일이 일어났습니다.',
   '이 페이지의 실종 신고는 접수되었으나, 관리자는 아직 수사를 시작하지 않았습니다.',
 ];
+const serverErrorQuotes = [
+  '서버가 굉장히 잘못된 결정을 내렸습니다. 관리자에게 연락하세요.',
+  '서버가 잠시 휴식을 취하고 있습니다. 관리자에게 커피 한 잔을 권해보세요.',
+  '서버가 오늘따라 기분이 좋지 않은 것 같습니다. 관리자에게 따뜻한 말을 건네주세요.',
+  '서버가 잠시 혼란스러워하고 있습니다. 관리자에게 진정시키는 방법을 알려주세요.',
+  '서버가 갑자기 생각이 많아졌습니다. 관리자에게 산책을 권해보세요.',
+];
 
 export function getRandomQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
@@ -98,4 +105,9 @@ export function getRandomQuote() {
 export function getRandomNotFoundQuote() {
   const randomIndex = Math.floor(Math.random() * notFoundQuotes.length);
   return notFoundQuotes[randomIndex];
+}
+
+export function getRandomServerErrorQuote() {
+  const randomIndex = Math.floor(Math.random() * serverErrorQuotes.length);
+  return serverErrorQuotes[randomIndex];
 }
