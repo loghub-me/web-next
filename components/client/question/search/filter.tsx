@@ -22,7 +22,7 @@ export default function QuestionSearchFilter({ defaultValues, action }: Readonly
           key={key}
           href={{
             pathname: action,
-            query: { ...defaultValues, filter: key },
+            query: { ...defaultValues, page: 1, filter: key },
           }}
           variant={defaultValues.filter === key ? 'secondary' : 'ghost'}
           className={'rounded-full'}

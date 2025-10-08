@@ -1,16 +1,30 @@
 'use client';
 
 import { QUESTION_SORT_OPTIONS } from '@/constants/options';
+import { questionSearchSchema } from '@/schemas/question';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/select';
+import { useRouter } from 'next/navigation';
+import { format } from 'node:url';
+import { z } from 'zod';
 
 interface QuestionSearchSortProps {
-  defaultValue: QuestionSort;
-  formRef: React.RefObject<HTMLFormElement | null>;
+  defaultValues: z.infer<typeof questionSearchSchema>;
+  action: string;
 }
 
-export default function QuestionSearchSort({ defaultValue, formRef }: Readonly<QuestionSearchSortProps>) {
+export default function QuestionSearchSort({ defaultValues, action }: Readonly<QuestionSearchSortProps>) {
+  const router = useRouter();
+
+  function onValueChange(value: string) {
+    const href = format({
+      pathname: action,
+      query: { ...defaultValues, sort: value },
+    });
+    router.push(href);
+  }
+
   return (
-    <Select name={'sort'} defaultValue={defaultValue} onValueChange={() => formRef.current?.submit()}>
+    <Select name={'sort'} defaultValue={defaultValues.sort} onValueChange={onValueChange}>
       <SelectTrigger className="w-38">
         <SelectValue placeholder={'Sort'} />
       </SelectTrigger>

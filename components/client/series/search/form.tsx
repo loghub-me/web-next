@@ -1,6 +1,6 @@
 'use client';
 
-import { SeriesSearchQuery, SeriesSearchSort, SeriesSearchSubmit } from '@/components/client/series';
+import { SeriesSearchQuery, SeriesSearchSort } from '@/components/client/series';
 import { seriesSearchSchema } from '@/schemas/series';
 import Form from 'next/form';
 import { useRef } from 'react';
@@ -19,9 +19,8 @@ export default function SeriesSearchForm({
 
   return (
     <Form ref={formRef} action={action} className="flex gap-2">
-      <SeriesSearchSort defaultValue={defaultValues.sort} formRef={formRef} />
+      <SeriesSearchSort defaultValues={defaultValues} action={action} />
       <SeriesSearchQuery defaultValue={defaultValues.query} />
-      <SeriesSearchSubmit />
     </Form>
   );
 }

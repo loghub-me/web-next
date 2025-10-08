@@ -1,16 +1,30 @@
 'use client';
 
 import { SERIES_SORT_OPTIONS } from '@/constants/options';
+import { seriesSearchSchema } from '@/schemas/series';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/select';
+import { useRouter } from 'next/navigation';
+import { format } from 'node:url';
+import { z } from 'zod';
 
 interface SeriesSearchSortProps {
-  defaultValue: SeriesSort;
-  formRef: React.RefObject<HTMLFormElement | null>;
+  defaultValues: z.infer<typeof seriesSearchSchema>;
+  action: string;
 }
 
-export default function SeriesSearchSort({ defaultValue, formRef }: Readonly<SeriesSearchSortProps>) {
+export default function SeriesSearchSort({ defaultValues, action }: Readonly<SeriesSearchSortProps>) {
+  const router = useRouter();
+
+  function onValueChange(value: string) {
+    const href = format({
+      pathname: action,
+      query: { ...defaultValues, sort: value },
+    });
+    router.push(href);
+  }
+
   return (
-    <Select name={'sort'} defaultValue={defaultValue} onValueChange={() => formRef.current?.submit()}>
+    <Select name={'sort'} defaultValue={defaultValues.sort} onValueChange={onValueChange}>
       <SelectTrigger className="w-38">
         <SelectValue placeholder={'Sort'} />
       </SelectTrigger>

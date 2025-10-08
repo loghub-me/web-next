@@ -1,6 +1,7 @@
 'use client';
 
-import { InputWithIcon } from '@ui/input';
+import { QuestionSearchSubmit } from '@/components/client/question';
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@ui/input-group';
 import { SearchIcon } from 'lucide-react';
 import { useFormStatus } from 'react-dom';
 
@@ -12,13 +13,20 @@ export default function QuestionSearchQuery({ defaultValue }: Readonly<QuestionS
   const { pending } = useFormStatus();
 
   return (
-    <InputWithIcon
-      type={'text'}
-      name={'query'}
-      icon={SearchIcon}
-      placeholder={'검색어를 입력해주세요...'}
-      defaultValue={defaultValue}
-      disabled={pending}
-    />
+    <InputGroup>
+      <InputGroupAddon align={'inline-start'}>
+        <SearchIcon />
+      </InputGroupAddon>
+      <InputGroupInput
+        type={'text'}
+        name={'query'}
+        placeholder={'검색어를 입력해주세요...'}
+        defaultValue={defaultValue}
+        disabled={pending}
+      />
+      <InputGroupAddon align={'inline-end'}>
+        <QuestionSearchSubmit />
+      </InputGroupAddon>
+    </InputGroup>
   );
 }

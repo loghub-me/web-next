@@ -2,7 +2,7 @@
 
 import { SettingPasswordDialog, SettingUsernameDialog, SettingUsernameForm } from '@/components/client/setting';
 import { InputWithIcon } from '@ui/input';
-import { AtSignIcon, SquareAsteriskIcon } from 'lucide-react';
+import { AtSignIcon, MailIcon, SquareAsteriskIcon } from 'lucide-react';
 import { useState } from 'react';
 
 interface SettingAccountFormProps {
@@ -16,9 +16,9 @@ export default function SettingAccountForm({ session }: Readonly<SettingAccountF
     <div className="space-y-4">
       <div className="space-y-2">
         <label className="inline-block text-sm font-medium leading-none">이메일</label>
-        <InputWithIcon icon={AtSignIcon} type={'email'} value={session.email} disabled />
+        <InputWithIcon icon={MailIcon} type={'email'} value={session.email} disabled />
       </div>
-      <div className="flex gap-4">
+      <div className="flex flex-col md:flex-row gap-4">
         <div className="flex-1 space-y-2">
           <label className="inline-block text-sm font-medium leading-none">유저네임</label>
           <div className="flex gap-2">

@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  QuestionSearchFilter,
-  QuestionSearchQuery,
-  QuestionSearchSort,
-  QuestionSearchSubmit,
-} from '@/components/client/question';
+import { QuestionSearchFilter, QuestionSearchQuery, QuestionSearchSort } from '@/components/client/question';
 import { questionSearchSchema } from '@/schemas/question';
 import Form from 'next/form';
 import { useRef } from 'react';
@@ -25,9 +20,8 @@ export default function QuestionSearchForm({
   return (
     <Form ref={formRef} action={action} className="space-y-3">
       <div className="flex gap-2">
-        <QuestionSearchSort defaultValue={defaultValues.sort} formRef={formRef} />
+        <QuestionSearchSort defaultValues={defaultValues} action={action} />
         <QuestionSearchQuery defaultValue={defaultValues.query} />
-        <QuestionSearchSubmit />
       </div>
       <QuestionSearchFilter defaultValues={defaultValues} action={action} />
     </Form>

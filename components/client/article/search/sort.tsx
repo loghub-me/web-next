@@ -1,16 +1,30 @@
 'use client';
 
 import { ARTICLE_SORT_OPTIONS } from '@/constants/options';
+import { articleSearchSchema } from '@/schemas/article';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/select';
+import { useRouter } from 'next/navigation';
+import { format } from 'node:url';
+import { z } from 'zod';
 
 interface ArticleSearchSortProps {
-  defaultValue: ArticleSort;
-  formRef: React.RefObject<HTMLFormElement | null>;
+  defaultValues: z.infer<typeof articleSearchSchema>;
+  action: string;
 }
 
-export default function ArticleSearchSort({ defaultValue, formRef }: Readonly<ArticleSearchSortProps>) {
+export default function ArticleSearchSort({ defaultValues, action }: Readonly<ArticleSearchSortProps>) {
+  const router = useRouter();
+
+  function onValueChange(value: string) {
+    const href = format({
+      pathname: action,
+      query: { ...defaultValues, sort: value },
+    });
+    router.push(href);
+  }
+
   return (
-    <Select name={'sort'} defaultValue={defaultValue} onValueChange={() => formRef.current?.submit()}>
+    <Select name={'sort'} defaultValue={defaultValues.sort} onValueChange={onValueChange}>
       <SelectTrigger className="w-38">
         <SelectValue placeholder={'Sort'} />
       </SelectTrigger>

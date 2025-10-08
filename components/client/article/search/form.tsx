@@ -1,6 +1,6 @@
 'use client';
 
-import { ArticleSearchQuery, ArticleSearchSort, ArticleSearchSubmit } from '@/components/client/article';
+import { ArticleSearchQuery, ArticleSearchSort } from '@/components/client/article';
 import { articleSearchSchema } from '@/schemas/article';
 import Form from 'next/form';
 import { useRef } from 'react';
@@ -19,9 +19,8 @@ export default function ArticleSearchForm({
 
   return (
     <Form ref={formRef} action={action} className="flex gap-2">
-      <ArticleSearchSort defaultValue={defaultValues.sort} formRef={formRef} />
+      <ArticleSearchSort defaultValues={defaultValues} action={action} />
       <ArticleSearchQuery defaultValue={defaultValues.query} />
-      <ArticleSearchSubmit />
     </Form>
   );
 }
