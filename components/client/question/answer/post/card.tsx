@@ -10,6 +10,7 @@ interface QuestionAnswerPostCardProps {
   question: {
     id: number;
     writer: UserDetail;
+    answerGenerating: boolean;
   };
 }
 

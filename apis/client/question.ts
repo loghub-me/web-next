@@ -4,6 +4,9 @@ import { clientAPI } from '@/apis/client/instance';
 import { questionAnswerPostSchema, questionEditSchema, questionPostSchema } from '@/schemas/question';
 import { z } from 'zod';
 
+const getQuestionAnswerGenerating = async (questionId: number) =>
+  clientAPI.get(`questions/${questionId}/answer-generating`).json<DataResponseBody<boolean>>();
+
 const getQuestionForEdit = async (questionId: number) =>
   clientAPI.get(`questions/${questionId}/edit`).json<QuestionForEdit>();
 
@@ -46,6 +49,7 @@ const removeQuestionStar = (questionId: number) =>
   clientAPI.delete(`questions/star/${questionId}`).json<MessageResponseBody>();
 
 export {
+  getQuestionAnswerGenerating,
   getQuestionForEdit,
   postQuestion,
   editQuestion,

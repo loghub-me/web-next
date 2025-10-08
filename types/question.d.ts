@@ -15,6 +15,7 @@ interface QuestionDetail extends Timestamps {
   content: Content;
   anchors: Anchor[];
   status: QuestionStatus;
+  answerGenerating: boolean;
   stats: QuestionStats;
   writer: UserDetail;
   topics: Topic[];
