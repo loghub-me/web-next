@@ -31,8 +31,8 @@ export default function QuestionAnswerPostCard({ question }: Readonly<QuestionAn
     case 'authenticated':
       return session?.id === question.writer.id ? (
         <Card className="p-4 flex-row items-center bg-primary/10 gap-3">
-          <QuestionAnswerGenerateButton question={question} />
-          <p className="text-sm text-accent-foreground">을 통해 AI에게 답변 작성을 요청할 수 있습니다.</p>
+          <QuestionAnswerGenerateButton question={question} align={'start'} />
+          <p className="text-sm text-accent-foreground">을 통해 AI 답변 작성을 요청해 보세요!</p>
         </Card>
       ) : (
         <Card className="p-0 overflow-hidden">

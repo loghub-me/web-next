@@ -6,20 +6,14 @@ import { handleError } from '@/lib/error';
 import { cn } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
 import { Button } from '@ui/button';
-import {
-  Dialog,
-  DialogCloseButton,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@ui/dialog';
+import { ButtonGroup } from '@ui/button-group';
+import { CardContent, CardDescription, CardHeader, CardTitle } from '@ui/card';
 import { GlowEffect } from '@ui/glow-effect';
-import { BotIcon } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '@ui/popover';
+import { Textarea } from '@ui/textarea';
+import { BotIcon, ChevronDownIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 interface QuestionAnswerGenerateButtonProps {
@@ -28,13 +22,17 @@ interface QuestionAnswerGenerateButtonProps {
     writer: UserDetail;
     answerGenerating: boolean;
   };
+  align: 'start' | 'end';
 }
 
-export default function QuestionAnswerGenerateButton({ question }: Readonly<QuestionAnswerGenerateButtonProps>) {
+export default function QuestionAnswerGenerateButton({ question, align }: Readonly<QuestionAnswerGenerateButtonProps>) {
   const router = useRouter();
   const { session } = useAuth();
+
+  const instructionRef = useRef<HTMLTextAreaElement>(null);
   const [open, setOpen] = useState(false);
   const [polling, setPolling] = useState(false);
+
   const { data: pollingData } = useQuery({
     queryKey: ['getQuestionAnswerGenerating', question.id],
     queryFn: () => getQuestionAnswerGenerating(question.id),
@@ -44,11 +42,14 @@ export default function QuestionAnswerGenerateButton({ question }: Readonly<Ques
   const answerGenerating = pollingData?.data || question.answerGenerating;
 
   function onRequestButtonClick() {
-    requestGenerateQuestionAnswer(question.id)
+    requestGenerateQuestionAnswer(question.id, instructionRef.current?.value)
       .then(({ message }) => {
         toast.success(message, { icon: <BotIcon className="size-4" /> });
         setOpen(false);
         setPolling(true);
+        if (instructionRef.current) {
+          instructionRef.current.value = '';
+        }
       })
       .catch(handleError);
   }
@@ -63,33 +64,40 @@ export default function QuestionAnswerGenerateButton({ question }: Readonly<Ques
 
   return (
     session?.id === question.writer.id && (
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button
-            variant={'outline'}
-            className="relative overflow-hidden rounded-full border-blue-400/40 dark:border-blue-400/40"
-            disabled={answerGenerating}
-          >
-            <GlowEffect color={'bg-blue-400'} />
-            <BotIcon className={cn('text-blue-400', answerGenerating && 'animate-swing repeat-infinite')} /> 답변 생성
-            {answerGenerating && '중...'}
-          </Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>AI 답변 생성 요청</DialogTitle>
-            <DialogDescription>
-              답변 생성은 <strong>10분에 한 번씩</strong> 요청할 수 있습니다.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <DialogCloseButton>취소하기</DialogCloseButton>
-            <Button type="submit" variant={'secondary'} className="border" onClick={onRequestButtonClick}>
-              <BotIcon className="text-blue-400" /> 요청하기
+      <ButtonGroup className="relative overflow-hidden rounded-full border-blue-400/40 dark:border-blue-400/40">
+        <Button
+          variant={'outline'}
+          className="has-[>svg]:pr-2.5 rounded-full"
+          onClick={onRequestButtonClick}
+          disabled={answerGenerating}
+        >
+          <GlowEffect color={'bg-blue-400'} />
+          <BotIcon className={cn('text-blue-400', answerGenerating && 'animate-swing repeat-infinite')} />
+          <span className="hidden md:inline-block">답변 생성{answerGenerating && '중...'}</span>
+        </Button>
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <Button variant={'outline'} className="has-[>svg]:pl-2.5 rounded-full" disabled={answerGenerating}>
+              <ChevronDownIcon />
             </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+          </PopoverTrigger>
+          <PopoverContent align={align} className="px-0 py-4 flex flex-col gap-2">
+            <CardHeader className="space-y-1.5">
+              <CardTitle>AI 답변 생성 요청</CardTitle>
+              <CardDescription>
+                답변 생성은 <strong>10분에 한 번씩</strong> 요청 가능합니다.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Textarea
+                name="instruction"
+                ref={instructionRef}
+                placeholder={'추가 요청사항을 입력해보세요.\n(예: 답변 스타일)'}
+              />
+            </CardContent>
+          </PopoverContent>
+        </Popover>
+      </ButtonGroup>
     )
   );
 }

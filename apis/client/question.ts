@@ -36,8 +36,8 @@ const deleteQuestionAnswer = (questionId: number, answerId: number) =>
 const acceptQuestionAnswer = (questionId: number, answerId: number) =>
   clientAPI.post(`questions/${questionId}/answers/${answerId}/accept`).json<MethodResponseBody>();
 
-const requestGenerateQuestionAnswer = (questionId: number) =>
-  clientAPI.post(`questions/${questionId}/answers/generate`).json<MessageResponseBody>();
+const requestGenerateQuestionAnswer = (questionId: number, instruction?: string) =>
+  clientAPI.post(`questions/${questionId}/answers/generate`, { json: { instruction } }).json<MessageResponseBody>();
 
 const existsQuestionStar = (questionId: number) =>
   clientAPI.get(`questions/star/${questionId}`).json<DataResponseBody<boolean>>();
