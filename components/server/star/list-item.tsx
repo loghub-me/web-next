@@ -1,3 +1,4 @@
+import { StarToggle } from '@/components/client/star';
 import { TopicLink } from '@/components/client/topic';
 import { UserLink } from '@/components/client/user';
 import { USER_STAR_TARGET_OPTIONS } from '@/constants/options';
@@ -33,6 +34,7 @@ export default function StarListItem({ star }: Readonly<StarListItemProps>) {
           <UserLink {...writer} className="-ml-1.5" />
         </div>
       </div>
+      <StarToggle star={star} />
     </div>
   );
 }

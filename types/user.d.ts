@@ -23,8 +23,10 @@ interface UserPrivacy {
 
 interface UserStar {
   id: number;
+  targetId: number;
   slug: string;
   title: string;
+  count: number;
   writer: User;
   topics: Topic[];
   target: UserStarTarget;
