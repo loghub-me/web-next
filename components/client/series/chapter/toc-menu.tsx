@@ -21,7 +21,7 @@ export default function SeriesChapterTOCMenu({ anchors }: Readonly<SeriesChapter
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="flex flex-col gap-1">
-        {anchors.length === 0 && <ListEmpty message={'목차가 없습니다'} />}
+        {anchors.length === 0 && <ListEmpty className="p-2" message={'목차가 없습니다'} />}
         {anchors.map(({ slug, text }) => (
           <ButtonLink
             key={slug}

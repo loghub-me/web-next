@@ -18,7 +18,7 @@ export default function ArticleTOCCard({ anchors }: Readonly<ArticleTOCCardProps
         <CardTitle className="pl-2 text-sm text-muted-foreground">목차</CardTitle>
       </CardHeader>
       <CardContent className="px-4 flex flex-col gap-0.5">
-        {anchors.length === 0 && <ListEmpty message={'목차가 없습니다'} />}
+        {anchors.length === 0 && <ListEmpty className="p-2" message={'목차가 없습니다'} />}
         {anchors.map(({ slug, text }) => (
           <ButtonLink
             key={slug}
