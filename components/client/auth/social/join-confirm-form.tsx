@@ -1,33 +1,43 @@
 'use client';
 
-import { requestJoin } from '@/apis/client/auth';
-import { AgreePrivacyFormField, AgreeTermsFormField, EmailFormField } from '@/components/client/form-field';
+import { confirmOAuth2Join } from '@/apis/client/auth';
+import { AgreeTermsFormField, AgreePrivacyFormField, EmailFormField } from '@/components/client/form-field';
+import { useAuth } from '@/hooks/use-auth';
 import { handleFormError } from '@/lib/error';
-import { joinRequestSchema } from '@/schemas/auth';
+import { oauth2JoinConfirmSchema, oauth2JoinConfirmSearchParamsSchema } from '@/schemas/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@ui/form';
 import { Input } from '@ui/input';
 import { UserPlusIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-type FormType = z.infer<typeof joinRequestSchema>;
+type FormType = z.infer<typeof oauth2JoinConfirmSchema>;
 
-export default function JoinRequestForm() {
-  const router = useRouter();
+interface SocialJoinConfirmSearchParams {
+  defaultValues: z.infer<typeof oauth2JoinConfirmSearchParamsSchema>;
+}
+
+export default function SocialJoinConfirmForm({ defaultValues }: Readonly<SocialJoinConfirmSearchParams>) {
+  const { registerSession } = useAuth();
   const form = useForm<FormType>({
-    resolver: zodResolver(joinRequestSchema),
-    defaultValues: { email: '', username: '', nickname: '', agreeTerms: false, agreePrivacy: false },
+    resolver: zodResolver(oauth2JoinConfirmSchema),
+    defaultValues: {
+      ...defaultValues,
+      username: '',
+      nickname: '',
+      agreeTerms: false,
+      agreePrivacy: false,
+    },
   });
 
   function onSubmit(values: FormType) {
-    requestJoin(values)
-      .then(({ message }) => {
-        toast.success(message);
-        router.push(`/join/confirm?email=${encodeURIComponent(values.email)}`);
+    confirmOAuth2Join(values)
+      .then(({ body, session }) => {
+        toast.success(body.message);
+        registerSession(session);
       })
       .catch((error) => handleFormError(error, form.setError));
   }
@@ -35,7 +45,7 @@ export default function JoinRequestForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <EmailFormField control={form.control} />
+        <EmailFormField control={form.control} readOnly />
         <FormField
           control={form.control}
           name="username"
@@ -67,7 +77,7 @@ export default function JoinRequestForm() {
           <AgreePrivacyFormField control={form.control} />
         </div>
         <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-          <UserPlusIcon /> 회원가입
+          <UserPlusIcon /> 가입 완료
         </Button>
       </form>
     </Form>

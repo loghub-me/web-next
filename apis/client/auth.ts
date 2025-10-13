@@ -1,6 +1,12 @@
 import { clientAPI, extendClientAPIConfig } from '@/apis/client/instance';
 import { buildAPIUrl } from '@/lib/utils';
-import { joinConfirmSchema, joinRequestSchema, loginConfirmSchema, loginRequestSchema } from '@/schemas/auth';
+import {
+  joinConfirmSchema,
+  joinRequestSchema,
+  loginConfirmSchema,
+  loginRequestSchema,
+  oauth2JoinConfirmSchema,
+} from '@/schemas/auth';
 import { jwtDecode } from 'jwt-decode';
 import ky, { KyResponse } from 'ky';
 import { z } from 'zod';
@@ -9,6 +15,14 @@ const requestJoin = (json: z.infer<typeof joinRequestSchema>) =>
   clientAPI.post('auth/join/request', { json }).json<MessageResponseBody>();
 const confirmJoin = (json: z.infer<typeof joinConfirmSchema>) =>
   clientAPI.post('auth/join/confirm', { json }).then(async (res) => {
+    const body = await res.json<MessageResponseBody>();
+    const token = extractTokenFromResponse(res);
+    const session = extractSessionFromToken(token);
+    setAuthorizationHeader(token);
+    return { body, session };
+  });
+const confirmOAuth2Join = (json: z.infer<typeof oauth2JoinConfirmSchema>) =>
+  clientAPI.post('oauth2/join/confirm', { json }).then(async (res) => {
     const body = await res.json<MessageResponseBody>();
     const token = extractTokenFromResponse(res);
     const session = extractSessionFromToken(token);
@@ -70,6 +84,6 @@ function setAuthorizationHeader(token: string | null) {
   });
 }
 
-export { requestJoin, confirmJoin };
+export { requestJoin, confirmJoin, confirmOAuth2Join };
 export { requestLogin, confirmLogin };
 export { logout, refreshToken };
