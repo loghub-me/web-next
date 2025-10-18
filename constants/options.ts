@@ -16,23 +16,23 @@ import {
 } from 'lucide-react';
 
 const ARTICLE_SORT_OPTIONS: Record<ArticleSort, { label: string; icon: LucideIcon }> = {
-  trending: { label: '인기순', icon: TrendingUpIcon },
   latest: { label: '최신순', icon: CalendarArrowDownIcon },
   oldest: { label: '오래된순', icon: CalendarArrowUpIcon },
+  trending: { label: '인기순', icon: TrendingUpIcon },
   relevant: { label: '정확도순', icon: ArrowDownWideNarrowIcon },
 };
 
 const SERIES_SORT_OPTIONS: Record<SeriesSort, { label: string; icon: LucideIcon }> = {
-  trending: { label: '인기순', icon: TrendingUpIcon },
   latest: { label: '최신순', icon: CalendarArrowDownIcon },
   oldest: { label: '오래된순', icon: CalendarArrowUpIcon },
+  trending: { label: '인기순', icon: TrendingUpIcon },
   relevant: { label: '정확도순', icon: ArrowDownWideNarrowIcon },
 };
 
 const QUESTION_SORT_OPTIONS: Record<QuestionSort, { label: string; icon: LucideIcon }> = {
-  trending: { label: '인기순', icon: TrendingUpIcon },
   latest: { label: '최신순', icon: CalendarArrowDownIcon },
   oldest: { label: '오래된순', icon: CalendarArrowUpIcon },
+  trending: { label: '인기순', icon: TrendingUpIcon },
   relevant: { label: '정확도순', icon: ArrowDownWideNarrowIcon },
 };
 
