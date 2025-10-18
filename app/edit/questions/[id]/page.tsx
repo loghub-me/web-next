@@ -25,7 +25,6 @@ export default function QuestionEditPage() {
     queryFn: () => getQuestionForEdit(id),
     enabled: status === 'authenticated',
     retry: false,
-    refetchOnMount: false,
   });
 
   useQueryErrorHandle(error, '/search/questions');

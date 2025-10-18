@@ -25,7 +25,6 @@ export default function ArticleEditPage() {
     queryFn: () => getArticleForEdit(id),
     enabled: status === 'authenticated',
     retry: false,
-    refetchOnMount: false,
   });
 
   useQueryErrorHandle(error, '/search/articles');

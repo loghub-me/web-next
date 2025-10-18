@@ -4,6 +4,7 @@ import { editArticle } from '@/apis/client/article';
 import { ThumbnailFormField, TitleFormField, TopicSlugsFormField } from '@/components/client/form-field';
 import { handleFormError } from '@/lib/error';
 import { articleEditSchema } from '@/schemas/article';
+import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '@ui/button';
 import { DialogCloseButton } from '@ui/dialog';
 import { Form, FormField, FormMessage } from '@ui/form';
@@ -21,13 +22,15 @@ interface ArticleEditFormProps {
 
 export default function ArticleEditForm({ id: articleId, form }: Readonly<ArticleEditFormProps>) {
   const router = useRouter();
+  const queryKey = ['getArticleForEdit', articleId] as const;
+  const queryClient = useQueryClient();
   const [topicSlugs, setTopicSlugs] = useState(new Set(form.getValues('topicSlugs')));
 
   function onSubmit(values: z.infer<typeof articleEditSchema>) {
     editArticle(articleId, values)
       .then(({ pathname, message }) => {
         toast.success(message);
-        router.push(pathname);
+        queryClient.invalidateQueries({ queryKey }).then(() => router.push(pathname));
       })
       .catch((err) => handleFormError(err, form.setError));
   }

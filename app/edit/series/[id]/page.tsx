@@ -23,16 +23,17 @@ export default function SeriesEditPage() {
     queryFn: () => getSeriesForEdit(id),
     enabled: status === 'authenticated',
     retry: false,
-    refetchOnMount: 'always',
   });
 
   useQueryErrorHandle(error, '/search/series');
 
   return (
-    <main className="container mx-auto px-4 py-20 min-h-screen space-y-4">
-      {series && <SeriesEditor defaultValues={series} />}
-      {series && <SeriesChapterManager series={series} prefixPath={`/edit/series/${series.id}`} />}
-    </main>
+    status === 'authenticated' && (
+      <main className="container mx-auto px-4 py-20 min-h-screen space-y-4">
+        {series && <SeriesEditor key={series.id} defaultValues={series} />}
+        {series && <SeriesChapterManager series={series} prefixPath={`/edit/series/${series.id}`} />}
+      </main>
+    )
   );
 }
 

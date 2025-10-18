@@ -39,6 +39,7 @@ export default function SeriesChapterManager({ series, prefixPath }: Readonly<Se
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
+  const queryKey = ['getSeriesForEdit', series.id] as const;
   const queryClient = useQueryClient();
 
   function handleDragEnd(event: DragEndEvent) {
@@ -58,7 +59,7 @@ export default function SeriesChapterManager({ series, prefixPath }: Readonly<Se
     changeChapterSequence(series.id, sequences)
       .then(async ({ message }) => {
         toast.success(message);
-        await queryClient.invalidateQueries({ queryKey: ['getSeriesForEdit', series.id] });
+        await queryClient.invalidateQueries({ queryKey });
       })
       .catch(handleError);
   }

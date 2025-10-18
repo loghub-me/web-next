@@ -4,6 +4,7 @@ import { editQuestionAnswer } from '@/apis/client/question';
 import { TitleFormField } from '@/components/client/form-field';
 import { handleFormError } from '@/lib/error';
 import { questionAnswerEditSchema } from '@/schemas/question';
+import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '@ui/button';
 import { DialogCloseButton } from '@ui/dialog';
 import { Form, FormField, FormMessage } from '@ui/form';
@@ -21,12 +22,14 @@ interface QuestionAnswerEditFormProps {
 
 export default function QuestionAnswerEditForm({ questionId, answerId, form }: Readonly<QuestionAnswerEditFormProps>) {
   const router = useRouter();
+  const queryKey = ['getQuestionAnswerForEdit', questionId, answerId] as const;
+  const queryClient = useQueryClient();
 
   function onSubmit(values: z.infer<typeof questionAnswerEditSchema>) {
     editQuestionAnswer(questionId, answerId, values)
       .then(({ pathname, message }) => {
         toast.success(message);
-        router.push(pathname);
+        queryClient.invalidateQueries({ queryKey }).then(() => router.push(pathname));
       })
       .catch((err) => handleFormError(err, form.setError));
   }

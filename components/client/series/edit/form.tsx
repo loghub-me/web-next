@@ -4,6 +4,7 @@ import { editSeries } from '@/apis/client/series';
 import { ThumbnailFormField, TitleFormField, TopicSlugsFormField } from '@/components/client/form-field';
 import { handleFormError } from '@/lib/error';
 import { seriesEditSchema } from '@/schemas/series';
+import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '@ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@ui/form';
 import { Textarea } from '@ui/textarea';
@@ -21,13 +22,15 @@ interface SeriesEditFormProps {
 
 export default function SeriesEditForm({ id: seriesId, form }: Readonly<SeriesEditFormProps>) {
   const router = useRouter();
+  const queryKey = ['getSeriesForEdit', seriesId] as const;
+  const queryClient = useQueryClient();
   const [topicSlugs, setTopicSlugs] = useState(new Set(form.getValues('topicSlugs')));
 
   function onSubmit(values: z.infer<typeof seriesEditSchema>) {
     editSeries(seriesId, values)
       .then(({ pathname, message }) => {
         toast.success(message);
-        router.push(pathname);
+        queryClient.invalidateQueries({ queryKey }).then(() => router.push(pathname));
       })
       .catch((err) => handleFormError(err, form.setError));
   }
