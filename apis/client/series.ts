@@ -4,7 +4,7 @@ import { clientAPI } from '@/apis/client/instance';
 import { seriesChapterEditSchema, seriesEditSchema, seriesPostSchema, seriesReviewPostSchema } from '@/schemas/series';
 import { z } from 'zod';
 
-const getSeriesForEdit = async (seriesId: number) => clientAPI.get(`series/${seriesId}/edit`).json<SeriesForEdit>();
+const getSeriesForEdit = async (seriesId: number) => clientAPI.get(`series/${seriesId}/for-edit`).json<SeriesForEdit>();
 
 const postSeries = (json: z.infer<typeof seriesPostSchema>) =>
   clientAPI.post(`series`, { json }).json<RedirectResponseBody>();
@@ -15,7 +15,7 @@ const editSeries = (seriesId: number, json: z.infer<typeof seriesEditSchema>) =>
 const deleteSeries = (seriesId: number) => clientAPI.delete(`series/${seriesId}`).json<MessageResponseBody>();
 
 const getSeriesChapterForEdit = async (seriesId: number, sequence: number) =>
-  clientAPI.get(`series/${seriesId}/chapters/${sequence}/edit`).json<SeriesChapterForEdit>();
+  clientAPI.get(`series/${seriesId}/chapters/${sequence}/for-edit`).json<SeriesChapterForEdit>();
 
 const createSeriesChapter = (seriesId: number) =>
   clientAPI.post(`series/${seriesId}/chapters`).json<MessageResponseBody>();

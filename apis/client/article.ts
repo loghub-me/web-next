@@ -5,7 +5,7 @@ import { articleCommentPostSchema, articleEditSchema, articlePostSchema } from '
 import { z } from 'zod';
 
 const getArticleForEdit = async (articleId: number) =>
-  clientAPI.get(`articles/${articleId}/edit`).json<ArticleForEdit>();
+  clientAPI.get(`articles/${articleId}/for-edit`).json<ArticleForEdit>();
 
 const postArticle = (json: z.infer<typeof articlePostSchema>) =>
   clientAPI.post(`articles`, { json }).json<RedirectResponseBody>();

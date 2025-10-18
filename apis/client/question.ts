@@ -8,7 +8,7 @@ const getQuestionAnswerGenerating = async (questionId: number) =>
   clientAPI.get(`questions/${questionId}/answer-generating`).json<DataResponseBody<boolean>>();
 
 const getQuestionForEdit = async (questionId: number) =>
-  clientAPI.get(`questions/${questionId}/edit`).json<QuestionForEdit>();
+  clientAPI.get(`questions/${questionId}/for-edit`).json<QuestionForEdit>();
 
 const postQuestion = (json: z.infer<typeof questionPostSchema>) =>
   clientAPI.post(`questions`, { json }).json<RedirectResponseBody>();
@@ -22,7 +22,7 @@ const closeQuestion = (questionId: number) =>
   clientAPI.post(`questions/${questionId}/close`).json<RedirectResponseBody>();
 
 const getQuestionAnswerForEdit = async (questionId: number, answerId: number) =>
-  clientAPI.get(`questions/${questionId}/answers/${answerId}/edit`).json<QuestionAnswerForEdit>();
+  clientAPI.get(`questions/${questionId}/answers/${answerId}/for-edit`).json<QuestionAnswerForEdit>();
 
 const postQuestionAnswer = (questionId: number, json: z.infer<typeof questionAnswerPostSchema>) =>
   clientAPI.post(`questions/${questionId}/answers`, { json }).json<RedirectResponseBody>();
