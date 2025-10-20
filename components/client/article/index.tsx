@@ -15,6 +15,7 @@ export { default as ArticleEditDialog } from '@/components/client/article/edit/d
 export { default as ArticleEditForm } from '@/components/client/article/edit/form';
 
 export { default as ArticleCommentForm } from '@/components/client/article/comment/form';
+export { default as ArticleCommentEditForm } from '@/components/client/article/comment/edit-form';
 export { default as ArticleCommentList } from '@/components/client/article/comment/list';
 export { default as ArticleCommentListItem } from '@/components/client/article/comment/list-item';
 export { default as ArticleCommentListSkeleton } from '@/components/client/article/comment/list-skeleton';

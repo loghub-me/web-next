@@ -18,13 +18,13 @@ export default function RatingFormField<T extends { rating: number }>({ control 
         <FormItem>
           <Select onValueChange={(value) => field.onChange(parseInt(value, 10))} defaultValue={field.value.toString()}>
             <FormControl>
-              <SelectTrigger className="bg-card">
+              <SelectTrigger size={'sm'} className="px-2 mb-0">
                 <SelectValue placeholder="평점을 선택해주세요" />
               </SelectTrigger>
             </FormControl>
             <SelectContent>
               {[5, 4, 3, 2, 1].map((i) => (
-                <SelectItem key={i} value={i.toString()}>
+                <SelectItem key={i} value={i.toString()} className="px-1.5">
                   <div className="flex gap-0.5">
                     <StarIcon size={i} fill={true} />
                   </div>

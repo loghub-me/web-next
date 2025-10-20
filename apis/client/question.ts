@@ -48,20 +48,7 @@ const addQuestionStar = (questionId: number) =>
 const removeQuestionStar = (questionId: number) =>
   clientAPI.delete(`questions/star/${questionId}`).json<MessageResponseBody>();
 
-export {
-  getQuestionAnswerGenerating,
-  getQuestionForEdit,
-  postQuestion,
-  editQuestion,
-  deleteQuestion,
-  closeQuestion,
-  getQuestionAnswerForEdit,
-  postQuestionAnswer,
-  editQuestionAnswer,
-  deleteQuestionAnswer,
-  acceptQuestionAnswer,
-  requestGenerateQuestionAnswer,
-  existsQuestionStar,
-  addQuestionStar,
-  removeQuestionStar,
-};
+export { getQuestionForEdit, postQuestion, editQuestion, deleteQuestion, closeQuestion };
+export { getQuestionAnswerForEdit, postQuestionAnswer, editQuestionAnswer, deleteQuestionAnswer, acceptQuestionAnswer };
+export { getQuestionAnswerGenerating, requestGenerateQuestionAnswer };
+export { existsQuestionStar, addQuestionStar, removeQuestionStar };

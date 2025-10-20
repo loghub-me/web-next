@@ -19,11 +19,5 @@ const questionAnswerPostSchema = z.object({ title, content });
 const questionAnswerEditSchema = questionAnswerPostSchema;
 const questionAnswerEditPageSchema = z.object({ id: coercedId, answerId: coercedId });
 
-export {
-  questionSearchSchema,
-  questionPostSchema,
-  questionEditSchema,
-  questionAnswerPostSchema,
-  questionAnswerEditSchema,
-  questionAnswerEditPageSchema,
-};
+export { questionSearchSchema, questionPostSchema, questionEditSchema };
+export { questionAnswerPostSchema, questionAnswerEditSchema, questionAnswerEditPageSchema };

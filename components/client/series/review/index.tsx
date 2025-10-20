@@ -28,7 +28,7 @@ export default function SeriesReviews({ id: seriesId }: Readonly<SeriesReviewsPr
   return (
     <Card>
       <CardHeader className="pb-4 border-b">
-        <SeriesReviewForm seriesId={seriesId} queryKeys={[reviewsQueryKey]} />
+        <SeriesReviewForm seriesId={seriesId} queryKey={reviewsQueryKey} />
       </CardHeader>
       <CardContent>
         <SeriesReviewList>

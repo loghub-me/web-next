@@ -28,18 +28,6 @@ export default function ArticleCommentReplies({
     enabled: load,
   });
 
-  // if (!load) {
-  //   return (
-  //     <Button variant={'link'} className="p-0 h-7 text-xs" onClick={() => setLoad(true)}>
-  //       {replyCount}개의 답글
-  //     </Button>
-  //   );
-  // }
-
-  // if (status === 'pending') {
-  //   return <ArticleCommentListSkeleton size={1} />;
-  // }
-
   return (
     <>
       <Button variant={'link'} className="p-0 h-7 text-xs" onClick={toggleLoad}>

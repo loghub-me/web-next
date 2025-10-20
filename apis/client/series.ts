@@ -1,7 +1,13 @@
 'use client';
 
 import { clientAPI } from '@/apis/client/instance';
-import { seriesChapterEditSchema, seriesEditSchema, seriesPostSchema, seriesReviewPostSchema } from '@/schemas/series';
+import {
+  seriesChapterEditSchema,
+  seriesEditSchema,
+  seriesPostSchema,
+  seriesReviewEditSchema,
+  seriesReviewPostSchema,
+} from '@/schemas/series';
 import { z } from 'zod';
 
 const getSeriesForEdit = async (seriesId: number) => clientAPI.get(`series/${seriesId}/for-edit`).json<SeriesForEdit>();
@@ -35,6 +41,9 @@ const getSeriesReviews = (seriesId: number, page = 1) =>
 const postSeriesReview = (seriesId: number, json: z.infer<typeof seriesReviewPostSchema>) =>
   clientAPI.post(`series/${seriesId}/reviews`, { json: { ...json } }).json<MethodResponseBody>();
 
+const editSeriesReview = (seriesId: number, reviewId: number, json: z.infer<typeof seriesReviewEditSchema>) =>
+  clientAPI.put(`series/${seriesId}/reviews/${reviewId}`, { json: { ...json } }).json<MethodResponseBody>();
+
 const deleteSeriesReview = (seriesId: number, reviewId: number) =>
   clientAPI.delete(`series/${seriesId}/reviews/${reviewId}`).json<MethodResponseBody>();
 
@@ -45,20 +54,7 @@ const addSeriesStar = (seriesId: number) => clientAPI.post(`series/star/${series
 
 const removeSeriesStar = (seriesId: number) => clientAPI.delete(`series/star/${seriesId}`).json<MessageResponseBody>();
 
-export {
-  getSeriesForEdit,
-  postSeries,
-  editSeries,
-  deleteSeries,
-  getSeriesChapterForEdit,
-  createSeriesChapter,
-  editSeriesChapter,
-  deleteSeriesChapter,
-  changeChapterSequence,
-  getSeriesReviews,
-  postSeriesReview,
-  deleteSeriesReview,
-  existsSeriesStar,
-  addSeriesStar,
-  removeSeriesStar,
-};
+export { getSeriesForEdit, postSeries, editSeries, deleteSeries };
+export { getSeriesChapterForEdit, createSeriesChapter, editSeriesChapter, deleteSeriesChapter, changeChapterSequence };
+export { getSeriesReviews, postSeriesReview, editSeriesReview, deleteSeriesReview };
+export { existsSeriesStar, addSeriesStar, removeSeriesStar };

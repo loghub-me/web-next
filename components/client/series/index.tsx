@@ -21,6 +21,7 @@ export { default as SeriesChapterEditLink } from '@/components/client/series/cha
 export { default as SeriesChapterManager } from '@/components/client/series/chapter/manager';
 
 export { default as SeriesReviewForm } from '@/components/client/series/review/form';
+export { default as SeriesReviewEditForm } from '@/components/client/series/review/edit-form';
 export { default as SeriesReviewList } from '@/components/client/series/review/list';
 export { default as SeriesReviewListItem } from '@/components/client/series/review/list-item';
 export { default as SeriesReviewListSkeleton } from '@/components/client/series/review/list-skeleton';

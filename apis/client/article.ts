@@ -1,7 +1,12 @@
 'use client';
 
 import { clientAPI } from '@/apis/client/instance';
-import { articleCommentPostSchema, articleEditSchema, articlePostSchema } from '@/schemas/article';
+import {
+  articleCommentEditSchema,
+  articleCommentPostSchema,
+  articleEditSchema,
+  articlePostSchema,
+} from '@/schemas/article';
 import { z } from 'zod';
 
 const getArticleForEdit = async (articleId: number) =>
@@ -24,6 +29,9 @@ const getArticleCommentReplies = (articleId: number, commentId: number) =>
 const postArticleComment = (articleId: number, json: z.infer<typeof articleCommentPostSchema>, parentId?: number) =>
   clientAPI.post(`articles/${articleId}/comments`, { json: { ...json, parentId } }).json<MethodResponseBody>();
 
+const editArticleComment = (articleId: number, commentId: number, json: z.infer<typeof articleCommentEditSchema>) =>
+  clientAPI.put(`articles/${articleId}/comments/${commentId}`, { json }).json<MethodResponseBody>();
+
 const deleteArticleComment = (articleId: number, commentId: number) =>
   clientAPI.delete(`articles/${articleId}/comments/${commentId}`).json<MethodResponseBody>();
 
@@ -35,16 +43,6 @@ const addArticleStar = (articleId: number) => clientAPI.post(`articles/star/${ar
 const removeArticleStar = (articleId: number) =>
   clientAPI.delete(`articles/star/${articleId}`).json<MessageResponseBody>();
 
-export {
-  getArticleForEdit,
-  postArticle,
-  editArticle,
-  deleteArticle,
-  getArticleComments,
-  getArticleCommentReplies,
-  postArticleComment,
-  deleteArticleComment,
-  existsArticleStar,
-  addArticleStar,
-  removeArticleStar,
-};
+export { getArticleForEdit, postArticle, editArticle, deleteArticle };
+export { getArticleComments, getArticleCommentReplies, postArticleComment, editArticleComment, deleteArticleComment };
+export { existsArticleStar, addArticleStar, removeArticleStar };

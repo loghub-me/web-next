@@ -64,10 +64,10 @@ export default function ArticleCommentForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className={cn('space-y-2', parent && 'mt-2 rounded-md')}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className={cn('space-y-3', parent && 'mt-2 rounded-md')}>
         <div className="flex items-center justify-between gap-2">
           <UserLink {...session} />
-          <Button type="submit" className="" disabled={form.formState.isSubmitting}>
+          <Button type={'submit'} size={'sm'} disabled={form.formState.isSubmitting}>
             <MessageSquareIcon /> 댓글 작성
           </Button>
         </div>

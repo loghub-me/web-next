@@ -5,12 +5,10 @@ import { useAuth } from '@/hooks/use-auth';
 import { handleError } from '@/lib/error';
 import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '@ui/button';
-import { ReplyIcon, XIcon } from 'lucide-react';
+import { PencilIcon, ReplyIcon, XIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface ArticleCommentActionMenuProps {
-  replying: boolean;
-  setReplying: React.Dispatch<React.SetStateAction<boolean>>;
   articleId: number;
   comment: {
     id: number;
@@ -18,19 +16,30 @@ interface ArticleCommentActionMenuProps {
     deleted: boolean;
   };
   queryKeys: (string | number)[][];
+  actionStatus: ArticleCommentActionStatus | null;
+  setActionStatus: React.Dispatch<React.SetStateAction<ArticleCommentActionStatus | null>>;
 }
 
 export default function ArticleCommentActionMenu({
-  replying,
-  setReplying,
   articleId,
   comment,
   queryKeys,
+  actionStatus,
+  setActionStatus,
 }: Readonly<ArticleCommentActionMenuProps>) {
   const { status, session } = useAuth();
   const queryClient = useQueryClient();
 
+  function onClickReplying() {
+    setActionStatus(actionStatus === 'replying' ? null : 'replying');
+  }
+
+  function onClickEditing() {
+    setActionStatus(actionStatus === 'editing' ? null : 'editing');
+  }
+
   function onClickDelete() {
+    setActionStatus(null);
     deleteArticleComment(articleId, comment.id)
       .then(async ({ message }) => {
         toast.success(message);
@@ -44,18 +53,28 @@ export default function ArticleCommentActionMenu({
       <div className="ml-2 flex gap-1">
         {!comment.deleted && (
           <Button
-            variant={replying ? 'secondary' : 'ghost'}
+            variant={actionStatus === 'replying' ? 'secondary' : 'ghost'}
             size={'icon'}
             className="size-6 rounded-full"
-            onClick={() => setReplying((prev) => !prev)}
+            onClick={onClickReplying}
           >
             <ReplyIcon className="size-3 text-muted-foreground" />
           </Button>
         )}
         {!comment.deleted && session?.id === comment.writer.id && (
-          <Button variant={'ghost'} size={'icon'} className="size-6 rounded-full" onClick={onClickDelete}>
-            <XIcon className="size-3 text-muted-foreground" />
-          </Button>
+          <>
+            <Button
+              variant={actionStatus === 'editing' ? 'secondary' : 'ghost'}
+              size={'icon'}
+              className="size-6 rounded-full"
+              onClick={onClickEditing}
+            >
+              <PencilIcon className="size-3 text-muted-foreground" />
+            </Button>
+            <Button variant={'ghost'} size={'icon'} className="size-6 rounded-full" onClick={onClickDelete}>
+              <XIcon className="size-3 text-muted-foreground" />
+            </Button>
+          </>
         )}
       </div>
     )

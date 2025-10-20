@@ -43,3 +43,4 @@ interface ArticleComment extends Timestamps {
 }
 
 type ArticleSort = 'latest' | 'oldest' | 'relevant' | 'trending';
+type ArticleCommentActionStatus = 'editing' | 'replying';

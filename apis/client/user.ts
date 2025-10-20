@@ -28,14 +28,6 @@ const uploadImage = (file: File) => {
   return clientAPI.post('users/image/upload', { body: formData }).json<DataResponseBody<string>>();
 };
 
-export {
-  getActivitySummaries,
-  getActivities,
-  getSelfProfile,
-  getSelfPrivacy,
-  updateSelfUsername,
-  updateSelfProfile,
-  updateSelfPrivacy,
-  updateSelfAvatar,
-  uploadImage,
-};
+export { getSelfProfile, getSelfPrivacy, updateSelfUsername, updateSelfProfile, updateSelfPrivacy, updateSelfAvatar };
+export { getActivitySummaries, getActivities };
+export { uploadImage };
