@@ -43,18 +43,14 @@
 
     ol,
     ul {
-      @apply pl-2;
+      @apply space-y-1 py-1 pl-6;
     }
 
-    li {
-      @apply list-inside;
-    }
-
-    ol li {
+    ol > li {
       @apply list-decimal;
     }
 
-    ul li {
+    ul > li {
       @apply list-disc;
     }
 
@@ -83,8 +79,9 @@
       @apply bg-code rounded px-1 font-mono;
     }
 
-    p > code {
-      @apply text-sm;
+    p > code,
+    li > code {
+      @apply text-[0.8em];
     }
 
     pre {
