@@ -50,7 +50,13 @@ function SeriesChapterEditor({ seriesId, defaultValues }: Readonly<SeriesChapter
 
   function onDialogOpenChange(open: boolean) {
     if (open) {
-      form.setValue('content', easyMDERef.current?.value() || '');
+      const title = form.getValues('title');
+      const content = easyMDERef.current?.value() || '';
+      if (!title) {
+        const firstLine = content.split('\n')[0] || '';
+        form.setValue('title', firstLine.replace(/^#+\s*/, '').trim());
+      }
+      form.setValue('content', content);
     }
   }
 
