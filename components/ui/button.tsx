@@ -53,6 +53,7 @@ function ButtonLink({
   size,
   href,
   disabled = false,
+  prefetch = false,
   ...props
 }: LinkProps &
   Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps> &
@@ -66,7 +67,13 @@ function ButtonLink({
   }
 
   return (
-    <Link href={href} data-slot="button" className={cn(buttonVariants({ variant, size, className }))} {...props}>
+    <Link
+      href={href}
+      prefetch={prefetch}
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    >
       {props.children}
     </Link>
   );

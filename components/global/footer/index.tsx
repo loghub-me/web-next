@@ -23,10 +23,22 @@ export default function GlobalFooter() {
               LogHub는 개발자들이 자신의 지식을 공유하고, 서로의 경험을 나누는 공간입니다.
             </p>
             <div className="-ml-2">
-              <ButtonLink variant={'ghost'} href={process.env.NEXT_PUBLIC_GITHUB_URL!} target={'_blank'} size={'icon'}>
+              <ButtonLink
+                variant={'ghost'}
+                href={process.env.NEXT_PUBLIC_GITHUB_URL!}
+                target={'_blank'}
+                size={'icon'}
+                prefetch={false}
+              >
                 <TopicIcon slug="github" name="GitHub" />
               </ButtonLink>
-              <ButtonLink variant={'ghost'} href={process.env.NEXT_PUBLIC_DISCORD_URL!} target={'_blank'} size={'icon'}>
+              <ButtonLink
+                variant={'ghost'}
+                href={process.env.NEXT_PUBLIC_DISCORD_URL!}
+                target={'_blank'}
+                size={'icon'}
+                prefetch={false}
+              >
                 <TopicIcon slug="discord" name="Discord" />
               </ButtonLink>
             </div>
@@ -37,7 +49,7 @@ export default function GlobalFooter() {
                 <h5 className="text-primary font-semibold">{section.label}</h5>
                 <div className="flex flex-col gap-0.5">
                   {section.links.map((link) => (
-                    <Link key={link.href} href={link.href} className="text-sm hover:underline">
+                    <Link key={link.href} href={link.href} className="text-sm hover:underline" prefetch={false}>
                       {link.label}
                     </Link>
                   ))}
@@ -52,7 +64,7 @@ export default function GlobalFooter() {
         <div className="flex container mx-auto px-4">
           <p className="flex-1">&copy; {new Date().getFullYear()} LogHub.</p>
           {LEGAL_LINKS.map(({ label, href }) => (
-            <ButtonLink key={href} href={href} size={'sm'}>
+            <ButtonLink key={href} href={href} size={'sm'} prefetch={false}>
               {label}
             </ButtonLink>
           ))}

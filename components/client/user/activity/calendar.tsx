@@ -84,6 +84,7 @@ export default function UserActivityCalendar({ username, summaries }: Readonly<U
         <Link
           key={dateString}
           href={{ pathname: `/${username}`, query: { date: dateString } }}
+          prefetch={false}
           className={cn('size-4 rounded-[4px] transition-colors', colorClass)}
           title={`${dateString} — 활동 ${activityCount}`}
           aria-label={`${dateString} 활동 ${activityCount}`}

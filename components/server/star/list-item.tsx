@@ -19,7 +19,7 @@ export default function StarListItem({ star }: Readonly<StarListItemProps>) {
       <TargetIcon className={cn('mt-1 size-4')} />
       <div className="flex-1 space-y-1.5">
         <h3 className="font-medium line-clamp-2">
-          <Link href={href} className="mr-2 transition-colors hover:text-accent-foreground/50">
+          <Link href={href} prefetch={false} className="mr-2 transition-colors hover:text-accent-foreground/50">
             {title}
           </Link>
         </h3>
