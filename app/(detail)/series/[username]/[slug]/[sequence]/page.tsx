@@ -9,8 +9,6 @@ import { seriesChapterDetailSchema } from '@/schemas/series';
 import { Card } from '@ui/card';
 import { Metadata } from 'next';
 
-export const experimental_ppr = true;
-
 export async function generateMetadata({
   params,
 }: PageProps<'/series/[username]/[slug]/[sequence]'>): Promise<Metadata> {

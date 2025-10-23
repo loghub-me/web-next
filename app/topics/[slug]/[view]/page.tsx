@@ -8,8 +8,6 @@ import { topicDetailSchema } from '@/schemas/topic';
 import ListEmpty from '@ui/list-empty';
 import { ComponentType, ReactNode, Suspense } from 'react';
 
-export const experimental_ppr = true;
-
 interface ListComponents {
   list: ComponentType<{ children?: ReactNode; hasAside?: boolean }>;
   listSkeleton: ComponentType<{ size?: number }>;
