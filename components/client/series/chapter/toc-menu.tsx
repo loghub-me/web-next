@@ -2,7 +2,7 @@
 
 import { useTOC } from '@/hooks/use-toc';
 import { Button, ButtonLink } from '@ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@ui/dropdown-menu';
 import ListEmpty from '@ui/list-empty';
 import { ListOrderedIcon } from 'lucide-react';
 
@@ -20,18 +20,20 @@ export default function SeriesChapterTOCMenu({ anchors }: Readonly<SeriesChapter
           <ListOrderedIcon />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="flex flex-col gap-1">
+      <DropdownMenuContent align={'end'} className="flex flex-col gap-1 max-w-72">
         {anchors.length === 0 && <ListEmpty className="p-2" message={'목차가 없습니다'} />}
         {anchors.map(({ slug, text }) => (
-          <ButtonLink
-            key={slug}
-            href={`#${encodeURIComponent(slug)}`}
-            size={'sm'}
-            variant={activeSlug === slug ? 'secondary' : 'ghost'}
-            className="px-2 py-1.5 min-h-9 h-auto justify-start whitespace-normal"
-          >
-            {text}
-          </ButtonLink>
+          <DropdownMenuItem key={slug} className="w-full" asChild>
+            <ButtonLink
+              href={`#${encodeURIComponent(slug)}`}
+              size={'sm'}
+              variant={activeSlug === slug ? 'secondary' : 'ghost'}
+              className="px-2 py-1.5 min-h-9 w-full h-auto justify-start whitespace-normal"
+            >
+              {text}
+              {text}
+            </ButtonLink>
+          </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
