@@ -5,7 +5,7 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@ui/ca
 import { ChevronRightIcon, HomeIcon } from 'lucide-react';
 
 export default async function SafeLinkPage({ searchParams }: PageProps<'/safe-link'>) {
-  const { url } = parseObject(searchParams, safeLinkSchema);
+  const { url } = parseObject(await searchParams, safeLinkSchema);
 
   return (
     <main className="container flex items-center justify-center mx-auto px-4 min-h-screen space-y-4">
@@ -20,7 +20,7 @@ export default async function SafeLinkPage({ searchParams }: PageProps<'/safe-li
           <ButtonLink href="/" className="mr-2">
             <HomeIcon /> 홈으로 돌아가기
           </ButtonLink>
-          <ButtonLink variant={'default'} href={url} target="_blank">
+          <ButtonLink variant={'default'} href={url} target={'_self'}>
             <ChevronRightIcon /> 이동하기
           </ButtonLink>
         </CardFooter>
