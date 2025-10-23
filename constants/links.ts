@@ -11,9 +11,24 @@ import {
 } from 'lucide-react';
 
 const SEARCH_LINKS = [
-  { label: '아티클', href: '/search/articles', icon: ScrollIcon },
-  { label: '시리즈', href: '/search/series', icon: LayersIcon },
-  { label: '질문', href: '/search/questions', icon: MessagesSquareIcon },
+  {
+    label: '아티클',
+    href: '/search/articles',
+    matchPaths: ['/articles/', '/post/articles', '/edit/articles'],
+    icon: ScrollIcon,
+  },
+  {
+    label: '시리즈',
+    href: '/search/series',
+    matchPaths: ['/series/', '/post/series', '/edit/series'],
+    icon: LayersIcon,
+  },
+  {
+    label: '질문',
+    href: '/search/questions',
+    matchPaths: ['/questions/', '/post/questions', '/edit/questions'],
+    icon: MessagesSquareIcon,
+  },
   { label: '토픽', href: '/topics', icon: TagIcon },
 ];
 const POST_LINKS = [

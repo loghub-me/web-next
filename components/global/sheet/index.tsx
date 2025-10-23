@@ -31,8 +31,8 @@ export default function GlobalSheet() {
           </SheetTitle>
         </SheetHeader>
         <nav className="px-4 flex flex-col gap-1">
-          {HEADER_LINKS.map(({ href, label, icon: Icon }) => (
-            <SheetNavLink key={href} href={href} closeSheet={closeSheet}>
+          {HEADER_LINKS.map(({ href, matchPaths, label, icon: Icon }) => (
+            <SheetNavLink key={href} href={href} matchPaths={matchPaths} closeSheet={closeSheet}>
               <Icon /> {label}
             </SheetNavLink>
           ))}

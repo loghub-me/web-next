@@ -14,9 +14,9 @@ export default function GlobalHeader() {
           <Symbol size={36} />
         </Link>
         <nav className="flex-1 flex items-center gap-1">
-          {HEADER_LINKS.map((link) => (
-            <HeaderNavLink key={link.href} href={link.href}>
-              {link.label}
+          {HEADER_LINKS.map(({ href, matchPaths, label }) => (
+            <HeaderNavLink key={href} matchPaths={matchPaths} href={href}>
+              {label}
             </HeaderNavLink>
           ))}
         </nav>
