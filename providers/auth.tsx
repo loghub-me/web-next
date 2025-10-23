@@ -38,6 +38,7 @@ export default function AuthProvider({ children }: Readonly<{ children: React.Re
       timeoutRef.current = setTimeout(() => {
         refreshToken()
           .then(({ body, session }) => {
+            // eslint-disable-next-line react-hooks/immutability
             registerSession(session);
             console.info(body.message);
           })

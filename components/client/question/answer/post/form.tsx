@@ -41,6 +41,7 @@ export default function QuestionAnswerPostForm({ questionId }: Readonly<Question
 
   return (
     <Form {...form}>
+      {/* eslint-disable-next-line react-hooks/refs */}
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="p-2 border-b">
           <FormField
