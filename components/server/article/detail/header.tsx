@@ -14,7 +14,7 @@ export default function ArticleDetailHeader(props: Readonly<ArticleDetailHeaderP
   const { writer, id, stats } = props;
 
   return (
-    <CardHeader className="sticky top-0 z-50 w-full h-16 flex items-center justify-end gap-2 bg-card/70 backdrop-blur rounded-t-xl border-b">
+    <CardHeader className="sticky top-0 z-10 w-full h-16 flex items-center justify-end gap-2 bg-card/70 backdrop-blur rounded-t-xl border-b">
       <UserLink {...writer} className={'mr-auto'} />
       <ArticleActionMenu {...props} />
       <ArticleStarToggle id={id} starCount={stats.starCount} />
