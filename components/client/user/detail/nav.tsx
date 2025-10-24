@@ -1,7 +1,7 @@
 'use client';
 
 import { ButtonLink } from '@ui/button';
-import { LayersIcon, LucideIcon, MessagesSquareIcon, ScrollIcon, StarIcon, UserIcon } from 'lucide-react';
+import { LayersIcon, LucideIcon, MessagesSquareIcon, NotepadTextIcon, StarIcon, UserIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 interface UserDetailNavProps {
@@ -11,7 +11,7 @@ interface UserDetailNavProps {
 export default function UserDetailNav({ username }: Readonly<UserDetailNavProps>) {
   const links = [
     { label: '프로필', href: `/${username}`, icon: UserIcon },
-    { label: '아티클', href: `/${username}/articles`, icon: ScrollIcon },
+    { label: '아티클', href: `/${username}/articles`, icon: NotepadTextIcon },
     { label: '시리즈', href: `/${username}/series`, icon: LayersIcon },
     { label: '질문', href: `/${username}/questions`, icon: MessagesSquareIcon },
     { label: '스타', href: `/${username}/stars`, icon: StarIcon },

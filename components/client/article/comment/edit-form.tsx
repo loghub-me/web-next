@@ -47,7 +47,7 @@ export default function ArticleCommentEditForm({
   return (
     session && (
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className={cn('space-y-2')}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className={cn('mt-0.5 space-y-2')}>
           <FormField
             control={form.control}
             name="content"

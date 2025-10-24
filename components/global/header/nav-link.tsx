@@ -17,9 +17,12 @@ export default function HeaderNavLink({ href, matchPaths, children }: Readonly<H
   return (
     <ButtonLink
       href={href}
-      variant={'ghost'}
-      className={cn('hidden md:flex', active ? 'font-semibold' : 'font-medium text-muted-foreground')}
+      variant={active ? 'secondary' : 'ghost'}
       size={'sm'}
+      className={cn(
+        'font-semibold hover:text-primary hidden md:flex has-[>svg]:px-2',
+        active ? 'text-primary' : 'text-muted-foreground'
+      )}
     >
       {children}
     </ButtonLink>

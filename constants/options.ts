@@ -10,7 +10,7 @@ import {
   MessagesSquareIcon,
   MonitorIcon,
   MoonIcon,
-  ScrollIcon,
+  NotepadTextIcon,
   SunIcon,
   TrendingUpIcon,
 } from 'lucide-react';
@@ -50,7 +50,7 @@ const QUESTION_FILTER_OPTIONS: Record<QuestionFilter, { label: string }> = {
 };
 
 const USER_STAR_TARGET_OPTIONS: Record<UserStarTarget, { label: string; path: string; icon: LucideIcon }> = {
-  ARTICLE: { label: '아티클', path: '/articles', icon: ScrollIcon },
+  ARTICLE: { label: '아티클', path: '/articles', icon: NotepadTextIcon },
   SERIES: { label: '시리즈', path: '/series', icon: LayersIcon },
   QUESTION: { label: '질문', path: '/questions', icon: MessagesSquareIcon },
 };

@@ -18,8 +18,11 @@ export default function SheetNavLink({ href, matchPaths, closeSheet, children }:
   return (
     <ButtonLink
       href={href}
-      variant={'ghost'}
-      className={cn('justify-start', active ? 'font-semibold' : 'font-medium text-muted-foreground')}
+      variant={active ? 'secondary' : 'ghost'}
+      className={cn(
+        'font-semibold hover:text-primary justify-start',
+        active ? 'text-primary' : 'text-muted-foreground'
+      )}
       onNavigate={closeSheet}
     >
       {children}

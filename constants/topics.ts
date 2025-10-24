@@ -67,7 +67,6 @@ const TOPICS = [
   { slug: 'nuxt', name: 'Nuxt.js' },
   { slug: 'svelte', name: 'Svelte' },
   { slug: 'sveltekit', name: 'SvelteKit' },
-  { slug: 'spring', name: 'Spring' },
   { slug: 'angular', name: 'Angular' },
   { slug: 'solidjs', name: 'SolidJS' },
   { slug: 'qwik', name: 'Qwik' },

@@ -11,7 +11,15 @@ import { TOPICS } from '@/constants/topics';
 import { ButtonLink } from '@ui/button';
 import { OrbitingCircle } from '@ui/orbiting-circle';
 import { Tabs, TabsContent, TabsList } from '@ui/tabs';
-import { BotIcon, LayersIcon, MessagesSquareIcon, PencilIcon, ScrollIcon, SproutIcon, TagIcon } from 'lucide-react';
+import {
+  BotIcon,
+  LayersIcon,
+  MessagesSquareIcon,
+  PencilIcon,
+  NotepadTextIcon,
+  SproutIcon,
+  TagIcon,
+} from 'lucide-react';
 
 export default function HomePage() {
   return (
@@ -71,7 +79,7 @@ function ContentsSection() {
     {
       title: '아티클',
       description: '아티클은 다양한 주제에 대한 글을 작성하고 공유하는 공간입니다.',
-      icon: ScrollIcon,
+      icon: NotepadTextIcon,
     },
     {
       title: '시리즈',

@@ -44,7 +44,7 @@ export default function SeriesReviewEditForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="mt-0.5 space-y-2">
         <div className="flex items-center justify-between gap-2">
           <RatingFormField control={form.control} />
           <Button type="submit" size={'sm'} disabled={form.formState.isSubmitting}>

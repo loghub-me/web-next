@@ -1,4 +1,5 @@
 import AuthMenu from '@/components/global/auth-menu';
+import GlobalCommandMenu from '@/components/global/command-menu';
 import HeaderNavLink from '@/components/global/header/nav-link';
 import GlobalSheet from '@/components/global/sheet';
 import Symbol from '@/components/global/symbol';
@@ -14,14 +15,15 @@ export default function GlobalHeader() {
           <Symbol size={36} />
         </Link>
         <nav className="flex-1 flex items-center gap-1">
-          {HEADER_LINKS.map(({ href, matchPaths, label }) => (
+          {HEADER_LINKS.map(({ href, matchPaths, label, icon: Icon }) => (
             <HeaderNavLink key={href} matchPaths={matchPaths} href={href}>
-              {label}
+              <Icon /> {label}
             </HeaderNavLink>
           ))}
         </nav>
         <div className="hidden md:flex items-center gap-1 ml-0 h-full">
           <ThemeSwitch />
+          <GlobalCommandMenu />
           <AuthMenu type={'header'} />
         </div>
         <div className="flex md:hidden items-center gap-1 ml-0 h-full">
