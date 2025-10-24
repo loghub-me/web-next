@@ -26,6 +26,9 @@ const getSeriesChapterForEdit = async (seriesId: number, sequence: number) =>
 const createSeriesChapter = (seriesId: number) =>
   clientAPI.post(`series/${seriesId}/chapters`).json<MessageResponseBody>();
 
+const importSeriesChapter = (seriesId: number, articleId: number) =>
+  clientAPI.post(`series/${seriesId}/chapters/import/${articleId}`).json<MessageResponseBody>();
+
 const editSeriesChapter = (seriesId: number, sequence: number, json: z.infer<typeof seriesChapterEditSchema>) =>
   clientAPI.put(`series/${seriesId}/chapters/${sequence}`, { json }).json<RedirectResponseBody>();
 
@@ -55,6 +58,13 @@ const addSeriesStar = (seriesId: number) => clientAPI.post(`series/star/${series
 const removeSeriesStar = (seriesId: number) => clientAPI.delete(`series/star/${seriesId}`).json<MessageResponseBody>();
 
 export { getSeriesForEdit, postSeries, editSeries, deleteSeries };
-export { getSeriesChapterForEdit, createSeriesChapter, editSeriesChapter, deleteSeriesChapter, changeChapterSequence };
+export {
+  getSeriesChapterForEdit,
+  createSeriesChapter,
+  importSeriesChapter,
+  editSeriesChapter,
+  deleteSeriesChapter,
+  changeChapterSequence,
+};
 export { getSeriesReviews, postSeriesReview, editSeriesReview, deleteSeriesReview };
 export { existsSeriesStar, addSeriesStar, removeSeriesStar };

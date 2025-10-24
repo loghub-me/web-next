@@ -1,7 +1,11 @@
 'use client';
 
 import { changeChapterSequence } from '@/apis/client/series';
-import { SeriesChapterActionMenu, SeriesChapterCreateButton } from '@/components/client/series';
+import {
+  SeriesChapterActionMenu,
+  SeriesChapterCreateButton,
+  SeriesChapterImportButton,
+} from '@/components/client/series';
 import { handleError } from '@/lib/error';
 import {
   closestCenter,
@@ -71,11 +75,14 @@ export default function SeriesChapterManager({ series, prefixPath }: Readonly<Se
   return (
     <Card className="mx-auto max-w-3xl w-full">
       <CardHeader className="flex items-center justify-between gap-2 pb-4 border-b">
-        <div className="space-y-1.5">
+        <div className="space-y-1.5 flex-1">
           <CardTitle>시리즈 챕터 관리</CardTitle>
           <CardDescription>시리즈 챕터를 관리할 수 있습니다.</CardDescription>
         </div>
-        <SeriesChapterCreateButton seriesId={series.id} />
+        <div className="flex flex-col md:flex-row gap-2">
+          <SeriesChapterImportButton seriesId={series.id} />
+          <SeriesChapterCreateButton seriesId={series.id} />
+        </div>
       </CardHeader>
       <CardContent className="flex flex-col gap-1">
         {chapters.length === 0 && <ListEmpty message={'아직 작성된 챕터가 없습니다.'} />}

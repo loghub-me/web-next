@@ -20,6 +20,13 @@ interface ArticleDetail extends Timestamps {
   topics: Topic[];
 }
 
+interface ArticleForImport {
+  id: number;
+  slug: string;
+  title: string;
+  topics: Topic[];
+}
+
 interface ArticleForEdit {
   id: number;
   title: string;

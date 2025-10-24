@@ -2,6 +2,9 @@ import { clientAPI } from '@/apis/client/instance';
 import { settingPrivacyUpdateSchema, settingProfileUpdateSchema, settingUsernameUpdateSchema } from '@/schemas/setting';
 import z from 'zod';
 
+const searchArticlesForImport = async (query: string) =>
+  clientAPI.get(`users/self/articles/for-import`, { searchParams: { query } }).json<ArticleForImport[]>();
+
 const getActivitySummaries = (userId: number) =>
   clientAPI.get(`users/${userId}/activities`).json<UserActivitySummary[]>();
 const getActivities = (userId: number, date: string) =>
@@ -28,6 +31,7 @@ const uploadImage = (file: File) => {
   return clientAPI.post('users/image/upload', { body: formData }).json<DataResponseBody<string>>();
 };
 
-export { getSelfProfile, getSelfPrivacy, updateSelfUsername, updateSelfProfile, updateSelfPrivacy, updateSelfAvatar };
+export { searchArticlesForImport };
 export { getActivitySummaries, getActivities };
+export { getSelfProfile, getSelfPrivacy, updateSelfUsername, updateSelfProfile, updateSelfPrivacy, updateSelfAvatar };
 export { uploadImage };
