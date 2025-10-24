@@ -11,7 +11,7 @@ export default function AuthLayout({ children }: LayoutProps<'/'>) {
       <main className="flex w-full min-h-screen">
         {children}
         <section className="flex-1 p-4 pt-20 hidden md:block">
-          <Card className="relative flex items-center justify-center w-full h-full bg-accent rounded-xl">
+          <Card className="relative flex items-center justify-center w-full h-full bg-muted rounded-xl">
             <Logo width={256} height={64} />
             <Card className="absolute bottom-4 max-w-md p-4">
               <p className="font-medium">{randomQuote.text}</p>
