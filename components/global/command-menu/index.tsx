@@ -45,14 +45,14 @@ export default function GlobalCommandMenu() {
 
   return (
     <>
-      <Button type={'button'} variant={'outline'} className="mr-1 hidden md:flex" onClick={() => setOpen(true)}>
-        <SearchIcon />
-        <span className="mr-2 text-muted-foreground">검색...</span>
+      <Button type={'button'} variant={'outline'} className="hidden md:flex" onClick={() => setOpen(true)}>
+        <SearchIcon className="text-muted-foreground" />
+        <span className="mr-4 text-muted-foreground">기능을 검색해주세요...</span>
         <Kbd>{isMac ? '⌘' : 'Ctrl'} K</Kbd>
       </Button>
-      <CommandDialog open={open} onOpenChange={setOpen} className="p-1.5 bg-accent">
-        <CommandInput icon={SearchIcon} placeholder="기능을 검색하세요..." />
-        <CommandList className="border-t h-64 max-h-64">
+      <CommandDialog open={open} onOpenChange={setOpen} showCloseButton={false}>
+        <CommandInput icon={SearchIcon} placeholder="기능을 검색해주세요..." />
+        <CommandList className="border-t h-92 max-h-92">
           <CommandEmpty>결과를 찾을 수 없습니다.</CommandEmpty>
           {COMMAND_LINKS.map(({ heading, links }) => (
             <Fragment key={heading}>
