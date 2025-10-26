@@ -21,43 +21,74 @@ export const AuthContext = createContext<AuthContextProps>({
 });
 
 const ACCESS_TOKEN_EXPIRATION = 10 * 60 * 1000; // 10 minutes
+const REFRESH_INTERVAL = ACCESS_TOKEN_EXPIRATION - 1 * 60 * 1000; // 1 minute before expiration
 
 export default function AuthProvider({ children }: Readonly<{ children: React.ReactNode }>) {
   const [state, setState] = useState<AuthState>({ status: 'loading' });
-  const timeoutRef = useRef<NodeJS.Timeout>(null);
 
-  const unregisterSession = useCallback(() => {
-    setState({ status: 'unauthenticated' });
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
+  const refreshingRef = useRef(false);
+
+  const clearTimeoutRef = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
+
+  const scheduleTokenRefresh = useCallback(() => {
+    clearTimeoutRef();
+
+    timeoutRef.current = setTimeout(() => {
+      if (refreshingRef.current) return;
+      refreshingRef.current = true;
+
+      refreshToken()
+        .then(({ body, session }) => {
+          console.info(body.message);
+          setState({ status: 'authenticated', session });
+
+          // eslint-disable-next-line react-hooks/immutability
+          scheduleTokenRefresh();
+        })
+        .catch(() => {
+          setState({ status: 'unauthenticated' });
+          clearTimeoutRef();
+        })
+        .finally(() => {
+          refreshingRef.current = false;
+        });
+    }, REFRESH_INTERVAL);
   }, []);
-
-  const registerSession = useCallback(
-    (session: Session) => {
-      setState({ status: 'authenticated', session });
-
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(() => {
-        refreshToken()
-          .then(({ body, session }) => {
-            // eslint-disable-next-line react-hooks/immutability
-            registerSession(session);
-            console.info(body.message);
-          })
-          .catch(unregisterSession);
-      }, ACCESS_TOKEN_EXPIRATION);
-    },
-    [unregisterSession]
-  );
 
   useEffect(() => {
     refreshToken()
       .then(({ body, session }) => {
-        registerSession(session);
         console.info(body.message);
+        setState({ status: 'authenticated', session });
+        scheduleTokenRefresh();
       })
-      .catch(unregisterSession);
-  }, [registerSession, unregisterSession]);
+      .catch(() => setState({ status: 'unauthenticated' }));
+    return () => {
+      clearTimeoutRef();
+    };
+  }, [scheduleTokenRefresh]);
 
   return (
-    <AuthContext.Provider value={{ ...state, registerSession, unregisterSession }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider
+      value={{
+        ...state,
+        registerSession: (session: Session) => {
+          setState({ status: 'authenticated', session });
+          scheduleTokenRefresh();
+        },
+        unregisterSession: () => {
+          setState({ status: 'unauthenticated' });
+          clearTimeoutRef();
+        },
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 }
