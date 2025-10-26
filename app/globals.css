@@ -216,4 +216,8 @@
   strong {
     @apply font-semibold;
   }
+  html.dark [data-hide-on-theme='dark'],
+  html.light [data-hide-on-theme='light'] {
+    display: none;
+  }
 }

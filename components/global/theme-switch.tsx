@@ -1,33 +1,39 @@
 'use client';
 
-import { THEME_OPTIONS } from '@/constants/options';
-import { cn } from '@/lib/utils';
 import { Button } from '@ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@ui/dropdown-menu';
+import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
 
 export default function ThemeSwitch() {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  function onClickButton() {
-    const themes = Object.keys(THEME_OPTIONS);
-    const currentIndex = themes.indexOf(theme || '');
-    const nextIndex = (currentIndex + 1) % themes.length;
-    setTheme(themes[nextIndex]);
-  }
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { setTheme } = useTheme();
 
   return (
-    <Button variant={'ghost'} size={'icon'} onClick={onClickButton}>
-      {mounted &&
-        theme &&
-        Object.entries(THEME_OPTIONS).map(([key, { icon: Icon }]) => (
-          <Icon key={key} className={cn(theme === key ? 'block' : 'hidden')} />
-        ))}
-    </Button>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant={'outline'} size={'icon'}>
+          <SunIcon className="scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+          <MoonIcon className="absolute scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="flex flex-col gap-1">
+        <DropdownMenuItem onClick={() => setTheme('light')} asChild>
+          <Button variant={'ghost'} size={'sm'} className="justify-start">
+            <SunIcon /> 라이트
+          </Button>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('dark')} asChild>
+          <Button variant={'ghost'} size={'sm'} className="justify-start">
+            <MoonIcon /> 다크
+          </Button>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('system')} asChild>
+          <Button variant={'ghost'} size={'sm'} className="justify-start">
+            <MonitorIcon /> 시스템
+          </Button>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

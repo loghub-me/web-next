@@ -21,7 +21,7 @@ export default function GlobalHeader() {
             </HeaderNavLink>
           ))}
         </nav>
-        <div className="hidden md:flex items-center gap-1 ml-0 h-full">
+        <div className="hidden md:flex items-center gap-2 ml-0 h-full">
           <ThemeSwitch />
           <GlobalCommandMenu />
           <AuthMenu type={'header'} />

@@ -19,7 +19,6 @@ export default function TopicIcon({ slug, name, size = 'sm' }: Readonly<TopicIco
       alt={name}
       width={width}
       height={height}
-      skeletonClassName={'rounded-full'}
     />
   );
 }
