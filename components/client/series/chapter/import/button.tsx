@@ -13,7 +13,7 @@ import ListEmpty from '@ui/list-empty';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@ui/sheet';
 import { CopyIcon, FolderInputIcon, PlusIcon, SearchIcon } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'sonner';
 
 interface SeriesChapterImportButtonProps {
@@ -22,13 +22,12 @@ interface SeriesChapterImportButtonProps {
 
 export default function SeriesChapterImportButton({ seriesId }: Readonly<SeriesChapterImportButtonProps>) {
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState('');
   const debouncedQuery = useDebouncedValue(query, 200);
 
   const { status, session } = useAuth();
   const queryClient = useQueryClient();
-  const { data: articles } = useQuery({
+  const { data: articles, isPending } = useQuery({
     queryKey: ['searchArticlesForImport', debouncedQuery],
     queryFn: () => searchArticlesForImport(debouncedQuery),
     enabled: status === 'authenticated',
@@ -42,14 +41,6 @@ export default function SeriesChapterImportButton({ seriesId }: Readonly<SeriesC
       })
       .catch(handleError);
   }
-
-  useEffect(() => {
-    setLoading(true);
-  }, [query]);
-
-  useEffect(() => {
-    setLoading(false);
-  }, [debouncedQuery]);
 
   return (
     session && (
@@ -74,10 +65,11 @@ export default function SeriesChapterImportButton({ seriesId }: Readonly<SeriesC
               onChange={(e) => setQuery(e.currentTarget.value)}
             />
             <div className="border rounded-xl shadow-xs max-h-128 overflow-y-auto">
-              {loading && <ListEmpty message="검색 중..." />}
-              {!loading && articles && articles.length === 0 && <ListEmpty message="검색된 아티클이 없습니다." />}
-              {!loading &&
-                articles?.map(({ id, slug, title, topics }) => (
+              {isPending && <ListEmpty message="검색 중..." />}
+              {!isPending && articles && articles.length === 0 && <ListEmpty message="검색된 아티클이 없습니다." />}
+              {!isPending &&
+                articles &&
+                articles.map(({ id, slug, title, topics }) => (
                   <div key={id} className="flex items-center gap-2 p-4 border-b last:border-b-0">
                     <div className="flex-1 space-y-1.5">
                       <h3 className="flex flex-wrap items-center">

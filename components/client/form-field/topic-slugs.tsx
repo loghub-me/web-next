@@ -5,10 +5,11 @@ import { ErrorMessage } from '@/constants/messages';
 import { getTopicSetBySlugs, searchTopics } from '@/constants/topics';
 import { useDebouncedValue } from '@/hooks/use-debounced-value';
 import { cn } from '@/lib/utils';
+import { useQuery } from '@tanstack/react-query';
 import { Command, CommandEmpty, CommandInput, CommandItem, CommandList } from '@ui/command';
 import { FormField, FormItem, FormLabel, FormMessage } from '@ui/form';
 import { SearchIcon, TagIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Control, FieldValues, Path } from 'react-hook-form';
 import { toast } from 'sonner';
 
@@ -25,10 +26,13 @@ export default function TopicSlugsFormField<T extends FieldValues>({
 }: Readonly<TopicSlugsFormFieldProps<T>>) {
   const [query, setQuery] = useState('');
   const debouncedQuery = useDebouncedValue(query, 200);
+  const { data: topics, isPending } = useQuery({
+    queryKey: ['searchTopics', debouncedQuery],
+    queryFn: () => searchTopics(debouncedQuery),
+    enabled: debouncedQuery.trim().length > 0,
+  });
 
-  const [showList, setShowList] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [topics, setTopics] = useState<Topic[]>([]);
+  const showList = useMemo(() => query.trim().length > 0, [query]);
 
   function onSelect(value: string) {
     const [slug] = value.split(':');
@@ -57,49 +61,6 @@ export default function TopicSlugsFormField<T extends FieldValues>({
     });
   }
 
-  useEffect(() => {
-    const hasInput = query.trim().length > 0;
-    setShowList(hasInput);
-    if (!hasInput) {
-      setLoading(false);
-      return;
-    }
-    setLoading(true);
-    setTopics([]);
-  }, [query]);
-
-  useEffect(() => {
-    const resolvedQuery = debouncedQuery.trim();
-    if (resolvedQuery.length === 0) {
-      setLoading(false);
-      setTopics([]);
-      return;
-    }
-
-    let cancelled = false;
-
-    const tick = setTimeout(() => {
-      Promise.resolve(searchTopics(resolvedQuery))
-        .then((data) => {
-          if (cancelled) return;
-          setTopics(data);
-        })
-        .catch(() => {
-          if (cancelled) return;
-          setTopics([]);
-        })
-        .finally(() => {
-          if (cancelled) return;
-          setLoading(false);
-        });
-    }, 0);
-
-    return () => {
-      cancelled = true;
-      clearTimeout(tick);
-    };
-  }, [debouncedQuery]);
-
   return (
     <FormField
       control={control}
@@ -115,7 +76,7 @@ export default function TopicSlugsFormField<T extends FieldValues>({
                 showList ? 'block' : 'hidden'
               )}
             >
-              {loading ? (
+              {isPending ? (
                 <CommandEmpty icon={SearchIcon}>검색 중...</CommandEmpty>
               ) : (
                 <>
