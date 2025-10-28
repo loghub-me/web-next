@@ -1,6 +1,6 @@
 'use client';
 
-import { getQuestionAnswerGenerating, requestGenerateQuestionAnswer } from '@/apis/client/question';
+import { checkGeneratingQuestionAnswer, requestGenerateQuestionAnswer } from '@/apis/client/question';
 import { useAuth } from '@/hooks/use-auth';
 import { handleError } from '@/lib/error';
 import { cn } from '@/lib/utils';
@@ -20,7 +20,6 @@ interface QuestionAnswerGenerateButtonProps {
   question: {
     id: number;
     writer: UserDetail;
-    answerGenerating: boolean;
   };
   align: 'start' | 'end';
 }
@@ -28,25 +27,26 @@ interface QuestionAnswerGenerateButtonProps {
 export default function QuestionAnswerGenerateButton({ question, align }: Readonly<QuestionAnswerGenerateButtonProps>) {
   const router = useRouter();
   const { session } = useAuth();
+  const isWriter = session?.id === question.writer.id;
 
   const instructionRef = useRef<HTMLTextAreaElement>(null);
+  const prevAnswerGenerating = useRef<boolean>(null);
   const [open, setOpen] = useState(false);
-  const [polling, setPolling] = useState(false);
 
-  const { data: pollingData } = useQuery({
-    queryKey: ['getQuestionAnswerGenerating', question.id],
-    queryFn: () => getQuestionAnswerGenerating(question.id),
-    refetchInterval: 5000,
-    enabled: polling,
+  const { data: statusData, refetch } = useQuery({
+    queryKey: ['checkGeneratingQuestionAnswer', question.id],
+    queryFn: () => checkGeneratingQuestionAnswer(question.id),
+    refetchInterval: (data) => (data.state.data?.data ? 3000 : false),
+    enabled: isWriter,
   });
-  const answerGenerating = pollingData?.data || question.answerGenerating;
+  const answerGenerating = statusData?.data || false;
 
   function onRequestButtonClick() {
     requestGenerateQuestionAnswer(question.id, instructionRef.current?.value)
       .then(({ message }) => {
         toast.success(message, { icon: <BotIcon className="size-4" /> });
         setOpen(false);
-        setPolling(true);
+        refetch();
         if (instructionRef.current) {
           instructionRef.current.value = '';
         }
@@ -55,15 +55,18 @@ export default function QuestionAnswerGenerateButton({ question, align }: Readon
   }
 
   useEffect(() => {
-    if (polling && pollingData?.data === false) {
-      setPolling(false);
+    if (!router) return;
+
+    const prev = prevAnswerGenerating.current;
+    if (prev === true && answerGenerating === false) {
       toast.success('답변 생성이 완료되었습니다!', { icon: <BotIcon className="size-4" /> });
       router.refresh();
     }
-  }, [router, polling, pollingData]);
+    prevAnswerGenerating.current = answerGenerating;
+  }, [answerGenerating, router]);
 
   return (
-    session?.id === question.writer.id && (
+    isWriter && (
       <ButtonGroup className="relative overflow-hidden rounded-full border-blue-400/40 dark:border-blue-400/40">
         <Button
           variant={'outline'}

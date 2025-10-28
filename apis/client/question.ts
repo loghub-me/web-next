@@ -4,9 +4,6 @@ import { clientAPI } from '@/apis/client/instance';
 import { questionAnswerPostSchema, questionEditSchema, questionPostSchema } from '@/schemas/question';
 import { z } from 'zod';
 
-const getQuestionAnswerGenerating = async (questionId: number) =>
-  clientAPI.get(`questions/${questionId}/answer-generating`).json<DataResponseBody<boolean>>();
-
 const getQuestionForEdit = async (questionId: number) =>
   clientAPI.get(`questions/${questionId}/for-edit`).json<QuestionForEdit>();
 
@@ -36,6 +33,9 @@ const deleteQuestionAnswer = (questionId: number, answerId: number) =>
 const acceptQuestionAnswer = (questionId: number, answerId: number) =>
   clientAPI.post(`questions/${questionId}/answers/${answerId}/accept`).json<MethodResponseBody>();
 
+const checkGeneratingQuestionAnswer = (questionId: number) =>
+  clientAPI.get(`questions/${questionId}/answers/generating`).json<DataResponseBody<boolean>>();
+
 const requestGenerateQuestionAnswer = (questionId: number, instruction?: string) =>
   clientAPI.post(`questions/${questionId}/answers/generate`, { json: { instruction } }).json<MessageResponseBody>();
 
@@ -50,5 +50,5 @@ const removeQuestionStar = (questionId: number) =>
 
 export { getQuestionForEdit, postQuestion, editQuestion, deleteQuestion, closeQuestion };
 export { getQuestionAnswerForEdit, postQuestionAnswer, editQuestionAnswer, deleteQuestionAnswer, acceptQuestionAnswer };
-export { getQuestionAnswerGenerating, requestGenerateQuestionAnswer };
+export { checkGeneratingQuestionAnswer, requestGenerateQuestionAnswer };
 export { existsQuestionStar, addQuestionStar, removeQuestionStar };
