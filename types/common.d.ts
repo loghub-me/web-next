@@ -26,3 +26,4 @@ interface Anchor {
 }
 
 type ThumbnailAspectRatio = '16:9' | '3:4';
+type ChatModel = 'GPT_4_1_MINI' | 'GPT_5' | 'O3';

@@ -1,11 +1,14 @@
 'use client';
 
+import { TopicIcon } from '../../topic';
+import { CHAT_MODEL_OPTIONS } from '@/constants/options';
 import { cn } from '@/lib/utils';
 import { Button } from '@ui/button';
 import { ButtonGroup } from '@ui/button-group';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@ui/card';
 import { GlowEffect } from '@ui/glow-effect';
 import { Popover, PopoverTrigger, PopoverContent } from '@ui/popover';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/select';
 import { Textarea } from '@ui/textarea';
 import { BotIcon, ChevronDownIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -56,7 +59,21 @@ export default function HomeFeatureAnswerGenerate() {
                   답변 생성은 <strong>10분에 한 번씩</strong> 요청 가능합니다.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-2">
+                <Select name={'chatModel'} defaultValue={'GPT_4_1_MINI'}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder={'Chat Model'} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.entries(CHAT_MODEL_OPTIONS).map(([value, { label, icon }]) => (
+                      <SelectItem key={value} value={value}>
+                        <div className={'flex items-center gap-2'}>
+                          <TopicIcon slug={icon} name={icon} /> {label}
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <Textarea name="instruction" placeholder={'추가 요청사항을 입력해보세요.\n(예: 답변 스타일)'} />
               </CardContent>
             </PopoverContent>

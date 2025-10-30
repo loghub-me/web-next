@@ -67,6 +67,12 @@ const THEME_OPTIONS: Record<string, { label: string; icon: LucideIcon }> = {
   dark: { label: '다크 모드', icon: MoonIcon },
 };
 
+const CHAT_MODEL_OPTIONS: Record<ChatModel, { label: string; icon: string }> = {
+  GPT_4_1_MINI: { label: 'GPT-4.1 Mini', icon: 'openai' },
+  GPT_5: { label: 'GPT-5', icon: 'openai' },
+  O3: { label: 'O3', icon: 'openai' },
+};
+
 export {
   ARTICLE_SORT_OPTIONS,
   SERIES_SORT_OPTIONS,
@@ -76,4 +82,5 @@ export {
   USER_STAR_TARGET_OPTIONS,
   USER_ACTIVITY_ACTION_OPTIONS,
   THEME_OPTIONS,
+  CHAT_MODEL_OPTIONS,
 };

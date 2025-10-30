@@ -1,7 +1,12 @@
 'use client';
 
 import { clientAPI } from '@/apis/client/instance';
-import { questionAnswerPostSchema, questionEditSchema, questionPostSchema } from '@/schemas/question';
+import {
+  questionAnswerGenerateRequestSchema,
+  questionAnswerPostSchema,
+  questionEditSchema,
+  questionPostSchema,
+} from '@/schemas/question';
 import { z } from 'zod';
 
 const getQuestionForEdit = async (questionId: number) =>
@@ -36,8 +41,8 @@ const acceptQuestionAnswer = (questionId: number, answerId: number) =>
 const checkGeneratingQuestionAnswer = (questionId: number) =>
   clientAPI.get(`questions/${questionId}/answers/generating`).json<DataResponseBody<boolean>>();
 
-const requestGenerateQuestionAnswer = (questionId: number, instruction?: string) =>
-  clientAPI.post(`questions/${questionId}/answers/generate`, { json: { instruction } }).json<MessageResponseBody>();
+const requestGenerateQuestionAnswer = (questionId: number, json: z.infer<typeof questionAnswerGenerateRequestSchema>) =>
+  clientAPI.post(`questions/${questionId}/answers/generate`, { json }).json<MessageResponseBody>();
 
 const existsQuestionStar = (questionId: number) =>
   clientAPI.get(`questions/star/${questionId}`).json<DataResponseBody<boolean>>();
